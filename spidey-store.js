@@ -183,6 +183,19 @@ const DEFAULT_SPIDEY_DATA = {
     "phone": "7601037710",
     "whatsapp": "7601037710",
     "email": "Shaikimran3912@gmail.com"
+  },
+  "coupon": {
+    "enabled": true,
+    "code": "SPIDEY20",
+    "discountType": "percent",
+    "discountValue": 20,
+    "maxDiscount": 500,
+    "minOrder": 799,
+    "badge": "SPIDEY VIP VAULT",
+    "title": "UNLOCK 20% OFF",
+    "description": "Welcome to the Spidey Club. Break the web seal to reveal your private member drop code.",
+    "expiryText": "Valid on your next streetwear order",
+    "updatedAt": 1731146400000
   }
 };
 
@@ -358,6 +371,10 @@ window.SpideyStore = {
             ...DEFAULT_SPIDEY_DATA.contact,
             ...(parsed.contact || {}),
             whatsapp: (parsed.contact?.whatsapp && parsed.contact.whatsapp.includes('7601037710')) ? '7601037710' : (parsed.contact?.whatsapp || DEFAULT_SPIDEY_DATA.contact.whatsapp)
+          },
+          coupon: {
+            ...DEFAULT_SPIDEY_DATA.coupon,
+            ...(parsed.coupon || {})
           }
         };
       }

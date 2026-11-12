@@ -27,7 +27,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { max-width: 100%; overflow-x: hidden; }
+html, body { max-width: 100%; overflow-x: clip; }
 body {
   background: var(--black);
   color: #fff;
@@ -500,6 +500,18 @@ table.data-table tr:hover td {
   border-color: rgba(16, 185, 129, 0.35);
 }
 
+.tag-badge.warning, .tag-badge.amber {
+  background: rgba(245, 158, 11, 0.16);
+  color: #FBBF24;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.tag-badge.info {
+  background: rgba(59, 130, 246, 0.16);
+  color: #60A5FA;
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
 /* Modals */
 .modal-overlay {
   position: fixed;
@@ -927,66 +939,322 @@ input:checked + .slider:before { transform: translateX(20px); }
   .admin-actions { gap: 6px; }
   .admin-actions .btn { white-space: nowrap; flex-shrink: 0; padding: 0 10px; font-size: 11px; }
 }
+button:focus, .nav-item:focus, .nav-item:focus-visible { outline: none; }
+button:focus-visible:not(.nav-item) { outline: 2px solid rgba(229,9,20,0.65); outline-offset: 2px; }
+aside.sidebar::-webkit-scrollbar { display: none; }
+
 @media(max-width: 860px) {
   .app-shell { flex-direction: column !important; overflow: visible !important; }
+  header.admin-nav {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    padding: 8px 14px !important;
+    height: 56px !important;
+    min-height: 56px;
+    gap: 8px;
+  }
+  .brand { min-width: 0; gap: 8px !important; }
+  .brand-title { font-size: 18px !important; gap: 6px !important; }
+  .brand-title small { font-size: 9px !important; letter-spacing: 1px !important; padding: 2px 5px !important; }
+  .header-actions { gap: 8px !important; margin-left: auto; }
+  .sync-status { font-size: 10px !important; padding: 4px 9px !important; gap: 5px !important; }
+  .header-actions .btn { height: 34px !important; padding: 0 11px !important; font-size: 11px !important; }
+
   aside.sidebar {
+    position: sticky;
+    top: 56px;
+    z-index: 50;
     width: 100% !important;
     border-right: none !important;
     border-bottom: 1px solid var(--border);
-    padding: 10px 12px !important;
+    padding: 8px 12px !important;
     display: flex !important;
     flex-direction: row !important;
-    flex-wrap: wrap !important;
-    gap: 6px !important;
-    background: var(--black2);
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    gap: 7px !important;
+    background: rgba(18, 18, 18, 0.96);
+    backdrop-filter: blur(8px);
   }
   .nav-list { display: contents !important; }
   .nav-item {
     width: auto !important;
     white-space: nowrap;
     flex-shrink: 0;
-    padding: 7px 11px !important;
+    scroll-snap-align: center;
+    padding: 8px 13px !important;
     font-size: 12px !important;
     gap: 7px !important;
     background: var(--black3);
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 999px !important;
   }
   .nav-item.active {
     background: var(--red) !important;
     border-color: var(--red) !important;
+    color: #fff !important;
   }
   .nav-section, .sidebar-footer { display: none !important; }
-  main.main-content { padding: 18px 14px 48px !important; width: 100%; }
+
+  main.main-content { overflow: visible !important; overflow-x: clip !important; padding: 16px 14px 64px !important; width: 100%; }
   .grid-2, .grid-3 { grid-template-columns: 1fr !important; gap: 14px !important; }
   .grid-4 { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
   .stat-box { padding: 14px; }
   .stat-value { font-size: 26px; }
-  .page-head { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 18px; padding-bottom: 14px; }
+
+  .page-head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+  }
   .page-head h1 { font-size: 26px; }
-  header.admin-nav { padding: 10px 12px !important; height: auto !important; min-height: 56px; gap: 8px; }
-  .brand { min-width: 0; gap: 8px !important; }
-  .brand-title { font-size: 18px !important; gap: 6px !important; }
-  .brand-title small { font-size: 9px !important; letter-spacing: 1px !important; padding: 2px 5px !important; }
-  .header-actions { gap: 8px !important; margin-left: auto; }
-  .sync-status { font-size: 10px !important; padding: 4px 9px !important; gap: 5px !important; }
-  .header-actions .btn { height: 32px !important; padding: 0 10px !important; font-size: 11px !important; }
+  .page-head > .btn { width: 100%; }
+  .page-head > div:last-child:not(:first-child) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+  }
+  .page-head > div:last-child:not(:first-child) .btn { flex: 1 1 auto; }
+
+  #prodSearch, #prodCatFilter, #userSearch, #userTypeFilter {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: 1 1 100% !important;
+  }
 }
+
 .badge-group { display: inline-flex; flex-wrap: nowrap; gap: 3px; }
 table.data-table th, table.data-table td { white-space: nowrap; }
-@media(max-width: 720px) {
-  table.data-table th, table.data-table td { padding: 10px 12px; font-size: 12px; }
-  .prod-thumb { width: 34px; height: 40px; }
+.table-wrap::-webkit-scrollbar { height: 5px; }
+.table-wrap::-webkit-scrollbar-track { background: var(--black2); }
+.table-wrap::-webkit-scrollbar-thumb { background: #3a3a42; border-radius: 4px; }
+
+@media(max-width: 768px) {
+  .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--black2);
+  }
+  table.data-table, table.data-table.mobile-cards {
+    width: 100%;
+    min-width: max-content;
+    display: table;
+    border-collapse: collapse;
+  }
+  table.data-table thead, table.data-table.mobile-cards thead { display: table-header-group; }
+  table.data-table tbody, table.data-table.mobile-cards tbody { display: table-row-group; }
+  table.data-table tr, table.data-table.mobile-cards tr { display: table-row; }
+  table.data-table th, table.data-table td,
+  table.data-table.mobile-cards th, table.data-table.mobile-cards td {
+    display: table-cell;
+    padding: 10px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  table.data-table th, table.data-table.mobile-cards th {
+    font-size: 10px;
+    padding: 10px 12px;
+  }
+  table.data-table .prod-thumb {
+    width: 36px;
+    height: 44px;
+  }
+  table.data-table select.form-control {
+    height: 32px !important;
+    font-size: 11px !important;
+    min-width: 108px;
+  }
+
+  .era-card-fields { min-width: 0 !important; flex: 1 1 180px !important; }
+  .era-card-actions {
+    width: 100%;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+
+  .modal-overlay { padding: 10px; }
+  .modal-box {
+    width: 100%;
+    max-height: 92dvh;
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-header { padding: 14px 16px; flex-shrink: 0; }
+  .modal-body { padding: 16px; overflow-y: auto; flex: 1; }
+  .modal-footer { padding: 12px 16px; flex-wrap: wrap; flex-shrink: 0; gap: 8px; }
+  .img-quality-row, #productModal .multi-img-zone input#pAddUrlInput { min-width: 0 !important; }
+  #productModal .multi-img-zone > div:nth-child(2) > div { min-width: 0 !important; flex: 1 1 100% !important; }
+
+  .image-lightbox { padding: 12px; }
+  .image-lightbox-header { left: 12px; right: 12px; top: 12px; }
+  .image-lightbox-nav { width: 38px; height: 38px; font-size: 16px; }
+  .image-lightbox-nav.prev { left: 8px; }
+  .image-lightbox-nav.next { right: 8px; }
 }
+
 @media(max-width: 540px) {
   .brand-title small, .hide-xs { display: none !important; }
+  .brand-title { font-size: 16px !important; }
+  .logo-badge { font-size: 11px; padding: 3px 6px; }
+  .sync-status { font-size: 10px !important; padding: 4px 8px !important; }
   .sync-status .sync-label-full { display: none !important; }
   .sync-status .sync-label-short { display: inline !important; }
-  .toast-notice { left: 12px; right: 12px; bottom: 14px; padding: 12px 14px; }
-  .modal-overlay { padding: 10px; }
-  .modal-header, .modal-body, .modal-footer { padding: 14px 16px; }
-  .card { padding: 14px; }
+  .header-actions { gap: 6px !important; }
+  .header-actions .btn { height: 32px !important; padding: 0 10px !important; font-size: 10px !important; }
+
+  main.main-content { padding: 14px 12px 64px !important; }
+  .card, .rev-card { padding: 14px !important; }
+  .card-head { flex-wrap: wrap; gap: 8px; }
+  .toast-notice { left: 10px; right: 10px; bottom: 12px; padding: 12px 14px; font-size: 13px; }
+
+  .rev-head > div:last-child { width: 100%; justify-content: space-between; }
+  .rev-head > div:last-child > div:first-child { text-align: left !important; }
+  #revMonthTotal { font-size: 30px !important; }
+  .rev-order-row { flex-wrap: wrap; gap: 8px; }
+  .rev-sub-metrics { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+
+  .multi-img-grid { grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 8px; }
+  #adminCouponPreview { padding: 16px !important; }
+  #prevCouponTitle { font-size: 26px !important; }
+  #prevCouponCode { font-size: 20px !important; }
+  .modal-footer .btn { flex: 1 1 auto; }
 }
+
+@media(max-width: 420px) {
+  header.admin-nav { padding: 8px 10px !important; }
+  .brand-title { font-size: 15px !important; }
+  .rev-months-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 6px; }
+  .cat-add-row .form-control { font-size: 12px; padding: 0 10px; }
+  .cat-add-row .btn { padding: 0 12px; font-size: 11px; }
+}
+/* ── Monthly Revenue Analytics ── */
+.rev-card {
+  background: radial-gradient(circle at 92% 10%, rgba(229,9,20,0.14), transparent 48%), var(--black2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 22px;
+  margin-bottom: 24px;
+  position: relative;
+}
+.rev-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.rev-year-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--black3);
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.rev-year-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 3px;
+  background: var(--black4);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  cursor: pointer;
+}
+.rev-year-btn:hover { background: var(--red); }
+.rev-months-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 8px;
+  margin-bottom: 18px;
+}
+@media(max-width: 1100px) { .rev-months-grid { grid-template-columns: repeat(6, 1fr); } }
+@media(max-width: 600px) { .rev-months-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; } }
+.rev-month-btn {
+  background: var(--black3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 10px 6px 8px;
+  text-align: center;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .18s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.rev-month-btn:hover { border-color: #666; color: #fff; transform: translateY(-1px); }
+.rev-month-btn.has-rev { border-color: rgba(16,185,129,0.35); color: #e5e5e5; }
+.rev-month-btn.active {
+  background: linear-gradient(180deg, rgba(229,9,20,0.24), rgba(229,9,20,0.08));
+  border-color: var(--red);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(229,9,20,0.22);
+}
+.rev-month-name { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.rev-month-amt { font-size: 10px; font-weight: 700; color: #10B981; white-space: nowrap; }
+.rev-month-btn:not(.has-rev) .rev-month-amt { color: #666; }
+.rev-month-bar { width: 100%; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; margin-top: 2px; }
+.rev-month-bar > i { display: block; height: 100%; background: var(--red); border-radius: 2px; transition: width .3s ease; }
+.rev-sub-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+@media(max-width: 780px) { .rev-sub-metrics { grid-template-columns: repeat(2, 1fr); } }
+.rev-mini-stat {
+  background: var(--black3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 12px 14px;
+}
+.rev-mini-stat span { display: block; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.rev-mini-stat b { font-size: 18px; color: #fff; font-family: var(--disp); letter-spacing: .03em; }
+.rev-orders-list {
+  max-height: 260px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--black3);
+}
+.rev-order-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  cursor: pointer;
+  transition: background .15s;
+}
+.rev-order-row:last-child { border-bottom: none; }
+.rev-order-row:hover { background: var(--black4); }
 </style>
 </head>
 <body>
@@ -1033,16 +1301,25 @@ table.data-table th, table.data-table td { white-space: nowrap; }
       <button class="nav-item" data-tab="tab-banners">
         <i class="fa-solid fa-bullhorn"></i> Banners & Marquees
       </button>
+
       <button class="nav-item" data-tab="tab-hero">
+
         <i class="fa-solid fa-fire"></i> Hero & Drop Countdown
       </button>
     </div>
 
     <div class="nav-section">Sales & Customers</div>
     <div class="nav-list">
+      <button class="nav-item" data-tab="tab-coupon">
+        <i class="fa-solid fa-ticket"></i> Login Offer &amp; Coupon
+      </button>
       <button class="nav-item" data-tab="tab-orders">
         <i class="fa-solid fa-bag-shopping"></i> Customer Orders
         <span class="nav-badge" id="badgeOrderCount" style="background:var(--red);">0</span>
+      </button>
+      <button class="nav-item" data-tab="tab-users">
+        <i class="fa-solid fa-users"></i> Users Data
+        <span class="nav-badge" id="badgeUserCount">0</span>
       </button>
       <button class="nav-item" data-tab="tab-subscribers">
         <i class="fa-solid fa-envelope"></i> VIP Drop List
@@ -1089,6 +1366,45 @@ table.data-table th, table.data-table td { white-space: nowrap; }
           <div class="stat-value" id="statSubscribers">0</div>
           <div class="stat-desc">Emails on drop waitlist</div>
         </div>
+      </div>
+
+      <!-- Real-Time Monthly Revenue Tracker -->
+      <div class="rev-card" id="monthlyRevenueCard">
+        <div class="rev-head">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+              <span class="card-title" style="margin:0;"><i class="fa-solid fa-indian-rupee-sign" style="color:var(--red);"></i> Monthly Revenue</span>
+              <span class="tag-badge green" style="font-size:10px;"><i class="fa-solid fa-circle" style="font-size:7px;margin-right:4px;"></i>REAL-TIME</span>
+            </div>
+            <div id="revMonthSubtitle" style="font-size:12px;color:var(--muted);">Click any month below to inspect live order revenue</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+            <div style="text-align:right;">
+              <div id="revSelectedMonthLabel" style="font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);">NOVEMBER 2026 REVENUE</div>
+              <div id="revMonthTotal" style="font-family:var(--disp);font-size:38px;line-height:1;color:#10B981;">₹0</div>
+            </div>
+            <div class="rev-year-nav">
+              <button type="button" class="rev-year-btn" onclick="changeRevenueYear(-1)" title="Previous Year"><i class="fa-solid fa-chevron-left"></i></button>
+              <span id="revYearDisplay" style="font-family:var(--disp);font-size:18px;letter-spacing:.06em;min-width:44px;text-align:center;">2026</span>
+              <button type="button" class="rev-year-btn" onclick="changeRevenueYear(1)" title="Next Year"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="rev-months-grid" id="revMonthsGrid"></div>
+
+        <div class="rev-sub-metrics">
+          <div class="rev-mini-stat"><span>Month Orders</span><b id="revMonthOrdersCount">0</b></div>
+          <div class="rev-mini-stat"><span>Items Sold</span><b id="revMonthItemsSold">0</b></div>
+          <div class="rev-mini-stat"><span>Avg. Order Value</span><b id="revMonthAov">₹0</b></div>
+          <div class="rev-mini-stat"><span id="revYearTotalLabel">2026 Total Revenue</span><b id="revYearTotalAmt" style="color:var(--red);">₹0</b></div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);" id="revOrdersListTitle">Orders in Selected Month</span>
+          <button type="button" class="btn btn-sm btn-dark" onclick="switchTab('tab-orders')"><i class="fa-solid fa-bag-shopping"></i> Manage Orders</button>
+        </div>
+        <div class="rev-orders-list" id="revMonthOrdersList"></div>
       </div>
 
       <!-- Quick Store Preview & Actions -->
@@ -1181,8 +1497,8 @@ table.data-table th, table.data-table td { white-space: nowrap; }
           <div class="card-head">
             <span class="card-title">Filter Categories</span>
           </div>
-          <div style="display:flex;gap:8px;margin-bottom:16px;">
-            <input type="text" id="newCategoryInput" class="form-control" placeholder="New category name (e.g. Acid Wash)">
+          <div class="cat-add-row" style="display:flex;gap:8px;margin-bottom:16px;">
+            <input type="text" id="newCategoryInput" class="form-control" style="min-width:0;flex:1;" placeholder="New category name...">
             <button class="btn btn-red" onclick="addNewCategory()"><i class="fa-solid fa-plus"></i> Add</button>
           </div>
           <div id="categoriesList" style="display:flex;flex-direction:column;gap:8px;">
@@ -1403,6 +1719,118 @@ table.data-table th, table.data-table td { white-space: nowrap; }
       </div>
     </div>
 
+    <!-- 5B. TAB: LOGIN OFFER & COUPON -->
+    <div class="tab-pane" id="tab-coupon">
+      <div class="page-head">
+        <div>
+          <h1 class="disp">Login Offer &amp; Coupon Vault</h1>
+          <p>Customize the exclusive offer popup shown when customers sign in and update the live coupon code anytime.</p>
+        </div>
+        <button class="btn btn-red" onclick="saveCouponSettings()"><i class="fa-solid fa-floppy-disk"></i> Save &amp; Push Live</button>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title"><i class="fa-solid fa-ticket" style="color:var(--red);"></i> Coupon Configuration</span>
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;font-weight:700;">
+              <input type="checkbox" id="couponEnabled" style="width:16px;height:16px;accent-color:var(--red);cursor:pointer;" onchange="updateCouponAdminPreview()">
+              <span>Active on Login</span>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>Coupon Code (Uppercase) *</label>
+            <div style="display:flex;gap:8px;">
+              <input type="text" id="couponCode" class="form-control" placeholder="SPIDEY20" style="text-transform:uppercase;font-weight:800;letter-spacing:.12em;" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9_-]/g,'');updateCouponAdminPreview()">
+              <button type="button" class="btn btn-dark" onclick="generateRandomCouponCode()" title="Generate a fresh code"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--red);"></i> Generate</button>
+            </div>
+            <small style="color:var(--muted);display:block;margin-top:4px;">Updating this code automatically pushes the new code to logged-in users &amp; checkout.</small>
+          </div>
+
+          <div class="grid-2" style="gap:10px;">
+            <div class="form-group">
+              <label>Discount Type</label>
+              <select id="couponDiscountType" class="form-control" onchange="updateCouponAdminPreview()">
+                <option value="percent">Percentage Off (%)</option>
+                <option value="flat">Flat Amount Off (₹)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Discount Value *</label>
+              <input type="number" id="couponDiscountValue" class="form-control" min="1" placeholder="20" oninput="updateCouponAdminPreview()">
+            </div>
+          </div>
+
+          <div class="grid-2" style="gap:10px;">
+            <div class="form-group">
+              <label>Max Discount Cap (₹, for %)</label>
+              <input type="number" id="couponMaxDiscount" class="form-control" min="0" placeholder="500 (0 = no cap)" oninput="updateCouponAdminPreview()">
+            </div>
+            <div class="form-group">
+              <label>Minimum Order (₹)</label>
+              <input type="number" id="couponMinOrder" class="form-control" min="0" placeholder="799 (0 = no min)" oninput="updateCouponAdminPreview()">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>VIP Badge Tag</label>
+            <input type="text" id="couponBadge" class="form-control" placeholder="SPIDEY VIP VAULT" oninput="updateCouponAdminPreview()">
+          </div>
+
+          <div class="form-group">
+            <label>Offer Headline *</label>
+            <input type="text" id="couponTitle" class="form-control" placeholder="UNLOCK 20% OFF" oninput="updateCouponAdminPreview()">
+          </div>
+
+          <div class="form-group">
+            <label>Offer Description</label>
+            <textarea id="couponDescription" class="form-control" rows="2" placeholder="Welcome to the Spidey Club. Break the web seal to reveal your private member drop code." oninput="updateCouponAdminPreview()"></textarea>
+          </div>
+
+          <div class="form-group" style="margin-bottom:0;">
+            <label>Validity / Urgency Note</label>
+            <input type="text" id="couponExpiryText" class="form-control" placeholder="Valid on your next streetwear order" oninput="updateCouponAdminPreview()">
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title"><i class="fa-solid fa-eye" style="color:var(--red);"></i> Live User Offer Preview</span>
+            <span id="adminCouponStatusPill" class="tag-badge green">LIVE</span>
+          </div>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:16px;">This interactive Web-Sealed VIP Offer Card pops up automatically when a customer logs in or creates an account.</p>
+
+          <div id="adminCouponPreview" style="position:relative;background:radial-gradient(circle at 85% 15%, rgba(229,9,20,0.28), transparent 55%), linear-gradient(145deg, #0b0b0d 0%, #150407 100%);border:1px solid rgba(229,9,20,0.45);border-radius:10px;padding:24px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,0.65);">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px;">
+              <span id="prevCouponBadge" style="background:var(--red);color:#fff;font-size:10px;font-weight:800;letter-spacing:.18em;padding:4px 10px;border-radius:2px;text-transform:uppercase;">SPIDEY VIP VAULT</span>
+              <span id="prevCouponMin" style="font-size:11px;color:#ccc;font-weight:600;">Min. Order ₹799</span>
+            </div>
+            <div id="prevCouponTitle" class="disp" style="font-size:34px;line-height:1;color:#fff;margin-bottom:8px;">UNLOCK 20% OFF</div>
+            <p id="prevCouponDesc" style="font-size:13px;color:#c7c7c7;line-height:1.5;margin-bottom:18px;">Welcome to the Spidey Club. Break the web seal to reveal your private member drop code.</p>
+
+            <div style="position:relative;background:#090909;border:1.5px dashed rgba(229,9,20,0.75);border-radius:6px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;">
+              <div>
+                <div style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:700;">REVEALED CODE</div>
+                <div id="prevCouponCode" style="font-family:var(--disp);font-size:26px;letter-spacing:.12em;color:#fff;">SPIDEY20</div>
+              </div>
+              <span id="prevCouponValue" style="background:rgba(16,185,129,0.16);border:1px solid rgba(16,185,129,0.45);color:#10B981;font-size:12px;font-weight:800;padding:6px 12px;border-radius:4px;white-space:nowrap;">20% OFF</span>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#999;">
+              <span id="prevCouponExpiry"><i class="fa-solid fa-bolt" style="color:var(--red);margin-right:4px;"></i> Valid on your next streetwear order</span>
+              <span style="color:#fff;font-weight:700;">1-Click Apply</span>
+            </div>
+          </div>
+
+          <div style="margin-top:16px;padding:12px 14px;background:var(--black3);border:1px solid var(--border);border-radius:4px;font-size:12px;color:#bbb;line-height:1.5;">
+            <i class="fa-solid fa-circle-info" style="color:var(--red);margin-right:6px;"></i>
+            When you change the coupon code or discount and click <b>Save &amp; Push Live</b>, it syncs to Firebase &amp; all open storefront tabs immediately.
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 6. TAB: CUSTOMER ORDERS -->
     <div class="tab-pane" id="tab-orders">
       <div class="page-head">
@@ -1447,7 +1875,10 @@ table.data-table th, table.data-table td { white-space: nowrap; }
           <h1 class="disp">VIP Drop Subscribers</h1>
           <p>Emails collected via the "Get in before everyone else" newsletter drop list.</p>
         </div>
-        <button class="btn btn-dark" onclick="copyAllSubscribers()"><i class="fa-solid fa-copy"></i> Copy All Emails</button>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-dark" onclick="exportSubscribersToCsv()"><i class="fa-solid fa-file-csv"></i> Save CSV</button>
+          <button class="btn btn-dark" onclick="copyAllSubscribers()"><i class="fa-solid fa-copy"></i> Copy All Emails</button>
+        </div>
       </div>
 
       <div class="card" style="padding:16px;">
@@ -1463,6 +1894,72 @@ table.data-table th, table.data-table td { white-space: nowrap; }
             </thead>
             <tbody id="subscribersTableBody">
               <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. TAB: USERS DATA & EXPORT -->
+    <div class="tab-pane" id="tab-users">
+      <div class="page-head">
+        <div>
+          <h1 class="disp">Users &amp; Customers Data</h1>
+          <p>Unified customer directory merged from registered profiles, orders, saved addresses, and VIP subscribers.</p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-dark" onclick="refreshUsersData()"><i class="fa-solid fa-rotate"></i> Refresh</button>
+          <button class="btn btn-dark" onclick="exportUsersToFile('json')"><i class="fa-solid fa-file-code"></i> Save JSON</button>
+          <button class="btn btn-red" onclick="exportUsersToFile('csv')"><i class="fa-solid fa-file-arrow-down"></i> Save CSV (Excel)</button>
+        </div>
+      </div>
+
+      <div class="grid-4" style="margin-bottom:20px;">
+        <div class="stat-box">
+          <div class="stat-label">Total Unique Users</div>
+          <div class="stat-value" id="usersStatTotal">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Ordered Customers</div>
+          <div class="stat-value" id="usersStatBuyers">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Saved Profiles</div>
+          <div class="stat-value" id="usersStatProfiles">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">VIP Subscribers</div>
+          <div class="stat-value" id="usersStatSubs">0</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;flex:1;min-width:260px;">
+            <input type="text" id="userSearch" placeholder="Search name, email, phone, city, pincode..." oninput="renderUsersTable()" style="flex:1;min-width:220px;padding:10px 14px;border:1px solid var(--border);border-radius:6px;font-size:13px;background:var(--black3);color:#fff;" />
+            <select id="userTypeFilter" onchange="renderUsersTable()" style="padding:10px 14px;border:1px solid var(--border);border-radius:6px;font-size:13px;background:var(--black3);color:#fff;">
+              <option value="all">All Users</option>
+              <option value="buyers">Ordered Customers</option>
+              <option value="profiles">Registered / Profiles</option>
+              <option value="subscribers">VIP Subscribers</option>
+            </select>
+          </div>
+          <div style="font-size:12px;color:var(--muted);" id="usersFilteredHint">Showing all users</div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table mobile-cards">
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Contact</th>
+                <th>Location &amp; Address</th>
+                <th>Orders &amp; Spent</th>
+                <th>Sources</th>
+                <th>Last Activity</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:24px;">Loading users data...</td></tr>
             </tbody>
           </table>
         </div>
@@ -1882,7 +2379,8 @@ async function syncStoreConfigToFirebase(silent = false) {
       categories: storeData.categories || [],
       banners: storeData.banners || {},
       social: storeData.social || {},
-      contact: storeData.contact || {}
+      contact: storeData.contact || {},
+      coupon: storeData.coupon || {}
     });
     const eraRes = await SpideyFirebase.saveEraCollections(storeData.eraCollections || []);
     const err = (cfgRes && cfgRes.error) || (eraRes && eraRes.error);
@@ -1927,6 +2425,7 @@ async function syncStoreConfigFromFirebase() {
       if (c.banners && typeof c.banners === 'object') storeData.banners = { ...(storeData.banners || {}), ...c.banners };
       if (c.social && typeof c.social === 'object') storeData.social = { ...(storeData.social || {}), ...c.social };
       if (c.contact && typeof c.contact === 'object') storeData.contact = { ...(storeData.contact || {}), ...c.contact };
+      if (c.coupon && typeof c.coupon === 'object') storeData.coupon = { ...(storeData.coupon || {}), ...c.coupon };
     }
     if (hasCloudEras) {
       storeData.eraCollections = eraRes.data;
@@ -1979,6 +2478,8 @@ function initAdmin() {
   };
 
   window.addEventListener('storage', syncFromExternal);
+  window.addEventListener('spidey_orders_updated', syncFromExternal);
+  window.addEventListener('spidey_subs_updated', syncFromExternal);
   window.addEventListener('spidey_store_updated', syncFromExternal);
   if ('BroadcastChannel' in window) {
     try {
@@ -2005,6 +2506,10 @@ function switchTab(tabId) {
   if (!tabId) return;
   document.querySelectorAll('.nav-item').forEach(b => b.classList.toggle('active', b.getAttribute('data-tab') === tabId));
   document.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.id === tabId));
+  const activeNav = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
+  if (activeNav && window.innerWidth <= 860) {
+    activeNav.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }
 }
 
 // Global click delegation for sidebar navigation buttons (instant & bulletproof)
@@ -2049,6 +2554,161 @@ function updateStats() {
   document.getElementById('prevDropDate').textContent = 'Target: ' + (storeData.banners.drop.targetDate || '').replace('T', ' ');
   document.getElementById('prevDropStatus').textContent = storeData.banners.drop.enabled ? 'ACTIVE' : 'DISABLED';
   document.getElementById('prevDropStatus').className = storeData.banners.drop.enabled ? 'tag-badge green' : 'tag-badge red';
+  if (typeof renderMonthlyRevenue === 'function') renderMonthlyRevenue();
+  if (typeof renderUsersTable === 'function') renderUsersTable();
+}
+
+// ──────────────────────────────────────────
+// REAL-TIME MONTHLY REVENUE ANALYTICS
+// ──────────────────────────────────────────
+const _REV_MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const _REV_MONTHS_FULL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+let _revSelectedYear = new Date().getFullYear();
+let _revSelectedMonth = new Date().getMonth();
+
+function changeRevenueYear(delta) {
+  _revSelectedYear += delta;
+  renderMonthlyRevenue();
+}
+
+function selectRevenueMonth(monthIdx) {
+  const m = parseInt(monthIdx);
+  if (isNaN(m) || m < 0 || m > 11) return;
+  _revSelectedMonth = m;
+  renderMonthlyRevenue();
+}
+
+function _formatInrCompact(amt) {
+  const n = Math.round(Number(amt) || 0);
+  if (n >= 100000) return '₹' + (n / 100000).toFixed(1).replace(/\.0$/, '') + 'L';
+  if (n >= 10000) return '₹' + (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+  return '₹' + n.toLocaleString('en-IN');
+}
+
+function renderMonthlyRevenue() {
+  const gridEl = document.getElementById('revMonthsGrid');
+  if (!gridEl) return;
+
+  const orders = SpideyStore.getOrders() || [];
+  const monthBuckets = Array.from({ length: 12 }, () => ({
+    revenue: 0,
+    cancelledAmt: 0,
+    cancelledCount: 0,
+    activeOrders: [],
+    allOrders: [],
+    itemsCount: 0
+  }));
+
+  let yearTotalRevenue = 0;
+
+  orders.forEach(o => {
+    if (!o) return;
+    const dt = new Date(o.created_at || Date.now());
+    if (isNaN(dt.getTime())) return;
+    if (dt.getFullYear() !== _revSelectedYear) return;
+
+    const mIdx = dt.getMonth();
+    const bucket = monthBuckets[mIdx];
+    const amt = Math.max(0, Number(o.total_amount) || 0);
+    const isCancelled = String(o.status || '').toLowerCase() === 'cancelled';
+
+    bucket.allOrders.push({ ...o, _dt: dt, _amt: amt, _cancelled: isCancelled });
+    if (isCancelled) {
+      bucket.cancelledAmt += amt;
+      bucket.cancelledCount += 1;
+    } else {
+      bucket.revenue += amt;
+      bucket.activeOrders.push(o);
+      bucket.itemsCount += (o.items || []).reduce((sum, item) => sum + (parseInt(item.q) || 1), 0);
+      yearTotalRevenue += amt;
+    }
+  });
+
+  const maxMonthRev = Math.max(1, ...monthBuckets.map(b => b.revenue));
+
+  const yearDispEl = document.getElementById('revYearDisplay');
+  if (yearDispEl) yearDispEl.textContent = _revSelectedYear;
+
+  gridEl.innerHTML = _REV_MONTHS_SHORT.map((name, idx) => {
+    const b = monthBuckets[idx];
+    const isActive = idx === _revSelectedMonth;
+    const hasRev = b.revenue > 0;
+    const barPct = hasRev ? Math.max(8, Math.round((b.revenue / maxMonthRev) * 100)) : 0;
+    return `
+      <button type="button" class="rev-month-btn ${isActive ? 'active' : ''} ${hasRev ? 'has-rev' : ''}" onclick="selectRevenueMonth(${idx})" title="${_REV_MONTHS_FULL[idx]} ${_revSelectedYear}: ₹${b.revenue.toLocaleString('en-IN')} (${b.activeOrders.length} orders)">
+        <span class="rev-month-name">${name}</span>
+        <span class="rev-month-amt">${hasRev ? _formatInrCompact(b.revenue) : '₹0'}</span>
+        <span class="rev-month-bar"><i style="width:${barPct}%;"></i></span>
+      </button>
+    `;
+  }).join('');
+
+  const cur = monthBuckets[_revSelectedMonth];
+  const monthFullName = _REV_MONTHS_FULL[_revSelectedMonth];
+  const selLabel = document.getElementById('revSelectedMonthLabel');
+  if (selLabel) selLabel.textContent = `${monthFullName.toUpperCase()} ${_revSelectedYear} REVENUE`;
+
+  const totEl = document.getElementById('revMonthTotal');
+  if (totEl) {
+    totEl.textContent = '₹' + cur.revenue.toLocaleString('en-IN');
+    totEl.style.color = cur.revenue > 0 ? '#10B981' : 'var(--muted)';
+  }
+
+  const subEl = document.getElementById('revMonthSubtitle');
+  if (subEl) {
+    const cancelNote = cur.cancelledCount > 0 ? ` • ${cur.cancelledCount} cancelled (₹${cur.cancelledAmt.toLocaleString('en-IN')} excluded)` : '';
+    subEl.textContent = `${monthFullName} ${_revSelectedYear}: ${cur.activeOrders.length} active order(s)${cancelNote}`;
+  }
+
+  const ordCountEl = document.getElementById('revMonthOrdersCount');
+  if (ordCountEl) ordCountEl.textContent = cur.activeOrders.length;
+
+  const itemsSoldEl = document.getElementById('revMonthItemsSold');
+  if (itemsSoldEl) itemsSoldEl.textContent = cur.itemsCount;
+
+  const aovEl = document.getElementById('revMonthAov');
+  if (aovEl) {
+    const aov = cur.activeOrders.length ? Math.round(cur.revenue / cur.activeOrders.length) : 0;
+    aovEl.textContent = '₹' + aov.toLocaleString('en-IN');
+  }
+
+  const yLbl = document.getElementById('revYearTotalLabel');
+  if (yLbl) yLbl.textContent = `${_revSelectedYear} Total Revenue`;
+  const yAmt = document.getElementById('revYearTotalAmt');
+  if (yAmt) yAmt.textContent = '₹' + yearTotalRevenue.toLocaleString('en-IN');
+
+  const listTitle = document.getElementById('revOrdersListTitle');
+  if (listTitle) listTitle.textContent = `${monthFullName} ${_revSelectedYear} Orders (${cur.allOrders.length})`;
+
+  const listEl = document.getElementById('revMonthOrdersList');
+  if (listEl) {
+    if (!cur.allOrders.length) {
+      listEl.innerHTML = `<div style="padding:20px;text-align:center;color:var(--muted);font-size:12px;">No orders placed in ${monthFullName} ${_revSelectedYear}. Click another month above to inspect its revenue.</div>`;
+    } else {
+      cur.allOrders.sort((a, b) => b._dt - a._dt);
+      const statusBadgeMap = { pending: 'warning', confirmed: 'green', shipped: 'info', delivered: 'green', cancelled: 'red' };
+      listEl.innerHTML = cur.allOrders.map(o => {
+        const stKey = String(o.status || 'pending').toLowerCase();
+        const badgeCls = statusBadgeMap[stKey] || '';
+        const dtStr = o._dt.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+        const itemQty = (o.items || []).reduce((s, it) => s + (parseInt(it.q) || 1), 0);
+        return `
+          <div class="rev-order-row" onclick="viewOrderDetails('${o.id}')" title="Click to view full order details">
+            <div style="display:flex;align-items:center;gap:10px;min-width:0;flex:1;">
+              <b style="font-family:var(--disp);font-size:14px;letter-spacing:.04em;color:#fff;white-space:nowrap;">${o.id}</b>
+              <span style="color:var(--muted);white-space:nowrap;">${dtStr}</span>
+              <span style="color:#ddd;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${o.customer_name || 'Customer'}</span>
+              <span style="color:var(--muted);font-size:11px;white-space:nowrap;">(${itemQty} item${itemQty === 1 ? '' : 's'})</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+              <span class="tag-badge ${badgeCls}" style="margin:0;text-transform:uppercase;font-size:10px;">${stKey}</span>
+              <b style="font-size:13px;color:${o._cancelled ? 'var(--muted)' : '#10B981'};${o._cancelled ? 'text-decoration:line-through;' : ''}">₹${o._amt.toLocaleString('en-IN')}</b>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+  }
 }
 
 function reloadAllData() {
@@ -2112,6 +2772,21 @@ function populateFormFields() {
   if (document.getElementById('contactEmail')) document.getElementById('contactEmail').value = emailVal;
   if (document.getElementById('adminWaPreviewLink')) {
     document.getElementById('adminWaPreviewLink').href = `https://wa.me/91${waVal.replace(/[^0-9]/g, '')}`;
+  }
+
+  const cpn = storeData.coupon || {};
+  if (document.getElementById('couponEnabled')) {
+    document.getElementById('couponEnabled').checked = cpn.enabled !== false;
+    document.getElementById('couponCode').value = (cpn.code || 'SPIDEY20').toUpperCase();
+    document.getElementById('couponDiscountType').value = cpn.discountType === 'flat' ? 'flat' : 'percent';
+    document.getElementById('couponDiscountValue').value = cpn.discountValue ?? 20;
+    document.getElementById('couponMaxDiscount').value = cpn.maxDiscount ?? 500;
+    document.getElementById('couponMinOrder').value = cpn.minOrder ?? 799;
+    document.getElementById('couponBadge').value = cpn.badge || 'SPIDEY VIP VAULT';
+    document.getElementById('couponTitle').value = cpn.title || 'UNLOCK 20% OFF';
+    document.getElementById('couponDescription').value = cpn.description || 'Welcome to the Spidey Club. Break the web seal to reveal your private member drop code.';
+    document.getElementById('couponExpiryText').value = cpn.expiryText || 'Valid on your next streetwear order';
+    updateCouponAdminPreview();
   }
 }
 
@@ -3146,7 +3821,7 @@ function renderEraCards() {
         </div>
 
         <!-- Middle: Title & Source -->
-        <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:8px;">
+        <div class="era-card-fields" style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:8px;">
           <div style="display:flex;gap:8px;align-items:center;">
             <span style="font-size:11px;font-weight:700;color:var(--muted);width:24px;">#${idx+1}</span>
             <input type="text" class="form-control" id="era_title_${idx}" value="${era.title}" placeholder="Category Title" style="font-weight:700;letter-spacing:.02em;" onchange="onEraTitleChanged(${idx})">
@@ -3165,7 +3840,7 @@ function renderEraCards() {
         </div>
 
         <!-- Right: Custom Image Upload / Clear / Remove Tile -->
-        <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;">
+        <div class="era-card-actions" style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;">
           <input type="file" id="era_file_input_${idx}" accept="image/*" style="display:none;" onchange="handleEraFileUpload(${idx}, this)">
           <input type="hidden" id="era_custom_img_${idx}" value="${era.image || ''}">
           <button type="button" class="btn btn-sm btn-dark" onclick="document.getElementById('era_file_input_${idx}').click()" style="font-size:11px;">
@@ -3394,6 +4069,95 @@ function saveHeroAndDrop() {
 }
 
 // ──────────────────────────────────────────
+// LOGIN OFFER & COUPON MANAGEMENT
+// ──────────────────────────────────────────
+function updateCouponAdminPreview() {
+  const enabledEl = document.getElementById('couponEnabled');
+  if (!enabledEl) return;
+  const enabled = enabledEl.checked;
+  const code = (document.getElementById('couponCode')?.value || 'SPIDEY20').toUpperCase() || 'SPIDEY20';
+  const dtype = document.getElementById('couponDiscountType')?.value === 'flat' ? 'flat' : 'percent';
+  const dval = Math.max(1, parseInt(document.getElementById('couponDiscountValue')?.value) || 20);
+  const maxD = Math.max(0, parseInt(document.getElementById('couponMaxDiscount')?.value) || 0);
+  const minO = Math.max(0, parseInt(document.getElementById('couponMinOrder')?.value) || 0);
+  const badge = document.getElementById('couponBadge')?.value.trim() || 'SPIDEY VIP VAULT';
+  const title = document.getElementById('couponTitle')?.value.trim() || 'UNLOCK 20% OFF';
+  const desc = document.getElementById('couponDescription')?.value.trim() || 'Welcome to the Spidey Club. Break the web seal to reveal your private member drop code.';
+  const expiry = document.getElementById('couponExpiryText')?.value.trim() || 'Valid on your next streetwear order';
+
+  const statusPill = document.getElementById('adminCouponStatusPill');
+  if (statusPill) {
+    statusPill.textContent = enabled ? 'LIVE' : 'PAUSED';
+    statusPill.className = 'tag-badge ' + (enabled ? 'green' : 'amber');
+  }
+  const prevBadge = document.getElementById('prevCouponBadge');
+  if (prevBadge) prevBadge.textContent = badge;
+  const prevMin = document.getElementById('prevCouponMin');
+  if (prevMin) prevMin.textContent = minO > 0 ? `Min. Order ₹${minO}` : 'No Min. Order';
+  const prevTitle = document.getElementById('prevCouponTitle');
+  if (prevTitle) prevTitle.textContent = title;
+  const prevDesc = document.getElementById('prevCouponDesc');
+  if (prevDesc) prevDesc.textContent = desc;
+  const prevCode = document.getElementById('prevCouponCode');
+  if (prevCode) prevCode.textContent = code;
+  const prevValue = document.getElementById('prevCouponValue');
+  if (prevValue) {
+    prevValue.textContent = dtype === 'flat'
+      ? `FLAT ₹${dval} OFF`
+      : `${dval}% OFF${maxD > 0 ? ' (MAX ₹' + maxD + ')' : ''}`;
+  }
+  const prevExpiry = document.getElementById('prevCouponExpiry');
+  if (prevExpiry) prevExpiry.innerHTML = `<i class="fa-solid fa-bolt" style="color:var(--red);margin-right:4px;"></i> ${expiry}`;
+}
+
+function generateRandomCouponCode() {
+  const prefixes = ['SPIDEY', 'WEB', 'ARACHNID', 'VENOM', 'STREET', 'VIPDROP'];
+  const p = prefixes[Math.floor(Math.random() * prefixes.length)];
+  const val = parseInt(document.getElementById('couponDiscountValue')?.value) || 20;
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let suffix = '';
+  for (let i = 0; i < 3; i++) suffix += chars[Math.floor(Math.random() * chars.length)];
+  const codeInput = document.getElementById('couponCode');
+  if (codeInput) {
+    codeInput.value = `${p}${val}${suffix}`;
+    updateCouponAdminPreview();
+  }
+}
+
+function saveCouponSettings() {
+  const code = (document.getElementById('couponCode')?.value || '').trim().toUpperCase().replace(/[^A-Z0-9_-]/g, '');
+  if (!code) {
+    showToast('Please enter a valid coupon code.');
+    return;
+  }
+  const discountType = document.getElementById('couponDiscountType')?.value === 'flat' ? 'flat' : 'percent';
+  const discountValue = Math.max(1, parseInt(document.getElementById('couponDiscountValue')?.value) || 20);
+  const maxDiscount = Math.max(0, parseInt(document.getElementById('couponMaxDiscount')?.value) || 0);
+  const minOrder = Math.max(0, parseInt(document.getElementById('couponMinOrder')?.value) || 0);
+  const title = (document.getElementById('couponTitle')?.value || '').trim() || (discountType === 'flat' ? `UNLOCK ₹${discountValue} OFF` : `UNLOCK ${discountValue}% OFF`);
+
+  storeData.coupon = {
+    enabled: !!document.getElementById('couponEnabled')?.checked,
+    code,
+    discountType,
+    discountValue,
+    maxDiscount,
+    minOrder,
+    badge: (document.getElementById('couponBadge')?.value || '').trim() || 'SPIDEY VIP VAULT',
+    title,
+    description: (document.getElementById('couponDescription')?.value || '').trim() || 'Welcome to the Spidey Club. Break the web seal to reveal your private member drop code.',
+    expiryText: (document.getElementById('couponExpiryText')?.value || '').trim() || 'Valid on your next streetwear order',
+    updatedAt: Date.now()
+  };
+
+  SpideyStore.saveData(storeData);
+  updateCouponAdminPreview();
+  updateStats();
+  syncStoreConfigToFirebase(false);
+  showToast(`Coupon ${code} saved & pushed live to users!`);
+}
+
+// ──────────────────────────────────────────
 // ORDERS MANAGEMENT
 // ──────────────────────────────────────────
 function renderOrdersTable() {
@@ -3456,7 +4220,10 @@ function renderOrdersTable() {
 async function updateOrderStatus(id, newStatus) {
   const orders = SpideyStore.getOrders();
   const o = orders.find(x => x.id === id);
+  if (o) o.status = newStatus;
   SpideyStore.updateOrderStatus(id, newStatus);
+  if (typeof renderOrdersTable === 'function') renderOrdersTable();
+  if (typeof updateStats === 'function') updateStats();
   if (window.SpideyFirebase) SpideyFirebase.updateOrderStatus(id, newStatus).catch(e => console.warn(e));
   showToast(`Order #${id} status updated to <b>${newStatus.toUpperCase()}</b>`);
 
@@ -3525,6 +4292,7 @@ function viewOrderDetails(id) {
       <div style="font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:700;margin-bottom:6px;">Items in Package:</div>
       <div style="background:var(--black3);padding:12px;border-radius:3px;">
         ${itemsHtml}
+        ${o.coupon_code && Number(o.coupon_discount) > 0 ? `<div style="display:flex;justify-content:space-between;margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);font-size:12px;color:#10B981;font-weight:700;"><span>Coupon Applied (${o.coupon_code}):</span><span>-₹${o.coupon_discount}</span></div>` : ''}
         <div style="display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px dashed var(--border);font-size:15px;font-weight:700;">
           <span>Total Order Value:</span>
           <span style="color:var(--red);">₹${o.total_amount}</span>
@@ -3566,201 +4334,41 @@ function closeOrderModal() {
 async function sendOrderStatusEmail(order, newStatus) {
   const adminStoreEmail = "Shaikimran3912@gmail.com";
   const customerEmail = (order.customer_email || "").trim() || adminStoreEmail;
-  const customerName = (order.customer_name || "Valued Customer").trim();
-  const updateDateFormatted = new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
+  const productsList = (storeData && Array.isArray(storeData.products)) ? storeData.products : [];
+  const targetStatus = String(newStatus || order.status || "pending").toLowerCase();
 
-  const statusMap = {
-    pending: {
-      label: "PENDING VERIFICATION",
-      subject: `Order #${order.id} is Pending Verification - SPIDEY COLLECTIONS`,
-      headline: `Order #${order.id} Status: PENDING`,
-      description: `Your order #${order.id} has been received and is currently pending verification by our team.`
-    },
-    confirmed: {
-      label: "CONFIRMED & PACKING",
-      subject: `Order #${order.id} Confirmed! - SPIDEY COLLECTIONS`,
-      headline: `Great News! Your Order #${order.id} Has Been Confirmed`,
-      description: `Your streetwear order has been confirmed by SPIDEY COLLECTIONS. Our fulfillment team is now packing your apparel for courier dispatch.`
-    },
-    shipped: {
-      label: "SHIPPED & IN TRANSIT",
-      subject: `🚚 Order #${order.id} Has Been SHIPPED! - SPIDEY COLLECTIONS`,
-      headline: `Your Package is On The Way! Order #${order.id}`,
-      description: `Your package for Order #${order.id} has been handed over to our courier partner and is currently in transit to your shipping address.`
-    },
-    delivered: {
-      label: "DELIVERED",
-      subject: `🎉 Order #${order.id} Has Been DELIVERED! - SPIDEY COLLECTIONS`,
-      headline: `Package Delivered! Enjoy your Streetwear.`,
-      description: `Your order #${order.id} has been successfully DELIVERED to your address! We hope you love your new streetwear uniform. If you have any feedback or size questions, reach out to us on WhatsApp (+91 7601037710).`
-    },
-    cancelled: {
-      label: "CANCELLED",
-      subject: `⚠️ Order #${order.id} Has Been Cancelled - SPIDEY COLLECTIONS`,
-      headline: `Order #${order.id} Cancelled`,
-      description: `Your order #${order.id} has been marked as cancelled. If this was a pre-paid order, your refund will be processed within 2-3 business days.`
-    }
-  };
+  const res = await SpideyFirebase.dispatchOrderEmail({
+    order: { ...order, status: targetStatus },
+    status: targetStatus,
+    isInitialOrder: false,
+    productsList: productsList,
+    recipientEmail: customerEmail
+  });
 
-  const st = statusMap[newStatus.toLowerCase()] || {
-    label: newStatus.toUpperCase(),
-    subject: `Order #${order.id} Status Update: ${newStatus.toUpperCase()}`,
-    headline: `Order #${order.id} Status: ${newStatus.toUpperCase()}`,
-    description: `Your order #${order.id} status has been updated to ${newStatus.toUpperCase()} by store management.`
-  };
-
-  const itemsHtml = (order.items || []).map(item => `
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom:1px solid #2a2a2a;padding:10px 0;">
-      <tr>
-        <td style="vertical-align:middle;text-align:left;">
-          <div style="font-weight:700;color:#ffffff;font-size:14px;letter-spacing:0.3px;">${item.name || 'Streetwear Item'}</div>
-          <div style="font-size:12px;color:#888888;margin-top:3px;">Size: <b style="color:#E50914;">${item.size || 'Regular'}</b> &bull; Qty: ${item.q || 1}${item.color ? ` &bull; Color: ${item.color}` : ''}</div>
-        </td>
-        <td align="right" style="vertical-align:middle;text-align:right;font-weight:800;color:#ffffff;font-size:14px;white-space:nowrap;padding-left:12px;">
-          ₹${((item.price || 0) * (item.q || 1)).toLocaleString('en-IN')}
-        </td>
-      </tr>
-    </table>
-  `).join('');
-
-  const itemsSummary = (order.items || []).map(item => 
-    `• ${item.name} (Size: ${item.size || 'M'}, Qty: ${item.q}) - ₹${((item.price || 0) * (item.q || 1)).toLocaleString('en-IN')}`
-  ).join('\n');
-
-  const fullMessage = `SPIDEY COLLECTIONS™ — Order Status Notification\n\nStatus Update: ${st.label}\nOrder ID: ${order.id}\nUpdated On: ${updateDateFormatted}\n\nHello ${customerName},\n\n${st.description}\n\nShipping Address:\n${order.shipping_address || ''}, ${order.city || ''} - ${order.pincode || ''}\n\nTotal Order Value: ₹${(order.total_amount || 0).toLocaleString('en-IN')} (${order.payment_method || 'COD'})\n\nItems in Package:\n${itemsSummary}\n\nTrack your order anytime or chat with us on WhatsApp: +91 7601037710\nSPIDEY COLLECTIONS — Streetwear Redefined.`;
-
-  const emailParams = {
-    order_id: order.id,
-    orderId: order.id,
-    status: st.label,
-    order_status: st.label,
-    subject: st.subject,
-    headline: st.headline,
-    title: st.headline,
-    status_description: st.description,
-    customer_name: customerName,
-    to_name: customerName,
-    name: customerName,
-    customer_email: customerEmail,
-    to_email: customerEmail,
-    email: customerEmail,
-    user_email: customerEmail,
-    recipient: customerEmail,
-    recipient_email: customerEmail,
-    client_email: customerEmail,
-    reply_to: adminStoreEmail,
-    from_name: "SPIDEY COLLECTIONS",
-    store_name: "SPIDEY COLLECTIONS",
-    order_date: updateDateFormatted,
-    date: updateDateFormatted,
-    customer_phone: order.customer_phone || "",
-    phone: order.customer_phone || "",
-    shipping_address: order.shipping_address || "",
-    address: order.shipping_address || "",
-    city: order.city || "",
-    pincode: order.pincode || "",
-    payment_method: order.payment_method || "COD",
-    total_amount: "₹" + (order.total_amount || 0).toLocaleString('en-IN'),
-    total: "₹" + (order.total_amount || 0).toLocaleString('en-IN'),
-    items_html: itemsHtml,
-    items_summary: itemsSummary,
-    message: fullMessage
-  };
-
-  try {
-    const apiRes = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        service_id: "service_nlf4ava",
-        template_id: "template_bo142e9",
-        user_id: "xGmwUMmAPWGZ1FKSv",
-        template_params: emailParams
-      })
-    });
-    if (apiRes.ok) return { ok: true, email: customerEmail, status: st.label };
-    const errText = await apiRes.text();
-    return { ok: false, error: errText || `HTTP ${apiRes.status}` };
-  } catch(err) {
-    return { ok: false, error: err.message || "Network request failed" };
+  if (res.ok) {
+    return { ok: true, email: customerEmail, status: res.statusLabel };
   }
+  return { ok: false, error: res.error || "Network request failed" };
 }
 
 async function sendEmailReceipt(order) {
   const adminStoreEmail = "Shaikimran3912@gmail.com";
   const customerEmail = (order.customer_email || "").trim() || adminStoreEmail;
-  const customerName = (order.customer_name || "Valued Customer").trim();
-  const orderDateFormatted = new Date(order.created_at || Date.now()).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
+  const productsList = (storeData && Array.isArray(storeData.products)) ? storeData.products : [];
+  const currentStatus = String(order.status || "pending").toLowerCase();
 
-  const itemsHtml = (order.items || []).map(item => `
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom:1px solid #2a2a2a;padding:10px 0;">
-      <tr>
-        <td style="vertical-align:middle;text-align:left;">
-          <div style="font-weight:700;color:#ffffff;font-size:14px;letter-spacing:0.3px;">${item.name || 'Streetwear Item'}</div>
-          <div style="font-size:12px;color:#888888;margin-top:3px;">Size: <b style="color:#E50914;">${item.size || 'Regular'}</b> &bull; Qty: ${item.q || 1}${item.color ? ` &bull; Color: ${item.color}` : ''}</div>
-        </td>
-        <td align="right" style="vertical-align:middle;text-align:right;font-weight:800;color:#ffffff;font-size:14px;white-space:nowrap;padding-left:12px;">
-          ₹${((item.price || 0) * (item.q || 1)).toLocaleString('en-IN')}
-        </td>
-      </tr>
-    </table>
-  `).join('');
+  const res = await SpideyFirebase.dispatchOrderEmail({
+    order: order,
+    status: currentStatus,
+    isInitialOrder: currentStatus === "pending",
+    productsList: productsList,
+    recipientEmail: customerEmail
+  });
 
-  const itemsSummary = (order.items || []).map(item => 
-    `• ${item.name} (Size: ${item.size || 'M'}, Qty: ${item.q}) - ₹${((item.price || 0) * (item.q || 1)).toLocaleString('en-IN')}`
-  ).join('\n');
-
-  const messageContent = `Order Confirmation Receipt\n\nOrder ID: ${order.id}\nDate: ${orderDateFormatted}\nCustomer: ${customerName}\nPhone: ${order.customer_phone || 'N/A'}\nEmail: ${customerEmail}\n\nShipping Address:\n${order.shipping_address}, ${order.city} - ${order.pincode}\nPayment: ${order.payment_method}\nTotal Amount: ₹${(order.total_amount || 0).toLocaleString('en-IN')}\n\nItems in Order:\n${itemsSummary}\n\nThank you for choosing SPIDEY COLLECTIONS™ — Streetwear Redefined.`;
-
-  const emailParams = {
-    order_id: order.id,
-    orderId: order.id,
-    customer_name: customerName,
-    to_name: customerName,
-    name: customerName,
-    customer_email: customerEmail,
-    to_email: customerEmail,
-    email: customerEmail,
-    user_email: customerEmail,
-    recipient: customerEmail,
-    recipient_email: customerEmail,
-    client_email: customerEmail,
-    reply_to: customerEmail,
-    from_name: "SPIDEY COLLECTIONS",
-    store_name: "SPIDEY COLLECTIONS",
-    order_date: orderDateFormatted,
-    date: orderDateFormatted,
-    customer_phone: order.customer_phone || "",
-    phone: order.customer_phone || "",
-    shipping_address: order.shipping_address || "",
-    address: order.shipping_address || "",
-    city: order.city || "",
-    pincode: order.pincode || "",
-    payment_method: order.payment_method || "COD",
-    total_amount: "₹" + (order.total_amount || 0).toLocaleString('en-IN'),
-    total: "₹" + (order.total_amount || 0).toLocaleString('en-IN'),
-    items_html: itemsHtml,
-    items_summary: itemsSummary,
-    message: messageContent
-  };
-
-  try {
-    const apiRes = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        service_id: "service_nlf4ava",
-        template_id: "template_bo142e9",
-        user_id: "xGmwUMmAPWGZ1FKSv",
-        template_params: emailParams
-      })
-    });
-    if (apiRes.ok) return { ok: true, email: customerEmail };
-    const errText = await apiRes.text();
-    return { ok: false, error: errText || `HTTP ${apiRes.status}` };
-  } catch(err) {
-    return { ok: false, error: err.message || "Network request failed" };
+  if (res.ok) {
+    return { ok: true, email: customerEmail, status: res.statusLabel };
   }
+  return { ok: false, error: res.error || "Network request failed" };
 }
 
 async function resendOrderReceipt(orderId) {
@@ -3792,13 +4400,13 @@ async function testAdminEmail() {
     city: "Kadapa",
     pincode: "516001",
     payment_method: "COD",
-    items: [{ id: 1, name: "Spidey Core Oversized Tee", size: "L", q: 1, price: 1299, color: "Black" }],
+    items: [{ id: 1, name: "Spidey Core Oversized Tee", category: "Oversized T-Shirt", size: "L", q: 1, price: 1299, color: "Black" }],
     total_amount: 1299,
     status: "confirmed"
   };
   const res = await sendEmailReceipt(dummyOrder);
   if (res.ok) {
-    alert(`✅ EmailJS Test Succeeded (HTTP 200 OK)!\n\nEmail dispatched to: ${res.email}\n\nImportant Reminder: Check your Inbox as well as your Spam / Promotions folder.`);
+    alert(`✅ EmailJS Test Succeeded (HTTP 200 OK)!\n\nEmail dispatched to: ${res.email}\n\nNote: For reliable Inbox delivery instead of Spam/Promotions, connect a custom domain email SMTP in EmailJS instead of a free @gmail.com sender.`);
     showToast(`✅ Test email delivered to <b>${res.email}</b>!`);
   } else {
     alert(`❌ EmailJS Test Failed!\n\nError: ${res.error}\n\nPlease check your EmailJS dashboard settings.`);
@@ -3846,6 +4454,410 @@ function copyAllSubscribers() {
   navigator.clipboard.writeText(emails).then(() => {
     showToast(`Copied ${subs.length} emails to clipboard.`);
   });
+}
+
+// ── Users Data Consolidation & File Export Engine ──
+function _escHtml(val) {
+  return String(val == null ? '' : val)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function _csvCell(val) {
+  const s = String(val == null ? '' : val).replace(/\r?\n/g, ' ');
+  if (/[",]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+  return s;
+}
+
+function _safeParseJson(raw, fallback) {
+  try {
+    return raw ? JSON.parse(raw) : fallback;
+  } catch (e) {
+    return fallback;
+  }
+}
+
+function _pickTimestamp(a, b) {
+  const ta = a ? new Date(a).getTime() : 0;
+  const tb = b ? new Date(b).getTime() : 0;
+  if (!Number.isFinite(ta)) return b || '';
+  if (!Number.isFinite(tb)) return a || '';
+  return tb > ta ? b : a;
+}
+
+function collectUnifiedUsersData() {
+  const usersMap = new Map();
+
+  function upsertUser(raw, sourceTag) {
+    const email = String(raw.email || '').trim().toLowerCase();
+    const phone = String(raw.phone || '').trim();
+    const name = String(raw.name || '').trim();
+    const uid = String(raw.uid || '').trim();
+    const key = email
+      ? 'email:' + email
+      : (phone ? 'phone:' + phone.replace(/\D/g, '') : (uid ? 'uid:' + uid : (name ? 'name:' + name.toLowerCase() : '')));
+    if (!key) return null;
+
+    let entry = usersMap.get(key);
+    if (!entry) {
+      entry = {
+        key,
+        uid: uid || '',
+        name: name || '',
+        email: email || '',
+        phone: phone || '',
+        address: String(raw.address || '').trim(),
+        city: String(raw.city || '').trim(),
+        pincode: String(raw.pincode || '').trim(),
+        paymentMethod: String(raw.paymentMethod || '').trim(),
+        ordersCount: 0,
+        totalSpent: 0,
+        lastOrderId: '',
+        couponsUsed: [],
+        sources: [],
+        lastActivityAt: raw.activityAt || ''
+      };
+      usersMap.set(key, entry);
+    } else {
+      if (!entry.uid && uid) entry.uid = uid;
+      if (!entry.name && name) entry.name = name;
+      if (!entry.email && email) entry.email = email;
+      if (!entry.phone && phone) entry.phone = phone;
+      if (!entry.address && raw.address) entry.address = String(raw.address).trim();
+      if (!entry.city && raw.city) entry.city = String(raw.city).trim();
+      if (!entry.pincode && raw.pincode) entry.pincode = String(raw.pincode).trim();
+      if (!entry.paymentMethod && raw.paymentMethod) entry.paymentMethod = String(raw.paymentMethod).trim();
+      entry.lastActivityAt = _pickTimestamp(entry.lastActivityAt, raw.activityAt || '');
+    }
+
+    if (sourceTag && !entry.sources.includes(sourceTag)) {
+      entry.sources.push(sourceTag);
+    }
+    return entry;
+  }
+
+  // 1. Firebase cloud customer profiles
+  const cloudProfiles = Array.isArray(window._adminCloudCustomerProfiles) ? window._adminCloudCustomerProfiles : [];
+  cloudProfiles.forEach(p => {
+    if (!p || typeof p !== 'object') return;
+    upsertUser({
+      uid: p.uid || p._docId || '',
+      name: p.name || '',
+      email: p.email || '',
+      phone: p.phone || '',
+      address: p.address || '',
+      city: p.city || '',
+      pincode: p.pincode || '',
+      paymentMethod: p.payment_method || '',
+      activityAt: p.updated_at || p.last_login_at || ''
+    }, 'Profile');
+  });
+
+  // 2. Local saved customer profiles / logged-in browser user
+  const savedAddrMap = _safeParseJson(localStorage.getItem('spidey_saved_addresses_v1'), {});
+  if (savedAddrMap && typeof savedAddrMap === 'object') {
+    Object.values(savedAddrMap).forEach(p => {
+      if (!p || typeof p !== 'object') return;
+      upsertUser({
+        name: p.name || '',
+        email: p.email || '',
+        phone: p.phone || '',
+        address: p.address || '',
+        city: p.city || '',
+        pincode: p.pincode || '',
+        paymentMethod: p.payment_method || '',
+        activityAt: p.updated_at || ''
+      }, 'Profile');
+    });
+  }
+
+  const singleSavedAddr = _safeParseJson(localStorage.getItem('spidey_saved_address'), null);
+  if (singleSavedAddr && typeof singleSavedAddr === 'object') {
+    upsertUser({
+      name: singleSavedAddr.name || '',
+      email: singleSavedAddr.email || '',
+      phone: singleSavedAddr.phone || '',
+      address: singleSavedAddr.address || '',
+      city: singleSavedAddr.city || '',
+      pincode: singleSavedAddr.pincode || '',
+      paymentMethod: singleSavedAddr.payment_method || '',
+      activityAt: singleSavedAddr.updated_at || ''
+    }, 'Profile');
+  }
+
+  const localUser = _safeParseJson(localStorage.getItem('spidey_local_user'), null);
+  if (localUser && typeof localUser === 'object') {
+    upsertUser({
+      uid: localUser.id || '',
+      name: (localUser.user_metadata && localUser.user_metadata.full_name) || '',
+      email: localUser.email || ''
+    }, 'Profile');
+  }
+
+  // 3. Orders
+  const orders = (typeof SpideyStore !== 'undefined' && SpideyStore.getOrders) ? SpideyStore.getOrders() : [];
+  orders.forEach(o => {
+    if (!o || typeof o !== 'object') return;
+    const entry = upsertUser({
+      name: o.customer_name || '',
+      email: o.customer_email || '',
+      phone: o.customer_phone || '',
+      address: o.shipping_address || '',
+      city: o.city || '',
+      pincode: o.pincode || '',
+      paymentMethod: o.payment_method || '',
+      activityAt: o.created_at || ''
+    }, 'Order');
+    if (!entry) return;
+    entry.ordersCount += 1;
+    const amt = Number(o.total_amount);
+    if (Number.isFinite(amt) && String(o.status || '').toLowerCase() !== 'cancelled') {
+      entry.totalSpent += amt;
+    }
+    if (!entry.lastOrderId && o.id) entry.lastOrderId = o.id;
+    const code = String(o.coupon_code || '').trim().toUpperCase();
+    if (code && !entry.couponsUsed.includes(code)) entry.couponsUsed.push(code);
+  });
+
+  // 4. VIP Drop Subscribers
+  const subs = (typeof SpideyStore !== 'undefined' && SpideyStore.getSubscribers) ? SpideyStore.getSubscribers() : [];
+  subs.forEach(s => {
+    if (!s || typeof s !== 'object') return;
+    upsertUser({
+      email: s.email || '',
+      activityAt: s.created_at || ''
+    }, 'Subscriber');
+  });
+
+  return Array.from(usersMap.values()).sort((a, b) => {
+    if (b.totalSpent !== a.totalSpent) return b.totalSpent - a.totalSpent;
+    const tb = b.lastActivityAt ? new Date(b.lastActivityAt).getTime() : 0;
+    const ta = a.lastActivityAt ? new Date(a.lastActivityAt).getTime() : 0;
+    return (Number.isFinite(tb) ? tb : 0) - (Number.isFinite(ta) ? ta : 0);
+  });
+}
+
+function getFilteredUsersList() {
+  const allUsers = collectUnifiedUsersData();
+  const query = ((document.getElementById('userSearch') && document.getElementById('userSearch').value) || '').trim().toLowerCase();
+  const filter = (document.getElementById('userTypeFilter') && document.getElementById('userTypeFilter').value) || 'all';
+
+  const filtered = allUsers.filter(u => {
+    if (filter === 'buyers' && u.ordersCount === 0) return false;
+    if (filter === 'profiles' && !u.sources.includes('Profile')) return false;
+    if (filter === 'subscribers' && !u.sources.includes('Subscriber')) return false;
+    if (!query) return true;
+    const haystack = [u.name, u.email, u.phone, u.address, u.city, u.pincode, u.lastOrderId, u.sources.join(' ')].join(' ').toLowerCase();
+    return haystack.includes(query);
+  });
+
+  return { allUsers, filtered };
+}
+
+function renderUsersTable() {
+  const { allUsers, filtered } = getFilteredUsersList();
+
+  const badge = document.getElementById('badgeUserCount');
+  if (badge) badge.textContent = allUsers.length;
+  const elTotal = document.getElementById('usersStatTotal');
+  if (elTotal) elTotal.textContent = allUsers.length;
+  const elBuyers = document.getElementById('usersStatBuyers');
+  if (elBuyers) elBuyers.textContent = allUsers.filter(u => u.ordersCount > 0).length;
+  const elProfiles = document.getElementById('usersStatProfiles');
+  if (elProfiles) elProfiles.textContent = allUsers.filter(u => u.sources.includes('Profile')).length;
+  const elSubs = document.getElementById('usersStatSubs');
+  if (elSubs) elSubs.textContent = allUsers.filter(u => u.sources.includes('Subscriber')).length;
+
+  const hint = document.getElementById('usersFilteredHint');
+  if (hint) {
+    hint.textContent = filtered.length === allUsers.length
+      ? 'Showing all ' + allUsers.length + ' unique users'
+      : 'Showing ' + filtered.length + ' of ' + allUsers.length + ' users';
+  }
+
+  const tbody = document.getElementById('usersTableBody');
+  if (!tbody) return;
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:28px;">No matching users found yet.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(u => {
+    const displayName = u.name || (u.email ? u.email.split('@')[0] : 'Guest User');
+    const sourceBadges = u.sources.map(src => {
+      const cls = src === 'Order' ? 'green' : (src === 'Profile' ? 'red' : '');
+      return '<span class="tag-badge ' + cls + '" style="margin-right:4px;">' + _escHtml(src) + '</span>';
+    }).join('');
+    const locParts = [u.city, u.pincode].filter(Boolean).join(' - ');
+    const actDate = u.lastActivityAt ? new Date(u.lastActivityAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
+    const couponsHtml = u.couponsUsed.length ? '<div style="font-size:11px;color:var(--muted);margin-top:2px;">Coupons: ' + _escHtml(u.couponsUsed.join(', ')) + '</div>' : '';
+
+    return '<tr>'
+      + '<td data-label="Customer"><div style="font-weight:700;">' + _escHtml(displayName) + '</div>'
+      + (u.uid ? '<div style="font-size:11px;color:var(--muted);font-family:monospace;">' + _escHtml(u.uid.slice(0, 14)) + '</div>' : '')
+      + '</td>'
+      + '<td data-label="Contact">'
+      + (u.email ? '<div><i class="fa-regular fa-envelope" style="color:var(--muted);margin-right:5px;"></i>' + _escHtml(u.email) + '</div>' : '<div style="color:var(--muted);">No email</div>')
+      + (u.phone ? '<div style="font-size:12px;color:var(--muted);margin-top:2px;"><i class="fa-solid fa-phone" style="margin-right:5px;"></i>' + _escHtml(u.phone) + '</div>' : '')
+      + '</td>'
+      + '<td data-label="Location & Address" style="max-width:260px;">'
+      + (locParts ? '<div style="font-weight:600;font-size:12px;">' + _escHtml(locParts) + '</div>' : '')
+      + (u.address ? '<div style="font-size:12px;color:var(--muted);white-space:normal;word-break:break-word;">' + _escHtml(u.address) + '</div>' : '<span style="color:var(--muted);">—</span>')
+      + '</td>'
+      + '<td data-label="Orders & Spent"><div style="font-weight:700;">' + u.ordersCount + ' order' + (u.ordersCount === 1 ? '' : 's') + '</div>'
+      + '<div style="font-size:12px;color:var(--green);font-weight:700;">₹' + Math.round(u.totalSpent).toLocaleString('en-IN') + '</div>'
+      + couponsHtml
+      + '</td>'
+      + '<td data-label="Sources">' + sourceBadges + '</td>'
+      + '<td data-label="Last Activity" style="font-size:12px;color:var(--muted);">' + _escHtml(actDate) + '</td>'
+      + '</tr>';
+  }).join('');
+}
+
+async function refreshUsersData() {
+  if (window.SpideyFirebase && typeof window.SpideyFirebase.fetchAllCustomerProfiles === 'function') {
+    const profiles = await window.SpideyFirebase.fetchAllCustomerProfiles();
+    if (Array.isArray(profiles) && profiles.length) {
+      window._adminCloudCustomerProfiles = profiles;
+    }
+  }
+  renderUsersTable();
+  if (typeof showToast === 'function') showToast('Users data refreshed', 'success');
+}
+
+async function saveFileToDisk(filename, content, mimeType, description, ext) {
+  if ('showSaveFilePicker' in window) {
+    try {
+      const handle = await window.showSaveFilePicker({
+        suggestedName: filename,
+        types: [{
+          description: description || 'Data File',
+          accept: { [mimeType]: [ext] }
+        }]
+      });
+      const writable = await handle.createWritable();
+      await writable.write(content);
+      await writable.close();
+      return { saved: true, method: 'picker' };
+    } catch (err) {
+      if (err && err.name === 'AbortError') {
+        return { saved: false, cancelled: true };
+      }
+      console.warn('[SaveFile] showSaveFilePicker fallback to download:', err);
+    }
+  }
+
+  const blob = new Blob([content], { type: mimeType + ';charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return { saved: true, method: 'download' };
+}
+
+async function exportUsersToFile(format) {
+  const { filtered } = getFilteredUsersList();
+  if (!filtered.length) {
+    if (typeof showToast === 'function') showToast('No users data to save', 'info');
+    return;
+  }
+
+  const dateStamp = new Date().toISOString().slice(0, 10);
+  let res;
+
+  if (format === 'json') {
+    const payload = {
+      exportedAt: new Date().toISOString(),
+      totalUsers: filtered.length,
+      users: filtered.map(u => ({
+        uid: u.uid,
+        name: u.name,
+        email: u.email,
+        phone: u.phone,
+        address: u.address,
+        city: u.city,
+        pincode: u.pincode,
+        paymentMethod: u.paymentMethod,
+        ordersCount: u.ordersCount,
+        totalSpent: Math.round(u.totalSpent),
+        lastOrderId: u.lastOrderId,
+        couponsUsed: u.couponsUsed,
+        sources: u.sources,
+        lastActivityAt: u.lastActivityAt
+      }))
+    };
+    res = await saveFileToDisk(
+      'spidey-users-' + dateStamp + '.json',
+      JSON.stringify(payload, null, 2),
+      'application/json',
+      'JSON File',
+      '.json'
+    );
+  } else {
+    const headers = [
+      'Name', 'Email', 'Phone', 'Address', 'City', 'Pincode',
+      'Payment Method', 'Orders Count', 'Total Spent (INR)', 'Last Order ID',
+      'Coupons Used', 'Sources', 'User UID', 'Last Activity'
+    ];
+    const rows = filtered.map(u => [
+      u.name || '',
+      u.email || '',
+      u.phone || '',
+      u.address || '',
+      u.city || '',
+      u.pincode || '',
+      u.paymentMethod || '',
+      u.ordersCount,
+      Math.round(u.totalSpent),
+      u.lastOrderId || '',
+      u.couponsUsed.join(' | '),
+      u.sources.join(' | '),
+      u.uid || '',
+      u.lastActivityAt || ''
+    ].map(_csvCell).join(','));
+    const csvContent = '\uFEFF' + [headers.map(_csvCell).join(','), ...rows].join('\r\n');
+    res = await saveFileToDisk(
+      'spidey-users-' + dateStamp + '.csv',
+      csvContent,
+      'text/csv',
+      'CSV Spreadsheet',
+      '.csv'
+    );
+  }
+
+  if (res && res.saved && typeof showToast === 'function') {
+    showToast('Saved ' + filtered.length + ' user record(s) to file!', 'success');
+  }
+}
+
+async function exportSubscribersToCsv() {
+  const subs = (typeof SpideyStore !== 'undefined' && SpideyStore.getSubscribers) ? SpideyStore.getSubscribers() : [];
+  if (!subs.length) {
+    if (typeof showToast === 'function') showToast('No subscribers to save', 'info');
+    return;
+  }
+  const dateStamp = new Date().toISOString().slice(0, 10);
+  const headers = ['Email', 'Subscribed At'];
+  const rows = subs.map(s => [_csvCell(s.email || ''), _csvCell(s.created_at || '')].join(','));
+  const csvContent = '\uFEFF' + [headers.join(','), ...rows].join('\r\n');
+  const res = await saveFileToDisk(
+    'spidey-subscribers-' + dateStamp + '.csv',
+    csvContent,
+    'text/csv',
+    'CSV Spreadsheet',
+    '.csv'
+  );
+  if (res && res.saved && typeof showToast === 'function') {
+    showToast('Saved ' + subs.length + ' subscriber(s) to CSV!', 'success');
+  }
 }
 
 // ── Universal Multi-Device Publish Engine ──

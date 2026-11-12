@@ -228,6 +228,317 @@ window.SpideyFirebase = {
     await fbDb.collection('orders').doc(String(orderId)).delete();
   },
 
+  fetchOrderById: async function(orderId) {
+    if (!fbDb || !orderId) return null;
+    const rawId = String(orderId).trim();
+    if (!rawId) return null;
+    try {
+      let doc = await fbDb.collection('orders').doc(rawId).get();
+      if (!doc.exists && rawId !== rawId.toUpperCase()) {
+        doc = await fbDb.collection('orders').doc(rawId.toUpperCase()).get();
+      }
+      if (doc.exists) return { id: doc.id, ...doc.data() };
+
+      const q1 = await fbDb.collection('orders').where('id', '==', rawId).limit(1).get();
+      if (!q1.empty) return { id: q1.docs[0].id, ...q1.docs[0].data() };
+
+      const q2 = await fbDb.collection('orders').where('id', '==', rawId.toUpperCase()).limit(1).get();
+      if (!q2.empty) return { id: q2.docs[0].id, ...q2.docs[0].data() };
+    } catch (e) {
+      console.warn('Firebase fetchOrderById notice:', e);
+    }
+    return null;
+  },
+
+  subscribeOrderById: function(orderId, onChange) {
+    if (!fbDb || !orderId || typeof onChange !== 'function') return function() {};
+    const docId = String(orderId).trim();
+    return fbDb.collection('orders').doc(docId).onSnapshot(
+      function(doc) {
+        if (doc.exists) {
+          onChange({ id: doc.id, ...doc.data() });
+        }
+      },
+      function(err) {
+        console.warn('Firebase single order snapshot notice:', err);
+      }
+    );
+  },
+
+  // --- Shared Email & Tracking Helpers (used by index.html & admin.html) ---
+  getProductCategoryLabel: function(item, product) {
+    const rawCat = String(
+      (item && (item.category || item.type)) ||
+      (product && (product.c || product.t)) ||
+      ''
+    ).toLowerCase();
+    const rawName = String((item && item.name) || (product && product.n) || '').toLowerCase();
+    const combined = `${rawCat} ${rawName}`;
+
+    if (combined.includes('hoodie')) return 'Hoodie';
+    if (combined.includes('sweat')) return 'Sweatshirt';
+    if (combined.includes('oversized')) return 'Oversized T-Shirt';
+    if (combined.includes('tee') || combined.includes('t-shirt') || combined.includes('tshirt')) return 'Graphic T-Shirt';
+    if (combined.includes('shirt') || combined.includes('polo')) return 'Streetwear Shirt';
+    if (combined.includes('pant') || combined.includes('jean') || combined.includes('cargo') || combined.includes('denim') || combined.includes('short')) return 'Bottoms / Denim';
+    if (combined.includes('jacket') || combined.includes('zip') || combined.includes('outer')) return 'Outerwear';
+    if (combined.includes('cap') || combined.includes('bag') || combined.includes('acc')) return 'Accessory';
+
+    const fallback = (item && item.category) || (product && product.c) || '';
+    return fallback ? String(fallback).trim() : 'Streetwear Apparel';
+  },
+
+  resolveEmailProductImage: function(item, productsList) {
+    const list = Array.isArray(productsList) ? productsList : [];
+    const prod = item ? list.find(function(p) { return String(p.id) === String(item.id); }) : null;
+    const candidates = [];
+    if (item && item.image) candidates.push(item.image);
+    if (item && item.img) candidates.push(item.img);
+    if (prod) {
+      if (Array.isArray(prod.images)) {
+        prod.images.forEach(function(u) { if (u) candidates.push(u); });
+      }
+      if (prod.imgFront) candidates.push(prod.imgFront);
+      if (prod.img) candidates.push(prod.img);
+    }
+
+    for (let i = 0; i < candidates.length; i++) {
+      const url = String(candidates[i] || '').trim();
+      if (/^https?:\/\//i.test(url) && !/\.svg(\?|$)/i.test(url)) {
+        // Convert Cloudinary webp/auto URLs to universal JPEG thumbnails for Gmail & Outlook
+        if (url.includes('res.cloudinary.com') && url.includes('/upload/') && !url.includes('/upload/w_')) {
+          return url.replace('/upload/', '/upload/w_160,h_200,c_fill,f_jpg,q_80/');
+        }
+        return url;
+      }
+    }
+    return '';
+  },
+
+  getOrderTrackingUrl: function(orderOrId) {
+    const order = (orderOrId && typeof orderOrId === 'object') ? orderOrId : { id: orderOrId };
+    const orderId = String((order && order.id) || '').trim();
+    const qs = orderId ? `?track=${encodeURIComponent(orderId)}` : '';
+
+    let baseUrl = '';
+    if (order && order.store_url && /^https?:\/\//i.test(String(order.store_url))) {
+      baseUrl = String(order.store_url).split(/[?#]/)[0];
+    } else if (typeof window !== 'undefined' && /^https?:\/\//i.test(window.location.protocol)) {
+      let current = window.location.href.split(/[?#]/)[0];
+      if (/\/admin\.html$/i.test(current)) {
+        current = current.replace(/\/admin\.html$/i, '/index.html');
+      } else if (/\/admin\/?$/i.test(current)) {
+        current = current.replace(/\/admin\/?$/i, '/index.html');
+      }
+      baseUrl = current;
+    } else {
+      try {
+        const cached = localStorage.getItem('spidey_live_store_url') || '';
+        if (/^https?:\/\//i.test(cached)) baseUrl = cached.split(/[?#]/)[0];
+      } catch (e) {}
+    }
+
+    if (baseUrl) {
+      return `${baseUrl}${qs}`;
+    }
+    if (typeof window !== 'undefined') {
+      let localUrl = window.location.href.split(/[?#]/)[0];
+      if (/\/admin\.html$/i.test(localUrl)) {
+        localUrl = localUrl.replace(/\/admin\.html$/i, '/index.html');
+      }
+      return `${localUrl}${qs}`;
+    }
+    return `index.html${qs}`;
+  },
+
+  buildOrderItemsHtml: function(order, productsList) {
+    const self = this;
+    const esc = function(v) {
+      return String(v == null ? '' : v)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    };
+    const list = Array.isArray(productsList) ? productsList : [];
+    const items = (order && Array.isArray(order.items)) ? order.items : [];
+
+    return items.map(function(item) {
+      const prod = list.find(function(p) { return String(p.id) === String(item.id); });
+      const catLabel = self.getProductCategoryLabel(item, prod);
+      const imgUrl = self.resolveEmailProductImage(item, list);
+      const itemQty = Number(item.q || 1);
+      const lineTotal = ((Number(item.price) || 0) * itemQty).toLocaleString('en-IN');
+      const shortBadge = esc(catLabel.split(' ')[0].toUpperCase().slice(0, 8));
+
+      const mediaHtml = imgUrl
+        ? `<img src="${esc(imgUrl)}" alt="${esc(catLabel)} - ${esc(item.name)}" width="62" height="76" style="display:block;width:62px;height:76px;object-fit:cover;border-radius:4px;border:1px solid #333333;background:#1a1a1a;">`
+        : `<div style="width:62px;height:76px;border-radius:4px;border:1px solid #E50914;background:#1b1b1f;color:#ffffff;text-align:center;box-sizing:border-box;padding:18px 4px;"><div style="font-size:9px;font-weight:800;letter-spacing:0.8px;color:#E50914;">${shortBadge}</div><div style="font-size:10px;color:#bbbbbb;margin-top:4px;">${esc(item.color || 'Edition')}</div></div>`;
+
+      return `
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom:1px solid #2a2a2a;padding:10px 0;">
+          <tr>
+            <td width="74" style="width:74px;vertical-align:top;padding-right:12px;">
+              ${mediaHtml}
+            </td>
+            <td style="vertical-align:middle;text-align:left;">
+              <div style="display:inline-block;background:#E50914;color:#ffffff;font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-bottom:4px;">${esc(catLabel)}</div>
+              <div style="font-weight:700;color:#ffffff;font-size:14px;letter-spacing:0.3px;line-height:1.3;">${esc(item.name || 'Streetwear Item')}</div>
+              <div style="font-size:12px;color:#999999;margin-top:4px;">Size: <b style="color:#E50914;">${esc(item.size || 'Regular')}</b> &bull; Qty: ${itemQty}${item.color ? ` &bull; Color: ${esc(item.color)}` : ''}</div>
+            </td>
+            <td align="right" style="vertical-align:middle;text-align:right;font-weight:800;color:#ffffff;font-size:14px;white-space:nowrap;padding-left:12px;">
+              &#8377;${lineTotal}
+            </td>
+          </tr>
+        </table>
+      `;
+    }).join('');
+  },
+
+  dispatchOrderEmail: async function(opts) {
+    const order = (opts && opts.order) || {};
+    const statusKey = String((opts && opts.status) || order.status || 'pending').toLowerCase();
+    const isInitialOrder = Boolean(opts && opts.isInitialOrder);
+    const productsList = (opts && opts.productsList) || [];
+    const adminStoreEmail = 'Shaikimran3912@gmail.com';
+    const recipientEmail = String((opts && opts.recipientEmail) || order.customer_email || adminStoreEmail).trim();
+    const customerName = String(order.customer_name || 'Valued Customer').trim();
+    const orderId = String(order.id || 'SPIDEY-ORDER');
+
+    const statusMetaMap = {
+      pending: {
+        subject: `Order Confirmation - #${orderId} | SPIDEY COLLECTIONS`,
+        headline: 'Order Received & Confirmed',
+        label: 'Order Placed (Pending Confirmation)',
+        description: 'Thank you for shopping with SPIDEY COLLECTIONS. We have received your order and our dispatch team is preparing your items.'
+      },
+      confirmed: {
+        subject: `Order Confirmed - #${orderId} | SPIDEY COLLECTIONS`,
+        headline: 'Order Confirmed & Packing',
+        label: 'Confirmed & Packing',
+        description: 'Your order has been verified and confirmed by our team. Your streetwear is being packed carefully for dispatch.'
+      },
+      shipped: {
+        subject: `Order #${orderId} Has Shipped | SPIDEY COLLECTIONS`,
+        headline: 'Order Shipped & On The Way',
+        label: 'Shipped / In Transit',
+        description: 'Good news! Your package has been dispatched from our warehouse and is on the way to your delivery address.'
+      },
+      delivered: {
+        subject: `Order #${orderId} Delivered | SPIDEY COLLECTIONS`,
+        headline: 'Order Delivered Successfully',
+        label: 'Delivered',
+        description: 'Your SPIDEY COLLECTIONS order has been delivered to your address. Thank you for wearing SPIDEY COLLECTIONS.'
+      },
+      cancelled: {
+        subject: `Order #${orderId} Update - Cancelled | SPIDEY COLLECTIONS`,
+        headline: 'Order Cancelled',
+        label: 'Cancelled',
+        description: 'This order has been cancelled. If you have any questions regarding your order or refund, reply to this email or contact us on WhatsApp.'
+      }
+    };
+
+    const meta = statusMetaMap[statusKey] || statusMetaMap.pending;
+    if (isInitialOrder && statusKey === 'pending') {
+      meta.subject = `Order Confirmation - #${orderId} | SPIDEY COLLECTIONS`;
+    }
+
+    const trackUrl = this.getOrderTrackingUrl(order);
+    const itemsHtml = this.buildOrderItemsHtml(order, productsList);
+    const firstItem = (order.items && order.items[0]) || null;
+    const firstProd = firstItem ? productsList.find(function(p) { return String(p.id) === String(firstItem.id); }) : null;
+    const primaryImage = firstItem ? this.resolveEmailProductImage(firstItem, productsList) : '';
+    const primaryType = firstItem ? this.getProductCategoryLabel(firstItem, firstProd) : 'Streetwear Apparel';
+
+    const itemsSummary = (order.items || []).map((item) => {
+      const prod = productsList.find(function(p) { return String(p.id) === String(item.id); });
+      const catLabel = this.getProductCategoryLabel(item, prod);
+      const lineTotal = ((Number(item.price) || 0) * (Number(item.q) || 1)).toLocaleString('en-IN');
+      return `- [${catLabel}] ${item.name} (Size: ${item.size || 'M'}, Qty: ${item.q || 1}) - Rs. ${lineTotal}`;
+    }).join('\n');
+
+    const deliveryAddress = [order.shipping_address, order.city, order.pincode].filter(Boolean).join(', ') || 'Address on file';
+    const orderDate = order.created_at
+      ? new Date(order.created_at).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })
+      : new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
+    const formattedTotal = `Rs. ${(Number(order.total_amount) || 0).toLocaleString('en-IN')}`;
+    const rupeeTotal = `₹${(Number(order.total_amount) || 0).toLocaleString('en-IN')}`;
+    const extraNote = (opts && opts.extraNote) ? `\n${opts.extraNote}` : '';
+
+    const messageContent = `${meta.headline} (${meta.label})\n\nOrder ID: ${orderId}\nTrack Order & Delivery Address:\n${trackUrl}\n\nDate: ${orderDate}\nCustomer: ${customerName}\nPhone: ${order.customer_phone || 'N/A'}\nShipping Address: ${deliveryAddress}\nPayment: ${order.payment_method || 'COD'}\nTotal Amount: ${formattedTotal}\n\nItems:\n${itemsSummary}\n\n${meta.description}${extraNote}\n\nSPIDEY COLLECTIONS — Streetwear Redefined`;
+
+    const emailParams = Object.assign({
+      subject: meta.subject,
+      headline: meta.headline,
+      status: meta.label,
+      status_key: statusKey,
+      status_description: meta.description,
+      order_id: orderId,
+      orderId: orderId,
+      track_url: trackUrl,
+      tracking_url: trackUrl,
+      customer_name: customerName,
+      to_name: customerName,
+      name: customerName,
+      customer_email: recipientEmail,
+      to_email: recipientEmail,
+      email: recipientEmail,
+      user_email: recipientEmail,
+      recipient: recipientEmail,
+      recipient_email: recipientEmail,
+      client_email: recipientEmail,
+      reply_to: adminStoreEmail,
+      customer_phone: order.customer_phone || 'N/A',
+      phone: order.customer_phone || 'N/A',
+      shipping_address: deliveryAddress,
+      address: deliveryAddress,
+      shipping_street: order.shipping_address || '',
+      city: order.city || '',
+      pincode: order.pincode || '',
+      from_name: 'SPIDEY COLLECTIONS',
+      store_name: 'SPIDEY COLLECTIONS',
+      payment_method: order.payment_method || 'COD',
+      total_amount: rupeeTotal,
+      total: rupeeTotal,
+      order_date: orderDate,
+      date: orderDate,
+      items_html: itemsHtml,
+      items_summary: itemsSummary,
+      product_type: primaryType,
+      product_image: primaryImage,
+      message: messageContent,
+      company_name: 'SPIDEY COLLECTIONS'
+    }, (opts && opts.extraVars) || {});
+
+    const serviceId = 'service_nlf4ava';
+    const templateId = 'template_bo142e9';
+    const publicKey = 'xGmwUMmAPWGZ1FKSv';
+
+    try {
+      if (typeof window !== 'undefined' && window.emailjs && typeof window.emailjs.send === 'function') {
+        await window.emailjs.send(serviceId, templateId, emailParams, publicKey);
+        return { ok: true, trackUrl: trackUrl, statusLabel: meta.label };
+      }
+      throw new Error('EmailJS SDK unavailable');
+    } catch (sdkErr) {
+      const resp = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service_id: serviceId,
+          template_id: templateId,
+          user_id: publicKey,
+          template_params: emailParams
+        })
+      });
+      if (!resp.ok) {
+        const errText = await resp.text().catch(function() { return 'EmailJS HTTP ' + resp.status; });
+        return { ok: false, error: errText, trackUrl: trackUrl, statusLabel: meta.label };
+      }
+      return { ok: true, trackUrl: trackUrl, statusLabel: meta.label };
+    }
+  },
+
   // --- Newsletter Subscribers ---
   addSubscriber: async function(email) {
     if (!fbDb) return { error: new Error('Firestore not initialized') };
@@ -280,6 +591,7 @@ window.SpideyFirebase = {
         banners: cfg.banners || {},
         social: cfg.social || {},
         contact: cfg.contact || {},
+        coupon: cfg.coupon || {},
         updated_at: new Date().toISOString()
       });
       return { error: null };
@@ -415,6 +727,53 @@ window.SpideyFirebase = {
     } catch (error) {
       return { error: error };
     }
+  },
+
+  saveUserBasicProfile: async function(user) {
+    if (!fbDb || !user) return { error: null };
+    const identifier = user.email || user.id;
+    const docKey = window.SpideyFirebase._profileDocKey(identifier);
+    if (!docKey) return { error: null };
+    try {
+      const payload = {
+        uid: user.id || '',
+        email: user.email ? String(user.email).trim() : '',
+        name: (user.user_metadata && user.user_metadata.full_name) ? String(user.user_metadata.full_name).trim() : '',
+        last_login_at: new Date().toISOString()
+      };
+      await fbDb.collection('customer_profiles').doc(docKey).set(payload, { merge: true });
+      return { error: null };
+    } catch (error) {
+      return { error: error };
+    }
+  },
+
+  fetchAllCustomerProfiles: async function() {
+    if (!fbDb) return { data: [], error: new Error('Firestore not initialized') };
+    try {
+      const snap = await fbDb.collection('customer_profiles').get();
+      const rows = snap.docs.map(function(doc) {
+        return { _docId: doc.id, ...(doc.data() || {}) };
+      });
+      return { data: rows, error: null };
+    } catch (error) {
+      return { data: [], error: error };
+    }
+  },
+
+  subscribeCustomerProfiles: function(onChange) {
+    if (!fbDb || typeof onChange !== 'function') return function() {};
+    return fbDb.collection('customer_profiles').onSnapshot(
+      function(snap) {
+        const rows = snap.docs.map(function(doc) {
+          return { _docId: doc.id, ...(doc.data() || {}) };
+        });
+        onChange(rows);
+      },
+      function(err) {
+        console.warn('Firebase customer_profiles snapshot notice:', err);
+      }
+    );
   }
 };
 
@@ -442,5 +801,14 @@ window.initAdminFirebaseSync = function() {
     });
     if (typeof renderSubscribersTable === 'function') renderSubscribersTable();
     if (typeof updateStats === 'function') updateStats();
+    if (typeof renderUsersTable === 'function') renderUsersTable();
   });
+
+  if (window.SpideyFirebase.subscribeCustomerProfiles) {
+    window.SpideyFirebase.subscribeCustomerProfiles(function(cloudProfiles) {
+      window._adminCloudCustomerProfiles = Array.isArray(cloudProfiles) ? cloudProfiles : [];
+      if (typeof renderUsersTable === 'function') renderUsersTable();
+      if (typeof updateStats === 'function') updateStats();
+    });
+  }
 };

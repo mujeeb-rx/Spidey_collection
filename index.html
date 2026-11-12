@@ -415,6 +415,47 @@ mark{background:none;color:var(--red)}
 .whatsapp-float:hover{background:#20ba59;transform:translateY(-3px) scale(1.03);box-shadow:0 10px 25px rgba(37,211,102,0.6),0 4px 12px rgba(0,0,0,0.4)}
 .whatsapp-float i{font-size:22px}
 @media(max-width:600px){.whatsapp-float{bottom:18px;right:14px;padding:9px 14px;font-size:12px}.whatsapp-float span{display:inline}}
+/* ── SPIDEY VIP COUPON VAULT & OFFER POPUP ── */
+#couponOfferModal{z-index:260}
+.vault-box{max-width:460px!important;width:92%!important;padding:0!important;background:radial-gradient(circle at 88% 12%,rgba(229,9,20,0.34),transparent 52%),radial-gradient(circle at 10% 90%,rgba(229,9,20,0.18),transparent 50%),linear-gradient(155deg,#09090b 0%,#140407 60%,#0b0b0d 100%)!important;color:#fff!important;border:1px solid rgba(229,9,20,0.5)!important;border-radius:14px!important;overflow:hidden;box-shadow:0 28px 80px rgba(0,0,0,0.75),0 0 40px rgba(229,9,20,0.22)!important;position:relative;display:block!important}
+.vault-box::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:18px 18px;pointer-events:none;opacity:.45}
+.vault-inner{position:relative;z-index:2;padding:28px 24px 24px}
+.vault-close{position:absolute;top:14px;right:14px;z-index:5;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.16);color:#fff;font-size:20px;display:grid;place-items:center;cursor:pointer;transition:all .2s}
+.vault-close:hover{background:var(--red);border-color:var(--red);transform:rotate(90deg)}
+.vault-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(90deg,#e50914,#b20710);color:#fff;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:5px 11px;border-radius:3px;box-shadow:0 4px 14px rgba(229,9,20,0.4)}
+.vault-updated-pill{display:none;align-items:center;gap:5px;background:rgba(16,185,129,0.16);border:1px solid rgba(16,185,129,0.5);color:#34d399;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:3px}
+.vault-updated-pill.on{display:inline-flex}
+.vault-title{font-family:var(--disp);font-size:40px;line-height:.96;letter-spacing:.03em;margin:14px 0 8px;background:linear-gradient(180deg,#ffffff 30%,#ffccd0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.vault-desc{font-size:13px;line-height:1.55;color:#c7c7cf;margin:0 0 18px}
+.coupon-stage{position:relative;margin-bottom:16px}
+.coupon-seal-cover{position:relative;background:linear-gradient(135deg,#17171c 0%,#1f060a 50%,#141418 100%);border:1.5px solid rgba(229,9,20,0.65);border-radius:10px;padding:24px 18px;text-align:center;cursor:pointer;overflow:hidden;transition:transform .38s cubic-bezier(.22,1,.36,1),opacity .35s ease}
+.coupon-seal-cover::after{content:"";position:absolute;top:-50%;left:-60%;width:45%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.14),transparent);transform:rotate(25deg);animation:vaultShimmer 2.8s infinite}
+@keyframes vaultShimmer{0%{left:-60%}100%{left:140%}}
+.coupon-seal-cover:hover{border-color:#ff3b46;transform:translateY(-2px);box-shadow:0 10px 28px rgba(229,9,20,0.28)}
+.coupon-seal-cover.breaking{transform:scale(1.08);opacity:0;pointer-events:none}
+.seal-emblem{width:54px;height:54px;margin:0 auto 10px;border-radius:50%;background:rgba(229,9,20,0.16);border:1px solid rgba(229,9,20,0.6);display:grid;place-items:center;font-size:24px;color:#ff3b46;box-shadow:0 0 22px rgba(229,9,20,0.35);animation:sealPulse 1.8s infinite}
+@keyframes sealPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.coupon-ticket{display:none;position:relative;background:linear-gradient(135deg,#121216 0%,#1b070b 100%);border:1.5px dashed rgba(229,9,20,0.8);border-radius:10px;padding:16px 18px;animation:ticketPop .45s cubic-bezier(.22,1,.36,1)}
+.coupon-ticket.on{display:block}
+.coupon-ticket::before,.coupon-ticket::after{content:"";position:absolute;top:50%;width:16px;height:16px;background:#0e0709;border-radius:50%;transform:translateY(-50%);border:1px solid rgba(229,9,20,0.45)}
+.coupon-ticket::before{left:-9px}
+.coupon-ticket::after{right:-9px}
+@keyframes ticketPop{0%{opacity:0;transform:scale(.9) translateY(8px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+.ticket-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ticket-code{font-family:var(--disp);font-size:30px;letter-spacing:.14em;color:#fff;line-height:1.05}
+.ticket-disc{background:rgba(16,185,129,0.16);border:1px solid rgba(16,185,129,0.5);color:#34d399;font-size:12px;font-weight:800;padding:6px 11px;border-radius:5px;white-space:nowrap}
+.ticket-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,0.14);font-size:11px;color:#a1a1aa}
+.vault-actions{display:flex;gap:10px;margin-top:14px}
+.vault-copy-btn{height:46px;padding:0 14px;border-radius:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:12px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s}
+.vault-copy-btn:hover{background:rgba(255,255,255,0.16)}
+.vault-apply-btn{flex:1;height:46px;border-radius:6px;background:linear-gradient(90deg,#e50914,#c80711);border:none;color:#fff;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 8px 24px rgba(229,9,20,0.42);transition:transform .2s,box-shadow .2s}
+.vault-apply-btn:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(229,9,20,0.55)}
+.coupon-box{background:#fafafa;border:1px solid #e5e5e5;border-radius:4px;padding:10px;margin-bottom:12px}
+.coupon-input-row{display:flex;gap:6px}
+.coupon-input-row input{flex:1;height:36px;border:1px solid #d4d4d4;border-radius:3px;padding:0 10px;font:inherit;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#fff}
+.coupon-chip{margin-top:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:rgba(229,9,20,0.06);border:1px dashed rgba(229,9,20,0.45);border-radius:4px;padding:6px 10px;font-size:11px;color:#222}
+.coupon-chip-btn{background:var(--red);color:#fff;border:none;border-radius:3px;padding:4px 9px;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.acct-vault-card{background:radial-gradient(circle at 90% 10%,rgba(229,9,20,0.28),transparent 60%),#111114;color:#fff;border:1px solid rgba(229,9,20,0.45);border-radius:6px;padding:12px 14px;margin-bottom:14px;text-align:left}
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
@@ -673,6 +714,7 @@ mark{background:none;color:var(--red)}
           </div>
         </div>
       </div>
+      <div id="acctCouponVaultCard" class="acct-vault-card" style="display:none;"></div>
       <button type="button" class="btn red" style="width:100%;height:44px;font-size:12px;margin-bottom:10px;" onclick="closeAll(); openOrderTrackerModal();"><i class="fa-solid fa-truck-fast"></i> Track & View My Orders</button>
       <button type="button" class="btn out" id="logoutBtn" style="width:100%;height:44px;">SIGN OUT</button>
     </div>
@@ -687,9 +729,10 @@ mark{background:none;color:var(--red)}
       <h3 class="disp" style="margin:0;font-size:28px;">SECURE CHECKOUT</h3>
     </div>
     <div id="oSummary" style="background:var(--light);padding:14px;margin-bottom:20px;font-size:13px;display:flex;justify-content:space-between;align-items:center;border-left:3px solid var(--red);">
-      <span id="oItemsCount" style="font-weight:600;">0 Items in Bag</span>
+      <div><div id="oItemsCount" style="font-weight:600;">0 Items in Bag</div><div id="oCouponLine" style="display:none;font-size:11px;color:#10B981;font-weight:700;margin-top:3px;"></div></div>
       <span style="font-size:18px;font-weight:700;color:var(--black);" id="oTotal">&#8377;0</span>
     </div>
+    <div id="checkoutCouponBox" class="coupon-box" style="margin-bottom:16px;"></div>
     <form id="orderForm" style="display:flex;flex-direction:column;gap:12px;">
       <div id="savedAddrCard" style="display:none;background:#fafafa;border:1px solid #e2e2e2;border-left:3px solid #10B981;padding:14px;border-radius:3px;">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;">
@@ -777,6 +820,48 @@ mark{background:none;color:var(--red)}
     </div>
 
     <div id="trackModalContent"></div>
+  </div>
+</div>
+
+<!-- VIP Login Offer / Web-Sealed Coupon Vault Modal -->
+<div class="modal" id="couponOfferModal" role="dialog" aria-modal="true" aria-label="Exclusive Member Offer">
+  <div class="mbox vault-box">
+    <button class="vault-close" id="couponOfferClose" aria-label="Close offer" onclick="closeLoginCouponModal()">&times;</button>
+    <div class="vault-inner">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding-right:36px;">
+        <span class="vault-badge"><i class="fa-solid fa-spider"></i> <span id="offerBadgeEl">SPIDEY VIP VAULT</span></span>
+        <span class="vault-updated-pill" id="offerUpdatedPill"><i class="fa-solid fa-sparkles"></i> NEW CODE LIVE</span>
+      </div>
+      <h3 class="vault-title" id="offerTitleEl">UNLOCK 20% OFF</h3>
+      <p class="vault-desc" id="offerDescEl">Welcome to the Spidey Club. Break the web seal to reveal your private member drop code.</p>
+
+      <div class="coupon-stage">
+        <div class="coupon-seal-cover" id="couponSealCover" onclick="revealCouponCode()">
+          <div class="seal-emblem"><i class="fa-solid fa-spider"></i></div>
+          <div style="font-family:var(--disp);font-size:22px;letter-spacing:.08em;color:#fff;margin-bottom:4px;">WEB-SEALED MEMBER REWARD</div>
+          <div style="font-size:12px;color:#d4d4d8;margin-bottom:14px;">Tap anywhere on the seal to unlock your secret code</div>
+          <button type="button" class="btn red" id="couponRevealBtn" style="height:40px;padding:0 20px;font-size:12px;letter-spacing:.1em;">TAP TO REVEAL COUPON</button>
+        </div>
+
+        <div class="coupon-ticket" id="couponTicketWrap">
+          <div style="font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#a1a1aa;margin-bottom:4px;">YOUR UNLOCKED OFFER CODE</div>
+          <div class="ticket-row">
+            <div class="ticket-code" id="offerCodeEl">SPIDEY20</div>
+            <div class="ticket-disc" id="offerDiscountTagEl">20% OFF</div>
+          </div>
+          <div class="ticket-meta">
+            <span id="offerMinEl">Min. Order &#8377;799</span>
+            <span id="offerExpiryEl"><i class="fa-solid fa-bolt" style="color:var(--red);margin-right:4px;"></i> Valid on your next order</span>
+          </div>
+          <div class="vault-actions">
+            <button type="button" class="vault-copy-btn" id="copyOfferCodeBtn" onclick="copyRevealedCoupon()"><i class="fa-regular fa-copy"></i> Copy</button>
+            <button type="button" class="vault-apply-btn" id="applyOfferNowBtn" onclick="applyRevealedCoupon()"><i class="fa-solid fa-bolt"></i> Apply Coupon</button>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" id="offerSkipBtn" onclick="closeLoginCouponModal(true)" style="width:100%;background:none;border:none;color:#a1a1aa;font-size:12px;cursor:pointer;padding:6px;text-decoration:underline;">Continue browsing &rarr;</button>
+    </div>
   </div>
 </div>
 
@@ -1043,12 +1128,16 @@ document.addEventListener('click',e=>{
  const c=e.target.closest('[data-cat]');if(c){setCat(c.dataset.cat);if(!c.getAttribute('href'))return;return}
  const o=e.target.closest('[data-open]');if(o){openP(o.dataset.open);return}
  const t=e.target.closest('[data-t]');if(t){e.preventDefault();toast(t.dataset.t)}
+ if(e.target.closest('[data-cpn-remove]')){removeAppliedCoupon();return;}
+ const cQuick=e.target.closest('[data-cpn-quick]');if(cQuick){applyCouponInput(cQuick.dataset.cpnQuick);return;}
+ if(e.target.closest('[data-cpn-reveal]')){_couponCheckoutDeferred=!!($('#om')&&$('#om').classList.contains('on'));openLoginCouponModal(true);return;}
+ if(e.target===$('#couponOfferModal')){closeLoginCouponModal(false);return;}
  if(e.target.closest('[data-close]')||e.target===$('#sc'))closeAll();
  if(e.target.closest('a[href="#"]'))e.preventDefault();
 });
 // overlays
 const sc=$('#sc');
-function closeAll(){['md','cd'].forEach(i=>$('#'+i).classList.remove('on'));['se','pm','trackModal','om','authModal'].forEach(id=>{const el=$('#'+id);if(el)el.classList.remove('on');});sc.classList.remove('on');document.body.style.overflow=''}
+function closeAll(){['md','cd'].forEach(i=>$('#'+i).classList.remove('on'));['se','pm','trackModal','om','authModal','couponOfferModal'].forEach(id=>{const el=$('#'+id);if(el)el.classList.remove('on');});sc.classList.remove('on');document.body.style.overflow=''}
 function show(id){closeAll();$('#'+id).classList.add('on');if(id!=='se'&&id!=='pm')sc.classList.add('on');document.body.style.overflow='hidden'}
 $('#bg').onclick=()=>show('md');$('#cb').onclick=()=>{drawCart();show('cd')};
 $('#sb').onclick=()=>{show('se');setTimeout(()=>$('#si').focus(),300)};
@@ -1226,6 +1315,231 @@ window.addEventListener('keydown', e => {
 });
 // cart
 let cart=[];try{cart=JSON.parse(localStorage.getItem('spidey_cart')||'[]')}catch(e){}
+// ── LOGIN OFFER & LIVE COUPON ENGINE ──
+const COUPON_STATE_KEY='spidey_coupon_state_v1';
+let _couponCheckoutDeferred=false;
+let _lastKnownCouponSig='';
+function getCouponUserState(){try{return JSON.parse(localStorage.getItem(COUPON_STATE_KEY)||'{}');}catch(e){return {};}}
+function saveCouponUserState(st){try{localStorage.setItem(COUPON_STATE_KEY,JSON.stringify(st||{}));}catch(e){}}
+function getActiveCoupon(){
+  const s=window.SpideyStore?window.SpideyStore.getData():null;
+  const c=(s&&s.coupon)?s.coupon:{};
+  const code=String(c.code||'SPIDEY20').trim().toUpperCase();
+  return {
+    enabled:c.enabled!==false,
+    code:code||'SPIDEY20',
+    discountType:c.discountType==='flat'?'flat':'percent',
+    discountValue:Math.max(1,parseInt(c.discountValue)||20),
+    maxDiscount:Math.max(0,parseInt(c.maxDiscount)||0),
+    minOrder:Math.max(0,parseInt(c.minOrder)||0),
+    badge:c.badge||'SPIDEY VIP VAULT',
+    title:c.title||'UNLOCK 20% OFF',
+    description:c.description||'Welcome to the Spidey Club. Break the web seal to reveal your private member drop code.',
+    expiryText:c.expiryText||'Valid on your next streetwear order',
+    updatedAt:Number(c.updatedAt)||1
+  };
+}
+function getAppliedCouponCode(){const st=getCouponUserState();return st.appliedCode?String(st.appliedCode).trim().toUpperCase():'';}
+function setAppliedCouponCode(code){const st=getCouponUserState();st.appliedCode=code?String(code).trim().toUpperCase():'';saveCouponUserState(st);}
+function formatCouponReward(c){return c.discountType==='flat'?`FLAT ₹${c.discountValue} OFF`:`${c.discountValue}% OFF${c.maxDiscount>0?' (UP TO ₹'+c.maxDiscount+')':''}`;}
+function computeCouponDiscount(sub,c=getActiveCoupon()){
+  const applied=getAppliedCouponCode();
+  if(!c||!c.enabled||!applied||applied!==c.code)return {valid:false,applied,discount:0,reason:(!c.enabled?'Offer paused':'')};
+  if(sub<=0)return {valid:false,applied,discount:0,reason:'Empty bag'};
+  if(c.minOrder>0&&sub<c.minOrder)return {valid:false,applied,discount:0,reason:`Add ₹${c.minOrder-sub} more (Min. order ₹${c.minOrder})`};
+  let disc=c.discountType==='flat'?c.discountValue:Math.round(sub*c.discountValue/100);
+  if(c.discountType==='percent'&&c.maxDiscount>0)disc=Math.min(disc,c.maxDiscount);
+  disc=Math.max(0,Math.min(disc,sub));
+  return {valid:disc>0,applied,discount:disc,reason:''};
+}
+function isCouponRevealedForCurrent(){
+  const c=getActiveCoupon(),st=getCouponUserState();
+  return !!(st.revealedCode===c.code&&Number(st.revealedUpdatedAt||0)===c.updatedAt);
+}
+function renderCouponBoxHtml(sub,context){
+  const c=getActiveCoupon();
+  const applied=getAppliedCouponCode();
+  const res=computeCouponDiscount(sub,c);
+  const inputId=context==='checkout'?'checkoutCouponInput':'cartCouponInput';
+  const btnId=context==='checkout'?'checkoutCouponApplyBtn':'cartCouponApplyBtn';
+  let statusHtml='';
+  if(applied){
+    if(res.valid){
+      statusHtml=`<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;padding:6px 10px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.35);border-radius:3px;font-size:11px;color:#065f46;"><span>&#10003; <b>${applied}</b> applied &mdash; saving <b>${rs(res.discount)}</b></span><button type="button" data-cpn-remove="1" style="background:none;border:none;color:#dc2626;font-weight:800;font-size:11px;cursor:pointer;text-decoration:underline;">Remove</button></div>`;
+    }else if(applied===c.code&&res.reason){
+      statusHtml=`<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;padding:6px 10px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.4);border-radius:3px;font-size:11px;color:#92400e;"><span><b>${applied}</b> saved &bull; ${res.reason}</span><button type="button" data-cpn-remove="1" style="background:none;border:none;color:#dc2626;font-weight:800;font-size:11px;cursor:pointer;text-decoration:underline;">Remove</button></div>`;
+    }
+  }
+  const canSuggest=c.enabled&&(!applied||applied!==c.code);
+  const revealed=isCouponRevealedForCurrent();
+  const chipHtml=canSuggest?`<div class="coupon-chip"><span><i class="fa-solid fa-ticket" style="color:var(--red);margin-right:5px;"></i>${revealed?`Member Code <b>${c.code}</b> (${formatCouponReward(c)})`:`VIP Offer Available (${formatCouponReward(c)})`}</span><button type="button" class="coupon-chip-btn" ${revealed?`data-cpn-quick="${c.code}"`:'data-cpn-reveal="1"'}>${revealed?'Apply':'Reveal & Apply'}</button></div>`:'';
+  return `<div class="coupon-input-row"><input id="${inputId}" value="${applied||''}" placeholder="ENTER COUPON CODE" onkeydown="if(event.key==='Enter'){event.preventDefault();applyCouponInput(this.value);}"><button type="button" id="${btnId}" class="btn red" style="height:36px;padding:0 14px;font-size:11px;" onclick="applyCouponInput(document.getElementById('${inputId}').value)">APPLY</button></div>${statusHtml}${chipHtml}`;
+}
+function renderCheckoutCouponSummary(){
+  const sub=cart.reduce((a,i)=>{const prod=P.find(p=>String(p.id)===String(i.id));return a+(prod?parseInt(prod.p)||0:0)*(i.q||1);},0);
+  const ship=!cart.length||sub>=FREE?0:SHIP;
+  const cpnRes=computeCouponDiscount(sub);
+  const finalTot=Math.max(0,sub+ship-cpnRes.discount);
+  const totalSavings=cart.reduce((acc,i)=>{const prod=P.find(p=>String(p.id)===String(i.id));if(!prod)return acc;const orig=prod.origPrice||(prod.discount?Math.round(prod.p/(1-prod.discount/100)):0);return acc+(orig>prod.p?(orig-prod.p)*(i.q||1):0);},0);
+  const itemsEl=$('#oItemsCount'),cpnEl=$('#oCouponLine'),totEl=$('#oTotal'),boxEl=$('#checkoutCouponBox');
+  if(itemsEl)itemsEl.innerHTML=`${cart.reduce((a,i)=>a+(i.q||1),0)} Items in Bag ${totalSavings>0?`<span style="color:#10B981;font-size:11px;font-weight:700;margin-left:6px;">(Saved ${rs(totalSavings)})</span>`:''}`;
+  if(cpnEl){if(cpnRes.valid){cpnEl.style.display='block';cpnEl.textContent=`Coupon ${cpnRes.applied}: -${rs(cpnRes.discount)}`;}else{cpnEl.style.display='none';}}
+  if(totEl)totEl.textContent=rs(finalTot);
+  if(boxEl)boxEl.innerHTML=renderCouponBoxHtml(sub,'checkout');
+}
+function renderAccountCouponCard(){
+  const box=$('#acctCouponVaultCard');if(!box)return;
+  const c=getActiveCoupon();
+  if(!c.enabled){box.style.display='none';return;}
+  box.style.display='block';
+  const revealed=isCouponRevealedForCurrent();
+  const isApplied=getAppliedCouponCode()===c.code;
+  box.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;"><span style="font-size:10px;font-weight:800;letter-spacing:.14em;color:#ff4d57;text-transform:uppercase;"><i class="fa-solid fa-spider"></i> ${c.badge}</span><span style="font-size:10px;font-weight:800;color:#34d399;">${formatCouponReward(c)}</span></div><div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px;">${revealed?`Code: <span style="letter-spacing:.12em;color:#fff;background:rgba(229,9,20,0.22);padding:2px 7px;border:1px dashed rgba(229,9,20,0.7);border-radius:3px;">${c.code}</span>`:c.title}</div><div style="display:flex;gap:8px;"><button type="button" class="btn red" style="flex:1;height:34px;font-size:11px;" onclick="${revealed?(isApplied?"toast('Coupon already applied to your bag!')":`applyCouponInput('${c.code}')`):'openLoginCouponModal(true)'}">${revealed?(isApplied?'✓ APPLIED TO BAG':'APPLY CODE NOW'):'REVEAL MY COUPON'}</button><button type="button" class="btn out" style="height:34px;padding:0 10px;font-size:11px;color:#fff;border-color:rgba(255,255,255,0.28);" onclick="openLoginCouponModal(true)">View Offer</button></div>`;
+}
+function openLoginCouponModal(forceOpen=false){
+  const c=getActiveCoupon();
+  if(!c.enabled&&!forceOpen)return false;
+  const st=getCouponUserState();
+  const isNewUpdate=Number(st.seenUpdatedAt||0)>0&&(Number(st.seenUpdatedAt)!==c.updatedAt||st.seenCode!==c.code);
+  const alreadyRevealed=isCouponRevealedForCurrent();
+  $('#offerBadgeEl').textContent=c.badge;
+  $('#offerTitleEl').textContent=c.title;
+  $('#offerDescEl').textContent=c.description;
+  $('#offerCodeEl').textContent=c.code;
+  $('#offerDiscountTagEl').textContent=formatCouponReward(c);
+  $('#offerMinEl').textContent=c.minOrder>0?`Min. Order ₹${c.minOrder}`:'No Minimum Order';
+  $('#offerExpiryEl').innerHTML=`<i class="fa-solid fa-bolt" style="color:var(--red);margin-right:4px;"></i> ${c.expiryText}`;
+  const updPill=$('#offerUpdatedPill');
+  if(updPill)updPill.classList.toggle('on',!!isNewUpdate);
+  const seal=$('#couponSealCover'),ticket=$('#couponTicketWrap');
+  if(seal&&ticket){
+    if(alreadyRevealed){seal.style.display='none';seal.classList.remove('breaking');ticket.classList.add('on');}
+    else{seal.style.display='block';seal.classList.remove('breaking');ticket.classList.remove('on');}
+  }
+  const applyBtn=$('#applyOfferNowBtn');
+  if(applyBtn){
+    const appliedNow=getAppliedCouponCode()===c.code;
+    applyBtn.innerHTML=_couponCheckoutDeferred?'<i class="fa-solid fa-bolt"></i> Apply & Go to Checkout':(appliedNow?'<i class="fa-solid fa-check"></i> Applied to Bag':'<i class="fa-solid fa-bolt"></i> Apply Coupon');
+  }
+  const skipBtn=$('#offerSkipBtn');
+  if(skipBtn)skipBtn.textContent=_couponCheckoutDeferred?'Skip & Continue to Checkout →':'Continue browsing →';
+  st.seenCode=c.code;st.seenUpdatedAt=c.updatedAt;saveCouponUserState(st);
+  closeAll();
+  const m=$('#couponOfferModal');if(m)m.classList.add('on');
+  sc.classList.add('on');
+  document.body.style.overflow='hidden';
+  return true;
+}
+function maybeShowLoginCouponOffer(shouldProceedCheckout=false){
+  _couponCheckoutDeferred=!!shouldProceedCheckout;
+  const c=getActiveCoupon();
+  if(!c.enabled){
+    if(shouldProceedCheckout){_couponCheckoutDeferred=false;openCheckoutModal();}
+    return;
+  }
+  const st=getCouponUserState();
+  const sig=`${c.code}:${c.updatedAt}`;
+  const isAppliedCurrent=getAppliedCouponCode()===c.code&&Number(st.revealedUpdatedAt||0)===c.updatedAt;
+  if(shouldProceedCheckout&&isAppliedCurrent){
+    _couponCheckoutDeferred=false;
+    openCheckoutModal();
+    return;
+  }
+  if(!shouldProceedCheckout&&st.lastPopupSig===sig&&isCouponRevealedForCurrent())return;
+  st.lastPopupSig=sig;saveCouponUserState(st);
+  setTimeout(()=>openLoginCouponModal(true),220);
+}
+function closeLoginCouponModal(goCheckout=false){
+  const m=$('#couponOfferModal');if(m)m.classList.remove('on');
+  sc.classList.remove('on');
+  document.body.style.overflow='';
+  if((goCheckout||_couponCheckoutDeferred)&&_couponCheckoutDeferred){
+    _couponCheckoutDeferred=false;
+    if(cart.length)openCheckoutModal();
+  }
+  _couponCheckoutDeferred=false;
+}
+function revealCouponCode(){
+  const c=getActiveCoupon(),st=getCouponUserState();
+  st.revealedCode=c.code;st.revealedUpdatedAt=c.updatedAt;st.seenCode=c.code;st.seenUpdatedAt=c.updatedAt;
+  saveCouponUserState(st);
+  const seal=$('#couponSealCover'),ticket=$('#couponTicketWrap');
+  if(seal){seal.classList.add('breaking');setTimeout(()=>{seal.style.display='none';if(ticket)ticket.classList.add('on');},280);}
+  else if(ticket){ticket.classList.add('on');}
+  renderAccountCouponCard();
+  if(typeof drawCart==='function')drawCart();
+}
+function copyRevealedCoupon(){
+  const c=getActiveCoupon();
+  if(navigator.clipboard)navigator.clipboard.writeText(c.code).catch(()=>{});
+  const btn=$('#copyOfferCodeBtn');
+  if(btn){btn.innerHTML='<i class="fa-solid fa-check"></i> Copied';setTimeout(()=>{btn.innerHTML='<i class="fa-regular fa-copy"></i> Copy';},1600);}
+  toast(`Coupon ${c.code} copied!`);
+}
+function applyRevealedCoupon(){
+  const c=getActiveCoupon();
+  revealCouponCode();
+  setAppliedCouponCode(c.code);
+  renderAccountCouponCard();
+  if(typeof drawCart==='function')drawCart();
+  if($('#om')&&$('#om').classList.contains('on'))renderCheckoutCouponSummary();
+  const goCo=_couponCheckoutDeferred;
+  closeLoginCouponModal(false);
+  if(goCo&&cart.length){
+    openCheckoutModal();
+    toast(`Coupon ${c.code} applied at checkout!`);
+  }else if(cart.length){
+    drawCart();show('cd');
+    toast(`Coupon ${c.code} applied to your bag!`);
+  }else{
+    toast(`Coupon ${c.code} unlocked! Add items to save ${formatCouponReward(c)}.`);
+  }
+}
+function applyCouponInput(rawCode){
+  const code=String(rawCode||'').trim().toUpperCase();
+  const c=getActiveCoupon();
+  if(!code){toast('Please enter a coupon code.');return;}
+  if(!c.enabled){toast('This coupon offer is currently paused.');return;}
+  if(code!==c.code){toast(`Invalid coupon code "${code}". Current member code is ${c.code}.`);return;}
+  const st=getCouponUserState();st.revealedCode=c.code;st.revealedUpdatedAt=c.updatedAt;saveCouponUserState(st);
+  setAppliedCouponCode(c.code);
+  drawCart();
+  if($('#om')&&$('#om').classList.contains('on'))renderCheckoutCouponSummary();
+  renderAccountCouponCard();
+  const sub=cart.reduce((a,i)=>{const prod=P.find(p=>String(p.id)===String(i.id));return a+(prod?parseInt(prod.p)||0:0)*(i.q||1);},0);
+  const res=computeCouponDiscount(sub,c);
+  if(res.valid)toast(`Coupon ${c.code} applied! You save ${rs(res.discount)}.`);
+  else if(sub>0&&res.reason)toast(`Coupon ${c.code} saved! ${res.reason}.`);
+  else toast(`Coupon ${c.code} saved for your bag!`);
+}
+function removeAppliedCoupon(){
+  setAppliedCouponCode('');
+  drawCart();
+  if($('#om')&&$('#om').classList.contains('on'))renderCheckoutCouponSummary();
+  renderAccountCouponCard();
+  toast('Coupon removed.');
+}
+function handleCouponLiveUpdate(){
+  const c=getActiveCoupon();
+  const sig=`${c.enabled?1:0}:${c.code}:${c.discountType}:${c.discountValue}:${c.maxDiscount}:${c.minOrder}:${c.updatedAt}`;
+  if(!_lastKnownCouponSig){_lastKnownCouponSig=sig;return;}
+  if(_lastKnownCouponSig===sig)return;
+  const prevCode=_lastKnownCouponSig.split(':')[1];
+  _lastKnownCouponSig=sig;
+  const st=getCouponUserState();
+  if(st.appliedCode&&prevCode&&st.appliedCode===prevCode&&prevCode!==c.code){
+    st.appliedCode=c.code;
+    st.revealedCode=c.code;
+    st.revealedUpdatedAt=c.updatedAt;
+    saveCouponUserState(st);
+    toast(`Offer updated! New coupon code ${c.code} is now active on your bag.`);
+  }else if(c.enabled&&prevCode!==c.code){
+    toast(`New Member Offer Live: Reveal & apply code ${c.code}!`);
+  }
+  renderAccountCouponCard();
+  if(typeof drawCart==='function')drawCart();
+  if($('#om')&&$('#om').classList.contains('on'))renderCheckoutCouponSummary();
+}
 function save(){try{localStorage.setItem('spidey_cart',JSON.stringify(cart))}catch(e){}const totalCount=cart.reduce((a,b)=>a+(parseInt(b.q)||1),0);const badge=$('#cc');if(badge){badge.textContent=totalCount;badge.style.display=totalCount>0?'grid':'none';}}
 function addCart(id,size,q){if(!id||!size)return;const numQ=parseInt(q)||1;const existing=cart.find(x=>String(x.id)===String(id)&&x.size===size);if(existing){existing.q=Math.min(10,(existing.q||1)+numQ);}else{cart.push({id:id,size:size,q:numQ});}save();const b=$('#cb');if(b){b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');const rc=b.getBoundingClientRect(),th=document.createElement('i');th.className='thr';th.style.cssText=`left:${rc.left+rc.width/2}px;top:${rc.bottom}px`;document.body.appendChild(th);setTimeout(()=>th.remove(),950);}const prod=P.find(x=>String(x.id)===String(id));if(prod){toast(`Added "${prod.n}" (${size}) to your bag!`);}}
 function drawCart(){
@@ -1249,8 +1563,10 @@ function drawCart(){
 
 
  const ship=sub>=FREE?0:SHIP,left=Math.max(0,FREE-sub);
+ const cpnRes=computeCouponDiscount(sub);
+ const finalTotal=Math.max(0,sub+ship-cpnRes.discount);
  if(footerEl){
-  footerEl.innerHTML=`<div class="free" style="font-size:12px;background:var(--light);padding:10px 14px;margin-bottom:14px;border-radius:3px;"><div style="display:flex;justify-content:space-between;font-weight:600;margin-bottom:6px;"><span>${left?`Add <b style="color:var(--red);">${rs(left)}</b> more for free shipping`:'<span style="color:#10B981;">&#10003; Free Express Shipping unlocked!</span>'}</span><span>${Math.min(100,Math.round(sub/FREE*100))}%</span></div><div class="bar-p" style="height:4px;background:#e2e2e2;border-radius:2px;overflow:hidden;"><i style="display:block;height:100%;background:var(--red);width:${Math.min(100,Math.round(sub/FREE*100))}%;transition:width .3s;"></i></div></div><div class="row" style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px;"><span style="color:var(--muted);">Subtotal</span><span style="font-weight:600;">${rs(sub)}</span></div>${totalSavings>0?`<div class="row" style="display:flex;justify-content:space-between;font-size:13px;color:#10B981;font-weight:700;margin-bottom:6px;"><span>Discount Savings</span><span>-${rs(totalSavings)}</span></div>`:''}<div class="row" style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:10px;"><span style="color:var(--muted);">Shipping</span><span style="font-weight:600;">${ship?rs(ship):'<b style="color:#10B981;">FREE</b>'}</span></div><div class="row tot" style="display:flex;justify-content:space-between;font-size:18px;font-weight:700;padding-top:10px;border-top:1px solid #eee;margin-bottom:14px;"><span>Total</span><span style="color:var(--red);">${rs(sub+ship)}</span></div><button class="btn red" id="co" style="width:100%;height:50px;font-size:14px;font-weight:700;letter-spacing:1px;">PROCEED TO CHECKOUT</button><button class="link" data-close style="margin:12px auto 0;display:flex;font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;">Continue Shopping &rarr;</button>`;
+  footerEl.innerHTML=`<div class="free" style="font-size:12px;background:var(--light);padding:10px 14px;margin-bottom:10px;border-radius:3px;"><div style="display:flex;justify-content:space-between;font-weight:600;margin-bottom:6px;"><span>${left?`Add <b style="color:var(--red);">${rs(left)}</b> more for free shipping`:'<span style="color:#10B981;">&#10003; Free Express Shipping unlocked!</span>'}</span><span>${Math.min(100,Math.round(sub/FREE*100))}%</span></div><div class="bar-p" style="height:4px;background:#e2e2e2;border-radius:2px;overflow:hidden;"><i style="display:block;height:100%;background:var(--red);width:${Math.min(100,Math.round(sub/FREE*100))}%;transition:width .3s;"></i></div></div><div class="coupon-box">${renderCouponBoxHtml(sub,'cart')}</div><div class="row" style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px;"><span style="color:var(--muted);">Subtotal</span><span style="font-weight:600;">${rs(sub)}</span></div>${totalSavings>0?`<div class="row" style="display:flex;justify-content:space-between;font-size:13px;color:#10B981;font-weight:700;margin-bottom:6px;"><span>Product Discount</span><span>-${rs(totalSavings)}</span></div>`:''}${cpnRes.valid?`<div class="row" style="display:flex;justify-content:space-between;font-size:13px;color:#10B981;font-weight:700;margin-bottom:6px;"><span>Coupon (${cpnRes.applied})</span><span>-${rs(cpnRes.discount)}</span></div>`:''}<div class="row" style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:10px;"><span style="color:var(--muted);">Shipping</span><span style="font-weight:600;">${ship?rs(ship):'<b style="color:#10B981;">FREE</b>'}</span></div><div class="row tot" style="display:flex;justify-content:space-between;font-size:18px;font-weight:700;padding-top:10px;border-top:1px solid #eee;margin-bottom:14px;"><span>Total</span><span style="color:var(--red);">${rs(finalTotal)}</span></div><button class="btn red" id="co" style="width:100%;height:50px;font-size:14px;font-weight:700;letter-spacing:1px;">PROCEED TO CHECKOUT</button><button class="link" data-close style="margin:12px auto 0;display:flex;font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;">Continue Shopping &rarr;</button>`;
  }
  save();
 }
@@ -1836,7 +2152,7 @@ function renderLookbook(){} /*
     $('#footerSupportEmail').href = `mailto:${email}`;
     $('#footerSupportEmail').innerHTML = `<i class="fa-solid fa-envelope" style="color:var(--red);font-size:11px;margin-right:4px;"></i> ${email}`;
   }
-  render(); if(typeof drawCart==='function')drawCart(); if(typeof observeReveals==='function')observeReveals();
+  render(); if(typeof drawCart==='function')drawCart(); if(typeof observeReveals==='function')observeReveals(); if(typeof handleCouponLiveUpdate==='function')handleCouponLiveUpdate(); if(typeof renderAccountCouponCard==='function')renderAccountCouponCard();
 }
 refreshStorefront();
 window.addEventListener('storage', refreshStorefront);
@@ -1893,7 +2209,8 @@ if (orderForm) {
       return a + (prod ? prod.p : 0) * i.q;
     }, 0);
     const ship = !cart.length || sub >= FREE ? 0 : SHIP;
-    const tot = sub + ship;
+    const cpnRes = typeof computeCouponDiscount === 'function' ? computeCouponDiscount(sub) : { valid: false, applied: '', discount: 0 };
+    const tot = Math.max(0, sub + ship - (cpnRes.discount || 0));
 
     const orderPayload = {
       customer_name: $("#oname").value.trim(),
@@ -1903,17 +2220,29 @@ if (orderForm) {
       city: $("#ocity").value.trim(),
       pincode: $("#opin").value.trim(),
       payment_method: $("#opay").value,
+      store_url: (window.location.protocol.startsWith('http') ? window.location.href.split(/[?#]/)[0] : (localStorage.getItem('spidey_live_store_url') || '')),
       items: cart.map(i => {
         const prod = P.find(x => String(x.id) === String(i.id));
+        const catLabel = (window.SpideyFirebase && SpideyFirebase.getProductCategoryLabel)
+          ? SpideyFirebase.getProductCategoryLabel({ name: prod ? prod.n : "Apparel" }, prod)
+          : (prod && prod.c ? prod.c : "Streetwear Apparel");
+        const emailImg = (window.SpideyFirebase && SpideyFirebase.resolveEmailProductImage && prod)
+          ? SpideyFirebase.resolveEmailProductImage({ id: i.id }, [prod])
+          : "";
         return {
           id: i.id,
           name: prod ? prod.n : "Apparel",
+          type: prod ? (prod.t || "") : "",
+          category: catLabel,
+          image: emailImg,
           size: i.size,
           q: i.q,
           price: prod ? prod.p : 0,
           color: prod ? prod.col : ""
         };
       }),
+      coupon_code: cpnRes.valid ? cpnRes.applied : "",
+      coupon_discount: cpnRes.valid ? cpnRes.discount : 0,
       total_amount: tot,
       status: "pending"
     };
@@ -1943,123 +2272,46 @@ if (orderForm) {
         }
       }
 
-      // Dispatch Order Confirmation Receipt via EmailJS (SDK + Direct API Fallback)
+      // Dispatch Order Confirmation Receipt via shared SpideyFirebase.dispatchOrderEmail
       const adminStoreEmail = "Shaikimran3912@gmail.com";
       const targetCustomerEmail = (orderPayload.customer_email || "").trim() || adminStoreEmail;
-      const targetCustomerName = (orderPayload.customer_name || "Valued Customer").trim();
-      const orderDateFormatted = new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
+      const savedOrderObj = { id: orderId, created_at: new Date().toISOString(), ...orderPayload };
 
-      const itemsHtml = (orderPayload.items || []).map(item => `
-        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom:1px solid #2a2a2a;padding:10px 0;">
-          <tr>
-            <td style="vertical-align:middle;text-align:left;">
-              <div style="font-weight:700;color:#ffffff;font-size:14px;letter-spacing:0.3px;">${item.name || 'Streetwear Item'}</div>
-              <div style="font-size:12px;color:#888888;margin-top:3px;">Size: <b style="color:#E50914;">${item.size || 'Regular'}</b> &bull; Qty: ${item.q || 1}${item.color ? ` &bull; Color: ${item.color}` : ''}</div>
-            </td>
-            <td align="right" style="vertical-align:middle;text-align:right;font-weight:800;color:#ffffff;font-size:14px;white-space:nowrap;padding-left:12px;">
-              ₹${((item.price || 0) * (item.q || 1)).toLocaleString('en-IN')}
-            </td>
-          </tr>
-        </table>
-      `).join('');
-
-      const itemsSummary = (orderPayload.items || []).map(item => 
-        `• ${item.name} (Size: ${item.size || 'M'}, Qty: ${item.q}) - ₹${((item.price || 0) * (item.q || 1)).toLocaleString('en-IN')}`
-      ).join('\n');
-
-      const messageContent = `Order Confirmation Receipt\n\nOrder ID: ${orderId}\nDate: ${orderDateFormatted}\nCustomer: ${targetCustomerName}\nPhone: ${orderPayload.customer_phone || 'N/A'}\nEmail: ${targetCustomerEmail}\n\nShipping Address:\n${orderPayload.shipping_address}, ${orderPayload.city} - ${orderPayload.pincode}\nPayment: ${orderPayload.payment_method}\nTotal Amount: ₹${(tot || 0).toLocaleString('en-IN')}\n\nItems in Order:\n${itemsSummary}\n\nThank you for choosing SPIDEY COLLECTIONS™ — Streetwear Redefined.`;
-
-      async function sendSingleEmail(recipientEmail, extraNote = "") {
-        const emailParams = {
-          order_id: orderId,
-          orderId: orderId,
-          customer_name: targetCustomerName,
-          to_name: targetCustomerName,
-          name: targetCustomerName,
-          customer_email: recipientEmail,
-          to_email: recipientEmail,
-          email: recipientEmail,
-          user_email: recipientEmail,
-          recipient: recipientEmail,
-          recipient_email: recipientEmail,
-          client_email: recipientEmail,
-          reply_to: targetCustomerEmail,
-          from_name: "SPIDEY COLLECTIONS",
-          store_name: "SPIDEY COLLECTIONS",
-          order_date: orderDateFormatted,
-          date: orderDateFormatted,
-          customer_phone: orderPayload.customer_phone || "",
-          phone: orderPayload.customer_phone || "",
-          shipping_address: orderPayload.shipping_address || "",
-          address: orderPayload.shipping_address || "",
-          city: orderPayload.city || "",
-          pincode: orderPayload.pincode || "",
-          payment_method: orderPayload.payment_method || "COD",
-          total_amount: "₹" + (tot || 0).toLocaleString('en-IN'),
-          total: "₹" + (tot || 0).toLocaleString('en-IN'),
-          items_html: itemsHtml,
-          items_summary: itemsSummary,
-          message: messageContent
-        };
-
-        // 1. Try EmailJS SDK
-        if (window.emailjs && typeof window.emailjs.send === "function") {
-          try {
-            const res = await window.emailjs.send("service_nlf4ava", "template_bo142e9", emailParams, "xGmwUMmAPWGZ1FKSv");
-            if (res && (res.status === 200 || res.text === "OK")) {
-              return { success: true, method: 'SDK' };
-            }
-          } catch(sdkErr) {
-            console.warn("EmailJS SDK attempt warning, trying Direct API...", sdkErr);
-          }
-        }
-
-        // 2. Direct API fallback
-        try {
-          const apiRes = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              service_id: "service_nlf4ava",
-              template_id: "template_bo142e9",
-              user_id: "xGmwUMmAPWGZ1FKSv",
-              template_params: emailParams
-            })
-          });
-          if (apiRes.ok) {
-            return { success: true, method: 'Direct API' };
-          } else {
-            const errBody = await apiRes.text();
-            return { success: false, error: errBody || `HTTP ${apiRes.status}` };
-          }
-        } catch(apiErr) {
-          return { success: false, error: apiErr.message || "Network unreachable" };
-        }
-      }
-
-      // Execute email delivery asynchronously with UI reporting
       (async function runEmailDispatch() {
         try {
           console.log(`[SPIDEY] Dispatching order receipt to customer: ${targetCustomerEmail}`);
-          const custRes = await sendSingleEmail(targetCustomerEmail);
+          const custRes = await SpideyFirebase.dispatchOrderEmail({
+            order: savedOrderObj,
+            status: 'pending',
+            isInitialOrder: true,
+            productsList: P,
+            recipientEmail: targetCustomerEmail
+          });
 
           // If customer is not the admin, also dispatch notification copy to the store owner
           if (targetCustomerEmail.toLowerCase() !== adminStoreEmail.toLowerCase()) {
-            sendSingleEmail(adminStoreEmail, "Admin Order Notification Copy").catch(() => {});
+            SpideyFirebase.dispatchOrderEmail({
+              order: savedOrderObj,
+              status: 'pending',
+              isInitialOrder: true,
+              productsList: P,
+              recipientEmail: adminStoreEmail,
+              extraNote: 'Admin Order Notification Copy'
+            }).catch(() => {});
           }
 
           const badgeEl = document.getElementById('orderEmailStatusBadge');
-          if (custRes.success) {
-            console.log("[SPIDEY] Email sent successfully via", custRes.method);
+          if (custRes.ok) {
+            console.log("[SPIDEY] Email sent successfully");
             toast(`📧 Order receipt sent to ${targetCustomerEmail}!`);
             if (badgeEl) {
-              badgeEl.innerHTML = `<span style="color:#10B981;font-weight:700;"><i class="fa-solid fa-circle-check"></i> Confirmation receipt emailed to <b>${targetCustomerEmail}</b></span><br><span style="font-size:11px;color:#047857;">Please check your Inbox as well as Spam / Promotions folder.</span>`;
+              badgeEl.innerHTML = `<span style="color:#10B981;font-weight:700;"><i class="fa-solid fa-circle-check"></i> Confirmation &amp; tracking link emailed to <b>${targetCustomerEmail}</b></span>`;
             }
           } else {
             console.warn("[SPIDEY] Email send unsuccessful:", custRes.error);
             toast(`⚠️ Email service notice: ${custRes.error}`);
             if (badgeEl) {
-              badgeEl.innerHTML = `<span style="color:#b45309;font-size:12px;"><i class="fa-solid fa-triangle-exclamation"></i> Notice: Confirmation email could not be delivered (${custRes.error}). Please check spam folder or verify EmailJS template settings.</span>`;
+              badgeEl.innerHTML = `<span style="color:#b45309;font-size:12px;"><i class="fa-solid fa-triangle-exclamation"></i> Notice: Confirmation email could not be delivered (${custRes.error}). Please verify EmailJS template settings.</span>`;
             }
           }
         } catch(e) {
@@ -2101,6 +2353,75 @@ if (orderForm) {
 // FLIPKART / AMAZON / MYNTRA STYLE ORDER TRACKER ENGINE
 // ──────────────────────────────────────────
 let activeTrackingOrderId = null;
+let activeOrderUnsubscribe = null;
+let activeTrackedOrderData = null;
+
+function stopActiveOrderSubscription() {
+  if (typeof activeOrderUnsubscribe === 'function') {
+    try { activeOrderUnsubscribe(); } catch (e) {}
+    activeOrderUnsubscribe = null;
+  }
+}
+
+function renderOrderNotFoundView(queryVal) {
+  const content = document.getElementById('trackModalContent');
+  if (!content) return;
+  const safeVal = String(queryVal || '').replace(/[<>&"]/g, '');
+  content.innerHTML = `
+    <div style="text-align:center;padding:36px 16px;background:var(--light);border-radius:4px;border:1px dashed #d6d6d6;">
+      <div style="font-size:32px;color:var(--muted);margin-bottom:10px;"><i class="fa-solid fa-magnifying-glass"></i></div>
+      <h4 style="margin:0 0 6px;font-size:16px;">No Order Found Matching "${safeVal}"</h4>
+      <p style="margin:0 0 16px;font-size:13px;color:var(--muted);">Please verify your Order ID (e.g. SPIDEY-849201) or check the orders list below.</p>
+      <button type="button" class="btn red" style="height:40px;font-size:11px;" onclick="renderUserOrdersList()">View All Orders</button>
+    </div>
+  `;
+}
+
+async function resolveOrderFromCloudAndBind(orderId, isJustPlaced = false) {
+  stopActiveOrderSubscription();
+  activeTrackingOrderId = orderId;
+  const input = document.getElementById('trackSearchInput');
+  if (input && orderId) input.value = orderId;
+
+  const orders = (window.SpideyStore ? SpideyStore.getOrders() : []) || [];
+  const localOrder = orders.find(o => String(o.id).toUpperCase() === String(orderId).toUpperCase());
+
+  if (localOrder) {
+    renderOrderTrackingView(localOrder, isJustPlaced);
+  } else {
+    const content = document.getElementById('trackModalContent');
+    if (content) {
+      content.innerHTML = `
+        <div style="text-align:center;padding:42px 16px;">
+          <i class="fa-solid fa-circle-notch fa-spin" style="font-size:28px;color:var(--red);margin-bottom:12px;"></i>
+          <div style="font-weight:700;font-size:15px;">Fetching Live Order #${String(orderId).replace(/[<>&"]/g, '')}...</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px;">Loading status and delivery address</div>
+        </div>
+      `;
+    }
+  }
+
+  if (window.SpideyFirebase && typeof SpideyFirebase.fetchOrderById === 'function') {
+    const cloudOrder = await SpideyFirebase.fetchOrderById(orderId);
+    if (String(activeTrackingOrderId || '').toUpperCase() !== String(orderId || '').toUpperCase()) return;
+
+    if (cloudOrder) {
+      renderOrderTrackingView(cloudOrder, isJustPlaced);
+      if (typeof SpideyFirebase.subscribeOrderById === 'function') {
+        activeOrderUnsubscribe = SpideyFirebase.subscribeOrderById(cloudOrder.id, (liveOrder) => {
+          if (String(activeTrackingOrderId || '').toUpperCase() === String(liveOrder.id || '').toUpperCase()) {
+            renderOrderTrackingView(liveOrder, false);
+          }
+        });
+      }
+      return;
+    }
+  }
+
+  if (!localOrder) {
+    renderOrderNotFoundView(orderId);
+  }
+}
 
 function openOrderTrackerModal(orderId = null, isJustPlaced = false) {
   closeAll();
@@ -2116,29 +2437,27 @@ function openOrderTrackerModal(orderId = null, isJustPlaced = false) {
   if (countEl) countEl.textContent = orders.length;
 
   if (orderId) {
-    activeTrackingOrderId = orderId;
-    const order = orders.find(o => String(o.id).toUpperCase() === String(orderId).toUpperCase());
-    if (order) {
-      renderOrderTrackingView(order, isJustPlaced);
-    } else {
-      renderUserOrdersList();
-    }
+    resolveOrderFromCloudAndBind(orderId, isJustPlaced);
   } else {
+    stopActiveOrderSubscription();
     activeTrackingOrderId = null;
+    activeTrackedOrderData = null;
     renderUserOrdersList();
   }
 }
 
 function closeOrderTrackerModal() {
+  stopActiveOrderSubscription();
   const modal = document.getElementById('trackModal');
   if (modal) modal.classList.remove('on');
   const sc = document.getElementById('sc');
   if (sc) sc.classList.remove('on');
   document.body.style.overflow = '';
   activeTrackingOrderId = null;
+  activeTrackedOrderData = null;
 }
 
-function searchOrderToTrack() {
+async function searchOrderToTrack() {
   const input = document.getElementById('trackSearchInput');
   const val = (input ? input.value : '').trim().toUpperCase();
   if (!val) {
@@ -2154,25 +2473,27 @@ function searchOrderToTrack() {
   );
 
   if (found) {
-    activeTrackingOrderId = found.id;
-    renderOrderTrackingView(found, false);
-  } else {
-    const content = document.getElementById('trackModalContent');
-    if (content) {
-      content.innerHTML = `
-        <div style="text-align:center;padding:36px 16px;background:var(--light);border-radius:4px;border:1px dashed #d6d6d6;">
-          <div style="font-size:32px;color:var(--muted);margin-bottom:10px;"><i class="fa-solid fa-magnifying-glass"></i></div>
-          <h4 style="margin:0 0 6px;font-size:16px;">No Order Found Matching "${val}"</h4>
-          <p style="margin:0 0 16px;font-size:13px;color:var(--muted);">Please verify your Order ID (e.g. SPIDEY-849201) or check the orders list below.</p>
-          <button type="button" class="btn red" style="height:40px;font-size:11px;" onclick="renderUserOrdersList()">View All Orders</button>
-        </div>
-      `;
+    resolveOrderFromCloudAndBind(found.id, false);
+    return;
+  }
+
+  if (window.SpideyFirebase && typeof SpideyFirebase.fetchOrderById === 'function') {
+    const cloudFound = await SpideyFirebase.fetchOrderById(val);
+    if (cloudFound) {
+      resolveOrderFromCloudAndBind(cloudFound.id, false);
+      return;
     }
   }
+
+  stopActiveOrderSubscription();
+  activeTrackingOrderId = null;
+  activeTrackedOrderData = null;
+  renderOrderNotFoundView(val);
 }
 
 function renderOrderTrackingView(order, isJustPlaced = false) {
   activeTrackingOrderId = order.id;
+  activeTrackedOrderData = order;
   const content = document.getElementById('trackModalContent');
   if (!content) return;
 
@@ -2239,6 +2560,7 @@ function renderOrderTrackingView(order, isJustPlaced = false) {
       <div style="display:flex;justify-content:space-between;font-size:12px;color:#555;flex-wrap:wrap;gap:8px;border-top:1px dashed #d6d6d6;padding-top:10px;">
         <span>Placed on: <b>${dateFormatted}</b></span>
         <span>Payment: <b>${order.payment_method || 'COD'}</b></span>
+        ${order.coupon_code && Number(order.coupon_discount) > 0 ? `<span>Coupon (${order.coupon_code}): <b style="color:#10B981;">-${rs(order.coupon_discount)}</b></span>` : ''}
         <span>Total: <b style="color:var(--red);">${rs(order.total_amount || 0)}</b></span>
       </div>
     </div>
@@ -2295,14 +2617,23 @@ function renderOrderTrackingView(order, isJustPlaced = false) {
       <div style="display:flex;flex-direction:column;gap:12px;">
         ${(order.items || []).map(item => {
           const prod = P.find(x => String(x.id) === String(item.id));
+          const catLabel = (window.SpideyFirebase && SpideyFirebase.getProductCategoryLabel)
+            ? SpideyFirebase.getProductCategoryLabel(item, prod)
+            : (item.category || (prod && prod.c) || 'Streetwear Apparel');
+          const thumbHtml = prod
+            ? garment(prod)
+            : (item.image
+                ? `<img src="${item.image}" alt="${item.name || catLabel}" style="width:100%;height:100%;object-fit:cover;display:block;">`
+                : '<i class="fa-solid fa-shirt" style="color:#aaa;"></i>');
           return `
             <div style="display:flex;gap:12px;align-items:center;padding-bottom:10px;border-bottom:1px solid #f2f2f2;">
               <div style="width:54px;height:68px;background:var(--light);border-radius:3px;overflow:hidden;flex-shrink:0;display:grid;place-items:center;">
-                ${prod ? garment(prod) : '<i class="fa-solid fa-shirt" style="color:#aaa;"></i>'}
+                ${thumbHtml}
               </div>
               <div style="flex:1;">
+                <div style="display:inline-block;background:var(--red);color:#fff;font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-bottom:3px;">${catLabel}</div>
                 <div style="font-size:13px;font-weight:700;color:var(--black);">${item.name || 'Streetwear Apparel'}</div>
-                <div style="font-size:12px;color:var(--muted);margin-top:2px;">Size: <b style="color:var(--black);">${item.size}</b> &bull; Qty: ${item.q}</div>
+                <div style="font-size:12px;color:var(--muted);margin-top:2px;">Size: <b style="color:var(--black);">${item.size}</b> &bull; Qty: ${item.q}${item.color ? ` &bull; ${item.color}` : ''}</div>
               </div>
               <div style="text-align:right;font-size:14px;font-weight:700;color:var(--red);">
                 ${rs((item.price || 0) * (item.q || 1))}
@@ -2339,7 +2670,9 @@ function renderOrderTrackingView(order, isJustPlaced = false) {
 }
 
 function renderUserOrdersList() {
+  stopActiveOrderSubscription();
   activeTrackingOrderId = null;
+  activeTrackedOrderData = null;
   const content = document.getElementById('trackModalContent');
   if (!content) return;
 
@@ -2430,6 +2763,8 @@ function onStoreOrdersUpdated() {
       const fresh = orders.find(o => String(o.id).toUpperCase() === String(activeTrackingOrderId).toUpperCase());
       if (fresh) {
         renderOrderTrackingView(fresh, false);
+      } else if (activeTrackedOrderData && String(activeTrackedOrderData.id).toUpperCase() === String(activeTrackingOrderId).toUpperCase()) {
+        renderOrderTrackingView(activeTrackedOrderData, false);
       }
     } else {
       renderUserOrdersList();
@@ -2442,6 +2777,40 @@ window.addEventListener('storage', (e) => {
     onStoreOrdersUpdated();
   }
 });
+
+// Save live storefront URL & handle ?track=ORDER_ID deep links from customer emails
+(function initEmailOrderTrackingDeepLink() {
+  try {
+    if (window.location.protocol.startsWith('http')) {
+      localStorage.setItem('spidey_live_store_url', window.location.href.split(/[?#]/)[0]);
+    }
+  } catch (e) {}
+
+  const handleTrackQueryParam = () => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const trackId = (params.get('track') || '').trim();
+      if (!trackId) return;
+
+      const ld = document.getElementById('ld');
+      if (ld) {
+        ld.classList.add('fade-out');
+        ld.style.display = 'none';
+      }
+      setTimeout(() => {
+        openOrderTrackerModal(trackId, false);
+      }, 150);
+    } catch (e) {
+      console.warn('Track query link notice:', e);
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', handleTrackQueryParam);
+  } else {
+    handleTrackQueryParam();
+  }
+})();
 
 // Firebase Newsletter Integration
 const nf = $("#nf");
@@ -2543,7 +2912,7 @@ $('#signInForm') && ($('#signInForm').onsubmit = async (e) => {
   const password = $('#loginPassword').value;
   const btn = $('#loginBtn'), errEl = $('#loginErr');
   errEl.textContent = '';
-  btn.disabled = true; btn.textContent = 'SIGNING IN...'; if (window.location.protocol === 'file:' || !db) { currentUser = { id: "usr_" + Math.floor(100000 + Math.random() * 900000), email: email, user_metadata: { full_name: email.split('@')[0].replace(/[._]/g, ' ') } }; try { localStorage.setItem('spidey_local_user', JSON.stringify(currentUser)); } catch(e){} updateAuthHeaderUI(); $('#authModal').classList.remove('on'); toast('🕷️ Welcome back, ' + (currentUser.user_metadata?.full_name || 'Member') + '!'); if (proceedToCheckoutAfterAuth) { proceedToCheckoutAfterAuth = false; openCheckoutModal(); } btn.disabled = false; btn.textContent = 'SIGN IN'; return; }
+  btn.disabled = true; btn.textContent = 'SIGNING IN...'; if (window.location.protocol === 'file:' || !db) { currentUser = { id: "usr_" + Math.floor(100000 + Math.random() * 900000), email: email, user_metadata: { full_name: email.split('@')[0].replace(/[._]/g, ' ') } }; try { localStorage.setItem('spidey_local_user', JSON.stringify(currentUser)); } catch(e){} updateAuthHeaderUI(); $('#authModal').classList.remove('on'); toast('🕷️ Welcome back, ' + (currentUser.user_metadata?.full_name || 'Member') + '!'); const _goCo = proceedToCheckoutAfterAuth; proceedToCheckoutAfterAuth = false; maybeShowLoginCouponOffer(_goCo); btn.disabled = false; btn.textContent = 'SIGN IN'; return; }
 
   try {
 
@@ -2554,6 +2923,7 @@ $('#signInForm') && ($('#signInForm').onsubmit = async (e) => {
     updateAuthHeaderUI();
     $('#authModal').classList.remove('on');
     toast('🕷️ Welcome back, ' + (currentUser.user_metadata?.full_name || 'Spidey Member') + '!');
+    const _goCo = proceedToCheckoutAfterAuth; proceedToCheckoutAfterAuth = false; maybeShowLoginCouponOffer(_goCo);
     
     if (proceedToCheckoutAfterAuth) {
       proceedToCheckoutAfterAuth = false;
@@ -2574,7 +2944,7 @@ $('#registerForm') && ($('#registerForm').onsubmit = async (e) => {
   const password = $('#regPassword').value;
   const btn = $('#regBtn'), errEl = $('#regErr');
   errEl.textContent = '';
-  btn.disabled = true; btn.textContent = 'CREATING ACCOUNT...'; if (window.location.protocol === 'file:' || !db) { currentUser = { id: "usr_" + Math.floor(100000 + Math.random() * 900000), email: email, user_metadata: { full_name: name } }; try { localStorage.setItem('spidey_local_user', JSON.stringify(currentUser)); } catch(e){} updateAuthHeaderUI(); $('#authModal').classList.remove('on'); toast('🕷️ Welcome to the Spidey Club, ' + name + '!'); if (proceedToCheckoutAfterAuth) { proceedToCheckoutAfterAuth = false; openCheckoutModal(); } btn.disabled = false; btn.textContent = 'CREATE ACCOUNT & CONTINUE'; return; }
+  btn.disabled = true; btn.textContent = 'CREATING ACCOUNT...'; if (window.location.protocol === 'file:' || !db) { currentUser = { id: "usr_" + Math.floor(100000 + Math.random() * 900000), email: email, user_metadata: { full_name: name } }; try { localStorage.setItem('spidey_local_user', JSON.stringify(currentUser)); } catch(e){} updateAuthHeaderUI(); $('#authModal').classList.remove('on'); toast('🕷️ Welcome to the Spidey Club, ' + name + '!'); const _goCo = proceedToCheckoutAfterAuth; proceedToCheckoutAfterAuth = false; maybeShowLoginCouponOffer(_goCo); btn.disabled = false; btn.textContent = 'CREATE ACCOUNT & CONTINUE'; return; }
 
   try {
 
@@ -2591,6 +2961,7 @@ $('#registerForm') && ($('#registerForm').onsubmit = async (e) => {
       updateAuthHeaderUI();
       $('#authModal').classList.remove('on');
       toast('🕷️ Account created successfully! Welcome ' + name);
+      const _goCo = proceedToCheckoutAfterAuth; proceedToCheckoutAfterAuth = false; maybeShowLoginCouponOffer(_goCo);
       if (proceedToCheckoutAfterAuth) {
         proceedToCheckoutAfterAuth = false;
         openCheckoutModal();
@@ -2612,6 +2983,7 @@ $('#logoutBtn') && ($('#logoutBtn').onclick = async () => {
   if (fbAuth) { try { await SpideyFirebase.signOut(); } catch(e){} } try { localStorage.removeItem('spidey_local_user'); } catch(e){}
   currentUser = null;
   window._syncedAddrForUser = null;
+  if (typeof getCouponUserState === 'function') { const st = getCouponUserState(); delete st.lastPopupSig; saveCouponUserState(st); }
   updateAuthHeaderUI();
   $('#authModal').classList.remove('on');
   toast('Signed out successfully.');
@@ -2622,7 +2994,7 @@ function updateAuthHeaderUI() {
   if (!accBtn) return;
   if (currentUser) {
     accBtn.style.color = 'var(--red)';
-    accBtn.title = 'Account: ' + (currentUser.user_metadata?.full_name || currentUser.email); const uName = currentUser.user_metadata?.full_name || currentUser.email.split('@')[0]; if($('#userName')) $('#userName').textContent = uName; if($('#userEmail')) $('#userEmail').textContent = currentUser.email; if($('#userAvatar')) $('#userAvatar').textContent = (uName[0] || 'P').toUpperCase(); if($('#loggedInBox')) $('#loggedInBox').style.display = 'block'; if($('#signInForm')) $('#signInForm').style.display = 'none'; if($('#registerForm')) $('#registerForm').style.display = 'none'; if($('#authTabs')) $('#authTabs').style.display = 'none'; if($('#googleAuthWrap')) $('#googleAuthWrap').style.display = 'none'; if($('#guestCheckoutBtn')) $('#guestCheckoutBtn').style.display = 'none'; if($('#authTitle')) $('#authTitle').textContent = 'YOUR SPIDEY ACCOUNT'; if(typeof renderAccountAddressBox==='function') renderAccountAddressBox(); if(typeof syncUserAddressFromFirebase==='function') syncUserAddressFromFirebase(currentUser);
+    accBtn.title = 'Account: ' + (currentUser.user_metadata?.full_name || currentUser.email); const uName = currentUser.user_metadata?.full_name || currentUser.email.split('@')[0]; if($('#userName')) $('#userName').textContent = uName; if($('#userEmail')) $('#userEmail').textContent = currentUser.email; if($('#userAvatar')) $('#userAvatar').textContent = (uName[0] || 'P').toUpperCase(); if($('#loggedInBox')) $('#loggedInBox').style.display = 'block'; if($('#signInForm')) $('#signInForm').style.display = 'none'; if($('#registerForm')) $('#registerForm').style.display = 'none'; if($('#authTabs')) $('#authTabs').style.display = 'none'; if($('#googleAuthWrap')) $('#googleAuthWrap').style.display = 'none'; if($('#guestCheckoutBtn')) $('#guestCheckoutBtn').style.display = 'none'; if($('#authTitle')) $('#authTitle').textContent = 'YOUR SPIDEY ACCOUNT'; if(typeof renderAccountAddressBox==='function') renderAccountAddressBox(); if(typeof syncUserAddressFromFirebase==='function') syncUserAddressFromFirebase(currentUser); if(typeof renderAccountCouponCard==='function') renderAccountCouponCard();
   } else {
     accBtn.style.color = '';
     accBtn.title = 'Account Login / Register'; if($('#loggedInBox')) $('#loggedInBox').style.display = 'none'; if($('#authTabs')) $('#authTabs').style.display = 'flex'; if($('#googleAuthWrap')) $('#googleAuthWrap').style.display = 'block'; if($('#guestCheckoutBtn')) $('#guestCheckoutBtn').style.display = 'block'; if($('#authTitle')) $('#authTitle').textContent = 'MEMBER ACCESS'; switchAuthTab('signin');
@@ -2655,7 +3027,7 @@ if (googleBtn) {
       if (proceedToCheckoutAfterAuth) {
         localStorage.setItem('spidey_checkout_pending', '1');
       }
-      const { error } = await SpideyFirebase.signInWithGoogle({ onSuccess: (u) => { currentUser = u; updateAuthHeaderUI(); $('#authModal').classList.remove('on'); toast('🕷️ Welcome, ' + (u.user_metadata?.full_name || 'Member') + '!'); if (proceedToCheckoutAfterAuth) { proceedToCheckoutAfterAuth = false; openCheckoutModal(); } }, onFinally: () => { googleBtn.disabled = false; googleBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg> Continue with Google`; } }, {
+      const { error } = await SpideyFirebase.signInWithGoogle({ onSuccess: (u) => { currentUser = u; updateAuthHeaderUI(); $('#authModal').classList.remove('on'); toast('🕷️ Welcome, ' + (u.user_metadata?.full_name || 'Member') + '!'); const _goCo = proceedToCheckoutAfterAuth; proceedToCheckoutAfterAuth = false; maybeShowLoginCouponOffer(_goCo); }, onFinally: () => { googleBtn.disabled = false; googleBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg> Continue with Google`; } }, {
         provider: 'google',
         options: {
           redirectTo: window.location.origin + window.location.pathname
@@ -2686,6 +3058,7 @@ function handleDirectGoogleLogin() {
   updateAuthHeaderUI();
   $('#authModal').classList.remove('on');
   toast('🕷️ Welcome, ' + gName + '! Signed in with Google.');
+  const _goCo = proceedToCheckoutAfterAuth; proceedToCheckoutAfterAuth = false; maybeShowLoginCouponOffer(_goCo);
   if (proceedToCheckoutAfterAuth) {
     proceedToCheckoutAfterAuth = false;
     openCheckoutModal();
@@ -2789,6 +3162,7 @@ async function syncUserAddressFromFirebase(user) {
   const cloudId = user.email || user.id;
   if (!cloudId || window._syncedAddrForUser === cloudId) return;
   window._syncedAddrForUser = cloudId;
+  if (SpideyFirebase.saveUserBasicProfile) SpideyFirebase.saveUserBasicProfile(user).catch(() => {});
   try {
     const res = await SpideyFirebase.fetchUserAddress(cloudId);
     const localAddr = getSavedCheckoutAddress();
@@ -2997,8 +3371,8 @@ function openCheckoutModal() {
     const orig = prod.origPrice || (prod.discount ? Math.round(prod.p / (1 - prod.discount/100)) : 0);
     return acc + (orig > prod.p ? (orig - prod.p) * i.q : 0);
   }, 0);
-  $('#oItemsCount').innerHTML = `${cart.reduce((a, i) => a + i.q, 0)} Items in Bag ${totalSavings > 0 ? `<span style="color:#10B981;font-size:11px;font-weight:700;margin-left:6px;">(Saved ${rs(totalSavings)})</span>` : ''}`;
-  $('#oTotal').textContent = rs(sub + ship);
+  if (typeof renderCheckoutCouponSummary === 'function') { renderCheckoutCouponSummary(); } else { $('#oItemsCount').innerHTML = `${cart.reduce((a, i) => a + i.q, 0)} Items in Bag ${totalSavings > 0 ? `<span style="color:#10B981;font-size:11px;font-weight:700;margin-left:6px;">(Saved ${rs(totalSavings)})</span>` : ''}`; $('#oTotal').textContent = rs(sub + ship); }
+  if (typeof renderCheckoutCouponSummary !== 'function') $('#oTotal').textContent = rs(sub + ship);
   $('#oErr').textContent = '';
 
   if (currentUser) {
@@ -3134,6 +3508,10 @@ async function syncStoreConfigFromFirebase() {
       }
       if (cfgRes.data.contact) {
         s.contact = Object.assign({}, s.contact || {}, cfgRes.data.contact);
+        changed = true;
+      }
+      if (cfgRes.data.coupon) {
+        s.coupon = Object.assign({}, s.coupon || {}, cfgRes.data.coupon);
         changed = true;
       }
     }
