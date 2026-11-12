@@ -702,11 +702,17 @@ mark{background:none;color:var(--red)}
           <div style="display:flex;flex-direction:column;gap:8px;">
             <input id="acctName" placeholder="Full Name *" style="width:100%;height:38px;border:1px solid #cfcfcf;padding:0 10px;font:inherit;font-size:12px;">
             <input id="acctPhone" type="tel" placeholder="Phone Number *" style="width:100%;height:38px;border:1px solid #cfcfcf;padding:0 10px;font:inherit;font-size:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;">
+              <span style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);">Address</span>
+              <button type="button" id="acctUseLocBtn" onclick="useCurrentLocationForAccount()" style="display:inline-flex;align-items:center;gap:5px;background:#111;color:#fff;border:none;font-size:10px;font-weight:700;padding:5px 9px;border-radius:2px;cursor:pointer;letter-spacing:.04em;"><i class="fa-solid fa-location-crosshairs" style="color:var(--red);"></i> Use Current Location</button>
+            </div>
+            <div id="acctLocStatus" style="display:none;font-size:11px;line-height:1.35;"></div>
             <textarea id="acctAddr" rows="2" placeholder="House / Flat No., Street, Area *" style="width:100%;border:1px solid #cfcfcf;padding:8px 10px;font:inherit;font-size:12px;resize:none;"></textarea>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <input id="acctPin" inputmode="numeric" maxlength="6" placeholder="PIN Code * (auto-fills city)" style="width:100%;height:38px;border:1px solid #cfcfcf;padding:0 10px;font:inherit;font-size:12px;">
               <input id="acctCity" placeholder="City *" style="width:100%;height:38px;border:1px solid #cfcfcf;padding:0 10px;font:inherit;font-size:12px;">
-              <input id="acctPin" placeholder="PIN Code *" style="width:100%;height:38px;border:1px solid #cfcfcf;padding:0 10px;font:inherit;font-size:12px;">
             </div>
+            <div id="acctPinStatus" style="display:none;font-size:11px;line-height:1.35;"></div>
             <div style="display:flex;gap:8px;margin-top:2px;">
               <button type="button" class="btn red" onclick="saveAccountAddressEdit()" style="flex:1;height:36px;font-size:11px;">SAVE ADDRESS</button>
               <button type="button" class="btn out" onclick="toggleAccountAddressEdit(false)" style="height:36px;padding:0 12px;font-size:11px;">Cancel</button>
@@ -760,20 +766,21 @@ mark{background:none;color:var(--red)}
         </div>
       </div>
       <div>
-        <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">Delivery Address *</label>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap;"><label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin:0;">Delivery Address *</label><button type="button" id="oUseLocBtn" onclick="useCurrentLocationForCheckout()" style="display:inline-flex;align-items:center;gap:5px;background:#111;color:#fff;border:none;font-size:11px;font-weight:700;padding:5px 10px;border-radius:2px;cursor:pointer;letter-spacing:.04em;"><i class="fa-solid fa-location-crosshairs" style="color:var(--red);"></i> Use Current Location</button></div><div id="oLocStatus" style="display:none;font-size:11px;margin-bottom:5px;line-height:1.35;"></div>
         <textarea id="oaddr" required rows="2" placeholder="House / Flat No., Street, Area, Landmark" style="width:100%;border:1px solid #cfcfcf;padding:10px 12px;font:inherit;resize:none;"></textarea>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
         <div>
+          <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">PIN Code *</label>
+          <input id="opin" required inputmode="numeric" maxlength="6" placeholder="400001" style="width:100%;height:46px;border:1px solid #cfcfcf;padding:0 12px;font:inherit;">
+        </div>
+        <div>
           <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">City *</label>
           <input id="ocity" required placeholder="Mumbai" style="width:100%;height:46px;border:1px solid #cfcfcf;padding:0 12px;font:inherit;">
         </div>
-        <div>
-          <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">PIN Code *</label>
-          <input id="opin" required placeholder="400001" style="width:100%;height:46px;border:1px solid #cfcfcf;padding:0 12px;font:inherit;">
-        </div>
       </div>
       <div>
+        <div id="oPinStatus" style="display:none;font-size:11px;line-height:1.35;margin-top:-6px;"></div>
         <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">Payment Method</label>
         <select id="opay" style="width:100%;height:46px;border:1px solid #cfcfcf;padding:0 12px;font:inherit;">
           <option value="COD">Cash on Delivery (COD)</option>
@@ -3358,6 +3365,279 @@ function saveAccountAddressEdit() {
   });
 })();
 
+const _spideyPinCache = {};
+function _setLocHelperStatus(el, msg, color) {
+  if (!el) return;
+  if (!msg) {
+    el.style.display = 'none';
+    el.textContent = '';
+    return;
+  }
+  el.style.display = 'block';
+  el.style.color = color || '#555';
+  el.innerHTML = msg;
+}
+
+async function _fetchCityForPincode(pin) {
+  if (_spideyPinCache[pin]) return _spideyPinCache[pin];
+
+  const fetchWithTimeout = async (url, opts = {}, ms = 6000) => {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), ms);
+    try {
+      const res = await fetch(url, Object.assign({}, opts, { signal: ctrl.signal }));
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return await res.json();
+    } finally {
+      clearTimeout(timer);
+    }
+  };
+
+  // 1. Primary: India Post PIN Code API
+  try {
+    const data = await fetchWithTimeout(`https://api.postalpincode.in/pincode/${encodeURIComponent(pin)}`);
+    if (Array.isArray(data) && data[0] && data[0].Status === 'Success' && Array.isArray(data[0].PostOffice) && data[0].PostOffice.length) {
+      const po = data[0].PostOffice[0];
+      const city = String(po.District || po.Block || po.Division || po.Name || '').trim();
+      const state = String(po.State || '').trim();
+      if (city) {
+        const result = { city, state, area: String(po.Name || '').trim() };
+        _spideyPinCache[pin] = result;
+        return result;
+      }
+    }
+  } catch (e) {}
+
+  // 2. Fallback: Zippopotam.us
+  try {
+    const data = await fetchWithTimeout(`https://api.zippopotam.us/in/${encodeURIComponent(pin)}`);
+    if (data && Array.isArray(data.places) && data.places.length) {
+      const pl = data.places[0];
+      const city = String(pl['place name'] || '').trim();
+      const state = String(pl.state || '').trim();
+      if (city) {
+        const result = { city, state, area: city };
+        _spideyPinCache[pin] = result;
+        return result;
+      }
+    }
+  } catch (e) {}
+
+  // 3. Fallback: OpenStreetMap Nominatim
+  try {
+    const data = await fetchWithTimeout(`https://nominatim.openstreetmap.org/search?postalcode=${encodeURIComponent(pin)}&countrycodes=in&format=jsonv2&addressdetails=1&limit=1`);
+    if (Array.isArray(data) && data.length && data[0].address) {
+      const a = data[0].address;
+      const city = String(a.city || a.town || a.state_district || a.county || a.village || '').trim();
+      const state = String(a.state || '').trim();
+      if (city) {
+        const result = { city, state, area: String(a.suburb || a.neighbourhood || '').trim() };
+        _spideyPinCache[pin] = result;
+        return result;
+      }
+    }
+  } catch (e) {}
+
+  return null;
+}
+
+function wirePincodeAutoCity(pinId, cityId, statusId) {
+  const pinEl = document.getElementById(pinId);
+  const cityEl = document.getElementById(cityId);
+  const statusEl = document.getElementById(statusId);
+  if (!pinEl || !cityEl || pinEl._spideyPinWired) return;
+  pinEl._spideyPinWired = true;
+
+  let debounceTimer = null;
+  let reqSeq = 0;
+
+  const handlePinInput = () => {
+    const cleaned = String(pinEl.value || '').replace(/\D/g, '').slice(0, 6);
+    if (pinEl.value !== cleaned) pinEl.value = cleaned;
+
+    clearTimeout(debounceTimer);
+    if (cleaned.length < 6) {
+      reqSeq++;
+      _setLocHelperStatus(statusEl, '', '');
+      return;
+    }
+
+    const mySeq = ++reqSeq;
+    _setLocHelperStatus(statusEl, `<i class="fa-solid fa-circle-notch fa-spin"></i> Looking up city for PIN <b>${cleaned}</b>...`, '#555');
+
+    debounceTimer = setTimeout(async () => {
+      const info = await _fetchCityForPincode(cleaned);
+      if (mySeq !== reqSeq) return;
+      if (info && info.city) {
+        cityEl.value = info.city;
+        cityEl.dispatchEvent(new Event('input', { bubbles: true }));
+        const extra = [info.city, info.state].filter(Boolean).join(', ');
+        _setLocHelperStatus(statusEl, `<i class="fa-solid fa-circle-check"></i> Detected: <b>${extra}</b>`, '#059669');
+      } else {
+        _setLocHelperStatus(statusEl, `<i class="fa-solid fa-circle-info"></i> Could not auto-detect city for PIN <b>${cleaned}</b>. Please enter city manually.`, '#b45309');
+      }
+    }, 220);
+  };
+
+  pinEl.addEventListener('input', handlePinInput);
+  pinEl.addEventListener('change', handlePinInput);
+}
+
+wirePincodeAutoCity('opin', 'ocity', 'oPinStatus');
+wirePincodeAutoCity('acctPin', 'acctCity', 'acctPinStatus');
+
+async function _reverseGeocodeCoords(lat, lon) {
+  // 1. Primary: OpenStreetMap Nominatim reverse geocoding
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000);
+    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}&addressdetails=1&accept-language=en`, { signal: ctrl.signal });
+    clearTimeout(timer);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.address) {
+        const a = data.address;
+        const streetPart = [a.house_number, a.building, a.road || a.pedestrian || a.footway || a.path].filter(Boolean).join(', ');
+        const areaParts = [
+          a.neighbourhood,
+          a.suburb,
+          a.residential,
+          a.quarter,
+          a.city_district,
+          a.village || a.town
+        ].filter(Boolean);
+        const city = String(a.city || a.town || a.state_district || a.county || a.village || '').trim();
+        const pin = String(a.postcode || '').replace(/\D/g, '').slice(0, 6);
+        const rawParts = [streetPart, ...areaParts].filter(Boolean);
+        const deduped = [];
+        for (const p of rawParts) {
+          if (city && p.toLowerCase() === city.toLowerCase()) continue;
+          if (!deduped.some(x => x.toLowerCase() === p.toLowerCase())) deduped.push(p);
+        }
+        const addressText = deduped.join(', ') || String(data.display_name || '').split(',').slice(0, 3).join(',').trim();
+        return { address: addressText, city, pincode: pin, state: a.state || '' };
+      }
+    }
+  } catch (e) {}
+
+  // 2. Fallback: BigDataCloud client-side reverse geocode
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000);
+    const res = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${encodeURIComponent(lat)}&longitude=${encodeURIComponent(lon)}&localityLanguage=en`, { signal: ctrl.signal });
+    clearTimeout(timer);
+    if (res.ok) {
+      const d = await res.json();
+      const city = String(d.city || d.locality || '').trim();
+      const pin = String(d.postcode || '').replace(/\D/g, '').slice(0, 6);
+      const addrParts = [d.locality, d.city, d.principalSubdivision].filter(Boolean);
+      const deduped = [...new Set(addrParts)];
+      return { address: deduped.join(', '), city, pincode: pin, state: d.principalSubdivision || '' };
+    }
+  } catch (e) {}
+
+  return null;
+}
+
+function detectCurrentLocationForForm({ addrId, cityId, pinId, btnId, statusId, pinStatusId }) {
+  const btn = document.getElementById(btnId);
+  const statusEl = document.getElementById(statusId);
+  const addrEl = document.getElementById(addrId);
+  const cityEl = document.getElementById(cityId);
+  const pinEl = document.getElementById(pinId);
+
+  if (!navigator.geolocation) {
+    _setLocHelperStatus(statusEl, '<i class="fa-solid fa-triangle-exclamation"></i> Location is not supported by this browser. Please enter your address manually.', '#dc2626');
+    return;
+  }
+
+  const origHtml = btn ? btn.innerHTML : '';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin" style="color:var(--red);"></i> Detecting...';
+  }
+  _setLocHelperStatus(statusEl, '<i class="fa-solid fa-location-dot fa-bounce" style="color:var(--red);"></i> Getting your current location...', '#555');
+
+  navigator.geolocation.getCurrentPosition(
+    async (pos) => {
+      try {
+        const { latitude, longitude } = pos.coords;
+        const loc = await _reverseGeocodeCoords(latitude, longitude);
+        if (loc && (loc.address || loc.city || loc.pincode)) {
+          if (addrEl && loc.address) {
+            addrEl.value = loc.address;
+            addrEl.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+          if (cityEl && loc.city) {
+            cityEl.value = loc.city;
+            cityEl.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+          if (pinEl && loc.pincode) {
+            pinEl.value = loc.pincode;
+            if (!loc.city) {
+              pinEl.dispatchEvent(new Event('input', { bubbles: true }));
+            } else {
+              if (pinStatusId) {
+                const pinSt = document.getElementById(pinStatusId);
+                _setLocHelperStatus(pinSt, `<i class="fa-solid fa-circle-check"></i> Detected: <b>${[loc.city, loc.state].filter(Boolean).join(', ')}</b>`, '#059669');
+              }
+            }
+          }
+          _setLocHelperStatus(statusEl, '<i class="fa-solid fa-circle-check"></i> Location filled! Please add House / Flat No. or Landmark if needed.', '#059669');
+          if (typeof toast === 'function') toast('📍 Current location address filled!');
+        } else {
+          _setLocHelperStatus(statusEl, '<i class="fa-solid fa-triangle-exclamation"></i> Could not resolve address from your coordinates. Please enter manually.', '#b45309');
+        }
+      } catch (err) {
+        _setLocHelperStatus(statusEl, '<i class="fa-solid fa-triangle-exclamation"></i> Failed to fetch address details. Please enter manually.', '#dc2626');
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = origHtml;
+        }
+      }
+    },
+    (err) => {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = origHtml;
+      }
+      let msg = 'Could not access your location. Please enter your address manually.';
+      if (err && err.code === 1) {
+        msg = 'Location permission denied. Allow location access in your browser or enter your address manually.';
+      } else if (err && err.code === 2) {
+        msg = 'Location unavailable right now. Please check GPS/network or enter manually.';
+      } else if (err && err.code === 3) {
+        msg = 'Location request timed out. Please try again or enter manually.';
+      }
+      _setLocHelperStatus(statusEl, `<i class="fa-solid fa-triangle-exclamation"></i> ${msg}`, '#dc2626');
+    },
+    { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 }
+  );
+}
+
+function useCurrentLocationForCheckout() {
+  detectCurrentLocationForForm({
+    addrId: 'oaddr',
+    cityId: 'ocity',
+    pinId: 'opin',
+    btnId: 'oUseLocBtn',
+    statusId: 'oLocStatus',
+    pinStatusId: 'oPinStatus'
+  });
+}
+
+function useCurrentLocationForAccount() {
+  detectCurrentLocationForForm({
+    addrId: 'acctAddr',
+    cityId: 'acctCity',
+    pinId: 'acctPin',
+    btnId: 'acctUseLocBtn',
+    statusId: 'acctLocStatus',
+    pinStatusId: 'acctPinStatus'
+  });
+}
+
 function openCheckoutModal() {
   closeAll();
   const sub = cart.reduce((a, i) => {
@@ -3380,6 +3660,8 @@ function openCheckoutModal() {
     if (currentUser.user_metadata?.full_name) $('#oname').value = currentUser.user_metadata.full_name;
   }
   if (typeof loadCheckoutAddressUI === 'function') loadCheckoutAddressUI();
+  _setLocHelperStatus(document.getElementById('oLocStatus'), '', '');
+  _setLocHelperStatus(document.getElementById('oPinStatus'), '', '');
   $('#om').classList.add('on');
 }
 
