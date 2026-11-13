@@ -465,7 +465,7 @@ window.SpideyFirebase = {
     const rupeeTotal = `₹${(Number(order.total_amount) || 0).toLocaleString('en-IN')}`;
     const extraNote = (opts && opts.extraNote) ? `\n${opts.extraNote}` : '';
 
-    const messageContent = `${meta.headline} (${meta.label})\n\nOrder ID: ${orderId}\nTrack Order & Delivery Address:\n${trackUrl}\n\nDate: ${orderDate}\nCustomer: ${customerName}\nPhone: ${order.customer_phone || 'N/A'}\nShipping Address: ${deliveryAddress}\nPayment: ${order.payment_method || 'COD'}\nTotal Amount: ${formattedTotal}\n\nItems:\n${itemsSummary}\n\n${meta.description}${extraNote}\n\nSPIDEY COLLECTIONS — Streetwear Redefined`;
+    const messageContent = `${meta.headline} (${meta.label})\n\nOrder ID: ${orderId}\nTrack Order & Delivery Address:\n${trackUrl}\n\nDate: ${orderDate}\nCustomer: ${customerName}\nPhone: ${order.customer_phone || 'N/A'}\nShipping Address: ${deliveryAddress}\nPayment: ${order.payment_method || 'Razorpay'}\nTotal Amount: ${formattedTotal}\n\nItems:\n${itemsSummary}\n\n${meta.description}${extraNote}\n\nSPIDEY COLLECTIONS — Streetwear Redefined`;
 
     const emailParams = Object.assign({
       subject: meta.subject,
@@ -497,7 +497,7 @@ window.SpideyFirebase = {
       pincode: order.pincode || '',
       from_name: 'SPIDEY COLLECTIONS',
       store_name: 'SPIDEY COLLECTIONS',
-      payment_method: order.payment_method || 'COD',
+      payment_method: order.payment_method || 'Razorpay',
       total_amount: rupeeTotal,
       total: rupeeTotal,
       order_date: orderDate,
@@ -720,7 +720,7 @@ window.SpideyFirebase = {
         address: addr && addr.address ? String(addr.address) : '',
         city: addr && addr.city ? String(addr.city) : '',
         pincode: addr && addr.pincode ? String(addr.pincode) : '',
-        payment_method: addr && addr.payment_method ? String(addr.payment_method) : 'COD',
+        payment_method: addr && addr.payment_method ? String(addr.payment_method) : 'Razorpay',
         updated_at: new Date().toISOString()
       }, { merge: true });
       return { error: null };

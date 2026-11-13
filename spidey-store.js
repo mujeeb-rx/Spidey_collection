@@ -201,47 +201,9 @@ const DEFAULT_SPIDEY_DATA = {
 
 
 
-const DEFAULT_ORDERS = [
-  {
-    id: "SPIDEY-849201",
-    created_at: new Date(Date.now() - 3600000 * 2).toISOString(),
-    customer_name: "Peter Parker",
-    customer_phone: "9876543210",
-    customer_email: "peter.parker@spidey.com",
-    shipping_address: "20 Ingram St, Queens",
-    city: "Mumbai",
-    pincode: "400001",
-    payment_method: "COD",
-    items: [
-      { id: 1, name: "Spidey Core Oversized Tee", size: "L", q: 1, price: 1299, color: "Black" },
-      { id: 7, name: "Urban Shadow Hoodie", size: "XL", q: 1, price: 2499, color: "Black" }
-    ],
-    total_amount: 3798,
-    status: "confirmed"
-  },
-  {
-    id: "SPIDEY-592810",
-    created_at: new Date(Date.now() - 3600000 * 8).toISOString(),
-    customer_name: "Miles Morales",
-    customer_phone: "9822334455",
-    customer_email: "miles@brooklyn.com",
-    shipping_address: "Apt 4B, Central Avenue",
-    city: "Bangalore",
-    pincode: "560001",
-    payment_method: "UPI",
-    items: [
-      { id: 5, name: "Scarlet Oversized Tee", size: "M", q: 2, price: 1399, color: "Red" }
-    ],
-    total_amount: 2798,
-    status: "shipped"
-  }
-];
+const DEFAULT_ORDERS = [];
 
-const DEFAULT_SUBSCRIBERS = [
-  { email: "streetwear.vip@spidey.com", created_at: new Date(Date.now() - 86400000 * 3).toISOString() },
-  { email: "gwen.stacy@subway.com", created_at: new Date(Date.now() - 86400000 * 2).toISOString() },
-  { email: "peter.parker@spidey.com", created_at: new Date(Date.now() - 86400000).toISOString() }
-];
+const DEFAULT_SUBSCRIBERS = [];
 
 // Master Store Object
 window.SpideyStore = {
@@ -522,10 +484,15 @@ window.SpideyStore = {
   getOrders: function() {
     try {
       const raw = localStorage.getItem(SPIDEY_ORDERS_KEY);
-      if (raw) return JSON.parse(raw);
+      if (raw) {
+        let orders = JSON.parse(raw);
+        if (Array.isArray(orders)) {
+          orders = orders.filter(o => o && o.id !== 'SPIDEY-849201' && o.id !== 'SPIDEY-592810');
+          return orders;
+        }
+      }
     } catch (e) {}
-    localStorage.setItem(SPIDEY_ORDERS_KEY, JSON.stringify(DEFAULT_ORDERS));
-    return DEFAULT_ORDERS;
+    return [];
   },
 
   saveOrders: function(orders) {
@@ -567,8 +534,7 @@ window.SpideyStore = {
       const raw = localStorage.getItem(SPIDEY_SUBS_KEY);
       if (raw) return JSON.parse(raw);
     } catch (e) {}
-    localStorage.setItem(SPIDEY_SUBS_KEY, JSON.stringify(DEFAULT_SUBSCRIBERS));
-    return DEFAULT_SUBSCRIBERS;
+    return [];
   },
 
   addSubscriber: function(email) {
@@ -636,46 +602,8 @@ window.SpideyStore = {
       "  });\n",
       "}\n\n",
       "const DEFAULT_SPIDEY_DATA = " + dataJson + ";\n\n",
-      "const DEFAULT_ORDERS = [\n",
-      "  {\n",
-      '    id: "SPIDEY-849201",\n',
-      "    created_at: new Date(Date.now() - 3600000 * 2).toISOString(),\n",
-      '    customer_name: "Rahul Sharma",\n',
-      '    customer_phone: "9876543210",\n',
-      '    customer_email: "rahul.sharma@example.com",\n',
-      '    shipping_address: "Flat 402, Skyline Towers, Sector 14",\n',
-      '    city: "Mumbai",\n',
-      '    pincode: "400001",\n',
-      '    payment_method: "COD",\n',
-      "    items: [\n",
-      '      { id: 1, name: "Spidey Core Oversized Tee", size: "L", q: 1, price: 1299, color: "Black" },\n',
-      '      { id: 7, name: "Urban Shadow Hoodie", size: "XL", q: 1, price: 2499, color: "Black" }\n',
-      "    ],\n",
-      "    total_amount: 3798,\n",
-      '    status: "confirmed"\n',
-      "  },\n",
-      "  {\n",
-      '    id: "SPIDEY-592810",\n',
-      "    created_at: new Date(Date.now() - 3600000 * 8).toISOString(),\n",
-      '    customer_name: "Miles Morales",\n',
-      '    customer_phone: "9822334455",\n',
-      '    customer_email: "miles@brooklyn.com",\n',
-      '    shipping_address: "Apt 4B, Central Avenue",\n',
-      '    city: "Bangalore",\n',
-      '    pincode: "560001",\n',
-      '    payment_method: "UPI",\n',
-      "    items: [\n",
-      '      { id: 5, name: "Scarlet Oversized Tee", size: "M", q: 2, price: 1399, color: "Red" }\n',
-      "    ],\n",
-      "    total_amount: 2798,\n",
-      '    status: "shipped"\n',
-      "  }\n",
-      "];\n\n",
-      "const DEFAULT_SUBSCRIBERS = [\n",
-      '  { email: "streetwear.vip@spidey.com", created_at: new Date(Date.now() - 86400000 * 3).toISOString() },\n',
-      '  { email: "gwen.stacy@subway.com", created_at: new Date(Date.now() - 86400000 * 2).toISOString() },\n',
-      '  { email: "peter.parker@spidey.com", created_at: new Date(Date.now() - 86400000).toISOString() }\n',
-      "];\n\n",
+      "const DEFAULT_ORDERS = [];\n\n",
+      "const DEFAULT_SUBSCRIBERS = [];\n\n",
       "// Master Store Object\n",
       "window.SpideyStore = {\n",
       "  getData: " + window.SpideyStore.getData.toString() + ",\n\n",

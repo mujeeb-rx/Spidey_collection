@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>404 — Page Not Found | SPIDEY COLLECTIONS</title>
+  <meta name="robots" content="noindex, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #E50914;
+      --black: #090909;
+      --black2: #141414;
+      --border: #262626;
+      --muted: #8A8A8A;
+      --disp: 'Anton', 'Impact', sans-serif;
+      --body: 'Inter', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--black);
+      color: #fff;
+      font-family: var(--body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .spider-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(229, 9, 20, 0.2) 0%, rgba(9, 9, 9, 0) 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .box {
+      position: relative;
+      z-index: 2;
+      max-width: 520px;
+      background: var(--black2);
+      border: 1px solid var(--border);
+      padding: 48px 32px;
+      border-radius: 4px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 40px rgba(229,9,20,0.15);
+    }
+    .badge {
+      display: inline-block;
+      font-family: var(--disp);
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: #fff;
+      background: var(--red);
+      padding: 4px 10px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-family: var(--disp);
+      font-size: clamp(72px, 18vw, 120px);
+      line-height: 0.9;
+      color: var(--red);
+      text-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-family: var(--disp);
+      font-size: 24px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--red);
+      color: #fff;
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+    }
+    .btn:hover {
+      background: #fff;
+      color: var(--black);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="spider-glow"></div>
+  <div class="box">
+    <div class="badge">SPIDEY COLLECTIONS</div>
+    <h1>404</h1>
+    <h2>LOST IN THE WEB?</h2>
+    <p>The page you are looking for doesn't exist, has been removed, or is temporarily unavailable.</p>
+    <a href="/" class="btn">&larr; BACK TO STORE</a>
+  </div>
+</body>
+</html>

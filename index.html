@@ -4,9 +4,78 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SPIDEY COLLECTIONS — Streetwear Redefined</title>
-<meta name="description" content="Premium streetwear: oversized tees, graphic tees, hoodies and sweatshirts. Not made to blend in.">
+<meta name="description" content="Discover premium streetwear: oversized tees, graphic drop-shoulder tees, heavy-weight hoodies and sweatshirts. Handcrafted in India. Not made to blend in.">
+<meta name="keywords" content="Spidey Collections, streetwear India, oversized t-shirts, graphic tees, drop shoulder t-shirts, hoodies, sweatshirts, urban clothing, anime streetwear">
+<meta name="author" content="Spidey Collections">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="theme-color" content="#E50914">
+<link rel="canonical" href="https://spideycollection.co.in/">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+<!-- Open Graph / Facebook / WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://spideycollection.co.in/">
+<meta property="og:title" content="SPIDEY COLLECTIONS — Streetwear Redefined">
+<meta property="og:description" content="Discover premium streetwear: oversized tees, graphic drop-shoulder tees, heavy-weight hoodies and sweatshirts. Not made to blend in.">
+<meta property="og:site_name" content="Spidey Collections">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://spideycollection.co.in/og-image.png">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://spideycollection.co.in/">
+<meta name="twitter:title" content="SPIDEY COLLECTIONS — Streetwear Redefined">
+<meta name="twitter:description" content="Discover premium streetwear: oversized tees, graphic drop-shoulder tees, heavy-weight hoodies and sweatshirts. Not made to blend in.">
+<meta name="twitter:image" content="https://spideycollection.co.in/og-image.png">
+
+<!-- Speed & Resource Preconnects -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="https://res.cloudinary.com">
+<link rel="dns-prefetch" href="https://firestore.googleapis.com">
+
+<!-- Structured Data (JSON-LD) for Google Search Rich Results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ClothingStore",
+      "@id": "https://spideycollection.co.in/#store",
+      "name": "Spidey Collections",
+      "url": "https://spideycollection.co.in/",
+      "description": "Premium streetwear brand offering oversized graphic t-shirts, drop-shoulder tees, heavyweight hoodies and sweatshirts.",
+      "telephone": "+91-7601037710",
+      "priceRange": "₹₹",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN"
+      },
+      "currenciesAccepted": "INR",
+      "paymentAccepted": "Razorpay, UPI, Cards, Net Banking, Wallets"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://spideycollection.co.in/#website",
+      "url": "https://spideycollection.co.in/",
+      "name": "Spidey Collections",
+      "publisher": {
+        "@id": "https://spideycollection.co.in/#store"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://spideycollection.co.in/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Razorpay Official Checkout SDK -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <style>
 :root{--red:#E50914;--black:#090909;--white:#fff;--black2:#171717;--light:#F3F3F3;--muted:#8A8A8A;--border:#292929;--disp:'Anton','Impact','Arial Narrow',sans-serif;--body:'Inter',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 90px);scroll-behavior:smooth;overflow-x:hidden!important;width:100%!important;max-width:100vw!important}
@@ -298,16 +367,16 @@ footer{background:var(--black);color:#fff;border-top:1px solid var(--border);pad
 .copy{border-top:1px solid var(--border);margin-top:48px;padding-top:22px;font-size:12px;color:#777;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 @media(max-width:760px){.fg{grid-template-columns:1fr 1fr}.fg>:first-child{grid-column:1/-1}}@media(max-width:520px){.fg{grid-template-columns:1fr!important;gap:24px!important}.copy{flex-direction:column;text-align:center;gap:8px}.gw{font-size:clamp(60px,22vw,120px)!important}}
 /* overlays */
-.scrim{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:60;opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:900;opacity:0;pointer-events:none;transition:opacity .3s}
 .scrim.on{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;bottom:0;right:0;width:min(440px,100%);background:#fff;z-index:70;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer{position:fixed;top:0;bottom:0;right:0;width:min(440px,100%);background:#fff;z-index:950;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 .drawer.on{transform:none}
 .drawer.left{right:auto;left:0;transform:translateX(-100%);width:min(360px,88%)}
 .drawer.left.on{transform:none}
 .dh{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid #eee;flex-shrink:0}
 .dh h3{margin:0;font-size:26px;color:#fff}
-.db{flex:1;overflow-y:auto;padding:8px 20px}
-.df{padding:18px 20px;border-top:1px solid #eee}
+.db{flex:1;overflow-y:auto;padding:8px 20px;-webkit-overflow-scrolling:touch}
+.df{padding:14px 20px max(16px,env(safe-area-inset-bottom,16px));border-top:1px solid #eee;position:relative;z-index:10;background:#fff;flex-shrink:0;max-height:48vh;overflow-y:auto;box-shadow:0 -4px 16px rgba(0,0,0,0.06)}
 .ci{display:grid;grid-template-columns:84px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid #f0f0f0}
 .ci .t{background:var(--light);aspect-ratio:3/4;display:grid;place-items:center}.ci .t svg{width:78%}
 .ci h4{margin:0 0 3px;font-size:14px}.ci .m{font-size:12px;color:var(--muted)}
@@ -320,13 +389,13 @@ footer{background:var(--black);color:#fff;border-top:1px solid var(--border);pad
 .mlinks{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .mlinks a{display:block;padding:16px 20px;font-family:var(--disp);font-size:26px;text-transform:uppercase;border-bottom:1px solid #f0f0f0}
 .mlinks a:hover{color:var(--red)}
-.search{position:fixed;inset:0;background:#fff;z-index:80;transform:translateY(-100%);transition:transform .35s;overflow-y:auto;padding-top:env(safe-area-inset-top,0px)}
+.search{position:fixed;inset:0;background:#fff;z-index:960;transform:translateY(-100%);transition:transform .35s;overflow-y:auto;padding-top:env(safe-area-inset-top,0px)}
 .search.on{transform:none}
 .sf{display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--black);margin:22px 0 24px}
 .sf input{flex:1;min-width:0;border:0;height:60px;font:inherit;font-size:clamp(20px,4vw,34px);font-weight:600;outline:0;background:none}
 .sres{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;padding-bottom:40px}
 mark{background:none;color:var(--red)}
-.modal{position:fixed;inset:0;z-index:75;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px)}
+.modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px)}
 .modal.on{display:flex}
 .mbox{position:relative;background:#fff;width:min(980px,100%);max-height:calc(100% - 8px);overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;animation:up .3s}
 @keyframes up{from{transform:translateY(24px);opacity:0}}
@@ -344,7 +413,15 @@ mark{background:none;color:var(--red)}
 .gal-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(9,9,9,0.75);color:#fff;border:1px solid rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;z-index:6;transition:all .2s}
 .gal-arrow:hover{background:var(--red);border-color:var(--red)}
 .gal-arrow.prev{left:10px}.gal-arrow.next{right:10px}
-.gal-counter{position:absolute;top:12px;right:12px;background:rgba(9,9,9,0.8);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:3px;letter-spacing:.08em;z-index:5;box-shadow:0 2px 6px rgba(0,0,0,0.4)}
+.gal-counter{position:absolute;bottom:12px;right:12px;background:rgba(9,9,9,0.8);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:3px;letter-spacing:.08em;z-index:5;box-shadow:0 2px 6px rgba(0,0,0,0.4)}
+/* ── Flipkart / Amazon Floating Action Controls (Wishlist & Share) ── */
+.store-gallery-floating-actions{position:absolute;top:12px;right:12px;z-index:15;display:flex;flex-direction:column;gap:9px;pointer-events:auto;}
+.store-gallery-action-btn{width:40px;height:40px;border-radius:12px;background:#ffffff;border:1px solid rgba(0,0,0,0.08);box-shadow:0 4px 14px rgba(0,0,0,0.12);display:grid;place-items:center;cursor:pointer;color:#181818;transition:transform .18s cubic-bezier(0.16,1,0.3,1),box-shadow .18s ease,border-color .18s ease;padding:0;-webkit-tap-highlight-color:transparent;}
+.store-gallery-action-btn:hover{transform:scale(1.08);box-shadow:0 6px 18px rgba(0,0,0,0.18);border-color:#d4d4d4;}
+.store-gallery-action-btn:active{transform:scale(0.92);}
+.store-gallery-action-btn.wishlisted{color:var(--red);}
+.store-gallery-action-btn svg{display:block;transition:transform .2s cubic-bezier(0.175,0.885,0.32,1.275);}
+.store-gallery-action-btn:active svg{transform:scale(1.25);}
 .gal-zoom-hint{position:absolute;bottom:12px;left:12px;background:rgba(9,9,9,0.8);color:#fff;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:3px;display:flex;align-items:center;gap:6px;pointer-events:none;z-index:5;opacity:0.9}
 .store-gallery-thumbs{display:flex;gap:8px;padding:10px 14px;background:#f0f0f0;border-top:1px solid #e2e2e2;overflow-x:auto;scrollbar-width:thin}
 .gal-thumb-btn{width:58px;height:58px;flex:none;border:2px solid transparent;border-radius:3px;overflow:hidden;background:#fff;cursor:pointer;padding:0;transition:border-color .2s,transform .2s}
@@ -411,12 +488,13 @@ mark{background:none;color:var(--red)}
   .stepper-desc{display:none}
   .track-modal-box{padding:20px 14px}
 }
-.whatsapp-float{position:fixed;bottom:24px;right:24px;background:#25D366;color:#fff!important;border-radius:50px;padding:11px 20px 11px 16px;display:flex;align-items:center;gap:10px;font-family:var(--body);font-size:13px;font-weight:700;text-decoration:none!important;box-shadow:0 6px 20px rgba(37,211,102,0.45),0 2px 8px rgba(0,0,0,0.3);z-index:95;transition:all .25s ease}
+.whatsapp-float{position:fixed;bottom:24px;right:24px;background:#25D366;color:#fff!important;border-radius:50px;padding:11px 20px 11px 16px;display:flex;align-items:center;gap:10px;font-family:var(--body);font-size:13px;font-weight:700;text-decoration:none!important;box-shadow:0 6px 20px rgba(37,211,102,0.45),0 2px 8px rgba(0,0,0,0.3);z-index:80;transition:all .25s ease}
+.scrim.on ~ .whatsapp-float,#cd.on ~ .whatsapp-float,#md.on ~ .whatsapp-float,#wd.on ~ .whatsapp-float,#om.on ~ .whatsapp-float,#authModal.on ~ .whatsapp-float,body:has(.drawer.on) .whatsapp-float,body:has(.modal.on) .whatsapp-float,body:has(.scrim.on) .whatsapp-float{display:none!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;transform:translateY(24px) scale(0.9)!important}
 .whatsapp-float:hover{background:#20ba59;transform:translateY(-3px) scale(1.03);box-shadow:0 10px 25px rgba(37,211,102,0.6),0 4px 12px rgba(0,0,0,0.4)}
 .whatsapp-float i{font-size:22px}
 @media(max-width:600px){.whatsapp-float{bottom:18px;right:14px;padding:9px 14px;font-size:12px}.whatsapp-float span{display:inline}}
 /* ── SPIDEY VIP COUPON VAULT & OFFER POPUP ── */
-#couponOfferModal{z-index:260}
+#couponOfferModal{z-index:1200}
 .vault-box{max-width:460px!important;width:92%!important;padding:0!important;background:radial-gradient(circle at 88% 12%,rgba(229,9,20,0.34),transparent 52%),radial-gradient(circle at 10% 90%,rgba(229,9,20,0.18),transparent 50%),linear-gradient(155deg,#09090b 0%,#140407 60%,#0b0b0d 100%)!important;color:#fff!important;border:1px solid rgba(229,9,20,0.5)!important;border-radius:14px!important;overflow:hidden;box-shadow:0 28px 80px rgba(0,0,0,0.75),0 0 40px rgba(229,9,20,0.22)!important;position:relative;display:block!important}
 .vault-box::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:18px 18px;pointer-events:none;opacity:.45}
 .vault-inner{position:relative;z-index:2;padding:28px 24px 24px}
@@ -456,6 +534,33 @@ mark{background:none;color:var(--red)}
 .coupon-chip{margin-top:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:rgba(229,9,20,0.06);border:1px dashed rgba(229,9,20,0.45);border-radius:4px;padding:6px 10px;font-size:11px;color:#222}
 .coupon-chip-btn{background:var(--red);color:#fff;border:none;border-radius:3px;padding:4px 9px;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
 .acct-vault-card{background:radial-gradient(circle at 90% 10%,rgba(229,9,20,0.28),transparent 60%),#111114;color:#fff;border:1px solid rgba(229,9,20,0.45);border-radius:6px;padding:12px 14px;margin-bottom:14px;text-align:left}
+
+/* ── Spidey Streetwear Cookie Consent Banner & Modal ── */
+.cookie-banner{position:fixed;bottom:24px;left:24px;max-width:420px;width:calc(100% - 48px);background:rgba(14,14,18,0.96);border:1px solid rgba(229,9,20,0.45);box-shadow:0 16px 45px rgba(0,0,0,0.65),0 0 25px rgba(229,9,20,0.18);backdrop-filter:blur(12px);border-radius:8px;padding:18px 20px;z-index:85;color:#fff;opacity:0;transform:translateY(20px);transition:opacity .35s ease,transform .35s ease;pointer-events:auto;}
+.cookie-banner.visible{opacity:1;transform:translateY(0);}
+.cookie-banner-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.cookie-title{font-family:var(--disp);font-size:16px;letter-spacing:1px;color:#fff;}
+.cookie-text{font-size:12px;line-height:1.5;color:#b3b3b8;margin:0 0 14px;}
+.cookie-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.btn-cookie-accept{flex:1;height:38px;background:var(--red);color:#fff;border:none;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+.btn-cookie-accept:hover{background:#b8070f;}
+.btn-cookie-essential{flex:1;height:38px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:#fff;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.btn-cookie-essential:hover{background:rgba(255,255,255,0.16);}
+.btn-cookie-custom{background:none;border:none;color:#999;font-size:11px;text-decoration:underline;cursor:pointer;padding:4px 6px;transition:color .2s;}
+.btn-cookie-custom:hover{color:#fff;}
+@media(max-width:600px){.cookie-banner{bottom:14px;left:12px;right:12px;width:auto;max-width:none;padding:14px 16px;}}
+.cookie-pref-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid #f0f0f0;}
+.cookie-pref-info{flex:1;}
+.cookie-pref-name{font-size:13px;font-weight:700;color:var(--black);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.cookie-badge-req{font-size:9px;font-weight:800;background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;padding:2px 6px;border-radius:2px;}
+.cookie-pref-desc{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4;}
+.cookie-switch{position:relative;display:inline-block;width:42px;height:24px;flex-shrink:0;}
+.cookie-switch input{opacity:0;width:0;height:0;}
+.cookie-slider{position:absolute;cursor:pointer;inset:0;background-color:#d1d5db;transition:.25s;border-radius:24px;}
+.cookie-slider:before{position:absolute;content:"";height:18px;width:18px;left:3px;bottom:3px;background-color:#fff;transition:.25s;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,0.25);}
+.cookie-switch input:checked + .cookie-slider{background-color:var(--red);}
+.cookie-switch input:checked + .cookie-slider:before{transform:translateX(18px);}
+.cookie-switch-input:disabled{accent-color:var(--red);width:18px;height:18px;cursor:not-allowed;}
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
@@ -496,6 +601,7 @@ mark{background:none;color:var(--red)}
   <nav class="menu" id="dm" aria-label="Main"></nav>
   <div class="icons">
     <button class="ib" id="sb" aria-label="Search"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+    <button class="ib" id="wb" onclick="openWishlistDrawer()" aria-label="Wishlist" title="View Wishlist" style="position:relative;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg><span class="cnt" id="wishCountPill" style="display:none;position:absolute;top:-4px;right:-6px;background:var(--red);color:#fff;font-size:10px;font-weight:700;height:16px;min-width:16px;border-radius:8px;padding:0 4px;align-items:center;justify-content:center;line-height:16px;box-shadow:0 0 0 2px #fff;">0</span></button>
     <button class="ib" id="acc" aria-label="Account"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></button>
     <button class="ib" id="tb" onclick="openOrderTrackerModal()" aria-label="Track Order" title="Track Your Order"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></button>
 
@@ -570,7 +676,7 @@ mark{background:none;color:var(--red)}
     <div class="soc"><a href="https://www.instagram.com/spidey_kadapa?utm_source=ig_web_button_share_sheet&mdxt=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Official Instagram (@spidey_kadapa)" id="footerIgLink" title="Follow @spidey_kadapa on Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></a><a href="https://wa.me/917601037710?text=Hi%20Spidey%20Collections%2C%20I%20have%20an%20inquiry%20about%20your%20streetwear%20collection" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Support (+91 7601037710)" id="footerWaLink" title="Chat on WhatsApp (+91 7601037710)"><i class="fa-brands fa-whatsapp" style="font-size:18px;color:#25D366;"></i></a><a href="mailto:Shaikimran3912@gmail.com" aria-label="Email Shaikimran3912@gmail.com" id="footerEmailLink" title="Email Shaikimran3912@gmail.com"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></div></div>
     <div><h4>Shop</h4><a href="#shop" data-cat="Shop All">Shop All</a><a href="#shop" data-cat="New Arrivals">New Arrivals</a><a href="#shop" data-cat="Hoodies">Hoodies</a><a href="#shop" data-cat="Best Sellers">Best Sellers</a></div>
     <div><h4>Customer Support</h4><a href="https://wa.me/917601037710?text=Hi%20Spidey%20Collections%2C%20I%20have%20an%20inquiry" target="_blank" rel="noopener noreferrer" id="footerSupportWa" style="color:#25D366;font-weight:700;"><i class="fa-brands fa-whatsapp"></i> WhatsApp: 7601037710</a><a href="tel:+917601037710" id="footerSupportPhone" style="color:#fff;"><i class="fa-solid fa-phone" style="color:var(--red);font-size:11px;margin-right:4px;"></i> Call: +91 7601037710</a><a href="mailto:Shaikimran3912@gmail.com" id="footerSupportEmail" style="color:#ddd;word-break:break-all;"><i class="fa-solid fa-envelope" style="color:var(--red);font-size:11px;margin-right:4px;"></i> Shaikimran3912@gmail.com</a><a href="#track" onclick="openOrderTrackerModal(); return false;" style="color:#fff;font-weight:600;"><i class="fa-solid fa-location-dot" style="color:var(--red);margin-right:4px;"></i> Track Order</a></div>
-    <div><h4>Legal</h4><a href="#" data-t="Privacy policy goes here.">Privacy Policy</a><a href="#" data-t="Terms & conditions go here.">Terms & Conditions</a></div>
+    <div><h4>Legal</h4><a href="#" data-t="Privacy policy goes here.">Privacy Policy</a><a href="#" data-t="Terms & conditions go here.">Terms & Conditions</a><a href="#" onclick="openCookieSettingsModal(); return false;"><i class="fa-solid fa-cookie-bite" style="color:var(--red);font-size:11px;margin-right:4px;"></i> Cookie Settings</a></div>
   </div>
   <div class="copy"><span>© 2026 SPIDEY COLLECTIONS™. All rights reserved.</span><span>Own your style. Break the ordinary.</span></div>
 </div><div class="gw" aria-hidden="true">SPIDEY</div></footer>
@@ -595,6 +701,7 @@ mark{background:none;color:var(--red)}
   </div>
 </aside>
 <aside class="drawer" id="cd" aria-label="Shopping bag"><div class="dh"><h3 class="disp">Your bag</h3><button class="ib" data-close aria-label="Close bag">✕</button></div><div class="db" id="cl"></div><div class="df" id="cf"></div></aside>
+<aside class="drawer" id="wd" aria-label="Your Wishlist"><div class="dh"><h3 class="disp" style="display:flex;align-items:center;gap:8px;"><i class="fa-solid fa-heart" style="color:var(--red);font-size:18px;"></i> Wishlist (<span id="wishCountHead">0</span>)</h3><button class="ib" data-close aria-label="Close wishlist">✕</button></div><div class="db" id="wishlistList" style="padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:14px;"></div></aside>
 <div class="search" id="se" role="dialog" aria-label="Search"><div class="wrap"><div class="sf"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="si" placeholder="Search products" aria-label="Search products" autocomplete="off"><button class="ib" data-close aria-label="Close search">✕</button></div><div class="sres" id="sr"></div></div></div>
 <div class="modal" id="pm" role="dialog" aria-modal="true" aria-label="Product"><div class="mbox" id="pb"></div></div>
 
@@ -662,7 +769,7 @@ mark{background:none;color:var(--red)}
         <input id="loginPassword" type="password" required placeholder="••••••••" style="width:100%;height:46px;border:1px solid #cfcfcf;padding:0 12px;font:inherit;">
       </div>
       <div id="loginErr" style="color:var(--red);font-size:12px;min-height:16px;"></div>
-      <button type="submit" class="btn red" id="loginBtn" style="width:100%;height:48px;">SIGN IN</button>
+      <button type="submit" class="btn red" id="loginBtn" style="width:100%;height:48px;">SIGN IN</button><button type="button" class="guestCheckoutBtn" onclick="closeAll(); proceedToCheckoutAfterAuth = false; openCheckoutModal();" style="width:100%;margin-top:10px;background:#f5f5f5;border:1px dashed #cfcfcf;color:#111;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;padding:12px;border-radius:3px;display:flex;align-items:center;justify-content:center;gap:6px;"><i class="fa-solid fa-bolt" style="color:var(--red);"></i> Continue as Guest / Enter Details &rarr;</button>
     </form>
 
     <!-- Register Form (hidden by default) -->
@@ -680,7 +787,7 @@ mark{background:none;color:var(--red)}
         <input id="regPassword" type="password" required minlength="6" placeholder="At least 6 characters" style="width:100%;height:46px;border:1px solid #cfcfcf;padding:0 12px;font:inherit;">
       </div>
       <div id="regErr" style="color:var(--red);font-size:12px;min-height:16px;"></div>
-      <button type="submit" class="btn red" id="regBtn" style="width:100%;height:48px;">CREATE ACCOUNT & CONTINUE</button><button type="button" id="guestCheckoutBtn" style="width:100%;margin-top:12px;background:none;border:none;color:var(--muted);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;padding:8px;text-decoration:underline;">⚡ Skip &amp; Continue as Guest &rarr;</button>
+      <button type="submit" class="btn red" id="regBtn" style="width:100%;height:48px;">CREATE ACCOUNT & CONTINUE</button><button type="button" class="guestCheckoutBtn" onclick="closeAll(); proceedToCheckoutAfterAuth = false; openCheckoutModal();" style="width:100%;margin-top:10px;background:#f5f5f5;border:1px dashed #cfcfcf;color:#111;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;padding:12px;border-radius:3px;display:flex;align-items:center;justify-content:center;gap:6px;"><i class="fa-solid fa-bolt" style="color:var(--red);"></i> Continue as Guest / Enter Details &rarr;</button>
     </form>
 
     <!-- Logged In Profile Box -->
@@ -734,6 +841,8 @@ mark{background:none;color:var(--red)}
       <span style="background:var(--red);color:#fff;font-family:var(--disp);font-size:13px;padding:3px 8px;letter-spacing:1px;">SPIDEY DROP</span>
       <h3 class="disp" style="margin:0;font-size:28px;">SECURE CHECKOUT</h3>
     </div>
+    <div id="checkoutAuthNotice" style="display:none;font-size:12px;color:#059669;font-weight:600;margin-bottom:14px;background:#f0fdf4;padding:8px 12px;border-radius:3px;border:1px solid #bbf7d0;"><i class="fa-solid fa-circle-check"></i> Signed in as <span id="coUserEmail"></span></div>
+    <div id="checkoutGuestNotice" style="font-size:12px;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;background:#fafafa;padding:8px 12px;border-radius:3px;border:1px solid #eee;"><span><i class="fa-solid fa-bolt" style="color:var(--red);margin-right:4px;"></i> Express Checkout (No account required)</span><button type="button" onclick="closeAll(); proceedToCheckoutAfterAuth = true; openAuthModal('Sign in to access your saved addresses &amp; faster checkout');" style="background:none;border:none;color:var(--red);font-size:11px;font-weight:700;text-decoration:underline;cursor:pointer;padding:0;">Have an account? Sign In &rarr;</button></div>
     <div id="oSummary" style="background:var(--light);padding:14px;margin-bottom:20px;font-size:13px;display:flex;justify-content:space-between;align-items:center;border-left:3px solid var(--red);">
       <div><div id="oItemsCount" style="font-weight:600;">0 Items in Bag</div><div id="oCouponLine" style="display:none;font-size:11px;color:#10B981;font-weight:700;margin-top:3px;"></div></div>
       <span style="font-size:18px;font-weight:700;color:var(--black);" id="oTotal">&#8377;0</span>
@@ -781,11 +890,27 @@ mark{background:none;color:var(--red)}
       </div>
       <div>
         <div id="oPinStatus" style="display:none;font-size:11px;line-height:1.35;margin-top:-6px;"></div>
-        <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">Payment Method</label>
-        <select id="opay" style="width:100%;height:46px;border:1px solid #cfcfcf;padding:0 12px;font:inherit;">
-          <option value="COD">Cash on Delivery (COD)</option>
-          <option value="UPI">UPI / QR on Delivery</option>
-        </select>
+        <label style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Payment Method</label>
+        <input type="hidden" id="opay" value="Razorpay">
+        <div style="border:1.5px solid #0c2340;background:#f8fafc;border-radius:4px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:36px;height:36px;background:#0c2340;border-radius:4px;display:grid;place-items:center;color:#fff;font-size:16px;flex:none;box-shadow:0 2px 6px rgba(12,35,64,0.3);">
+              <i class="fa-solid fa-bolt" style="color:#528FF0;"></i>
+            </div>
+            <div>
+              <div style="font-size:13px;font-weight:800;color:#090909;display:flex;align-items:center;gap:6px;">
+                <span>Razorpay Secure</span>
+                <span style="font-size:9px;background:#e0f2fe;color:#0369a1;padding:1px 6px;border-radius:2px;font-weight:700;letter-spacing:0.5px;">LIVE</span>
+              </div>
+              <div style="font-size:11px;color:#64748b;margin-top:2px;">
+                UPI &bull; Google Pay &bull; PhonePe &bull; Cards &bull; NetBanking &bull; Wallets
+              </div>
+            </div>
+          </div>
+          <div style="color:#059669;font-size:16px;flex:none;" title="Verified Razorpay Gateway">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+        </div>
       </div>
         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding-top:2px;">
           <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#333;cursor:pointer;user-select:none;">
@@ -799,8 +924,13 @@ mark{background:none;color:var(--red)}
         </div>
       </div>
       <div id="oErr" style="color:var(--red);font-size:12px;min-height:16px;"></div>
-      <button type="submit" class="btn red" id="oSubmitBtn" style="width:100%;margin-top:4px;">CONFIRM & PLACE ORDER</button>
-      <div style="font-size:11px;color:var(--muted);text-align:center;">&#128274; Instant confirmation synced to Firebase</div>
+      <button type="submit" class="btn red" id="oSubmitBtn" style="width:100%;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:1px;font-weight:700;">
+        <i class="fa-solid fa-lock" style="font-size:12px;"></i>
+        <span id="oSubmitBtnText">PAY VIA RAZORPAY</span>
+      </button>
+      <div style="font-size:11px;color:var(--muted);text-align:center;display:flex;align-items:center;justify-content:center;gap:6px;">
+        <i class="fa-solid fa-shield-halved" style="color:#059669;"></i> 100% Safe &amp; Encrypted via Razorpay Secure
+      </div>
     </form>
   </div>
 </div>
@@ -818,7 +948,7 @@ mark{background:none;color:var(--red)}
     
     <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;">
       <div style="flex:1;min-width:220px;display:flex;border:1px solid #d6d6d6;border-radius:3px;overflow:hidden;background:#fff;">
-        <input type="text" id="trackSearchInput" placeholder="Enter Order ID (e.g. SPIDEY-849201)" style="flex:1;height:44px;border:none;padding:0 14px;font:inherit;outline:none;" onkeydown="if(event.key==='Enter') searchOrderToTrack()">
+        <input type="text" id="trackSearchInput" placeholder="Enter Order ID (e.g. SPIDEY-123456)" style="flex:1;height:44px;border:none;padding:0 14px;font:inherit;outline:none;" onkeydown="if(event.key==='Enter') searchOrderToTrack()">
         <button type="button" class="btn red" style="height:44px;padding:0 18px;font-size:12px;border:none;" onclick="searchOrderToTrack()">TRACK</button>
       </div>
       <button type="button" class="btn out" id="trackAllOrdersBtn" style="height:44px;font-size:11px;padding:0 14px;" onclick="renderUserOrdersList()">
@@ -872,16 +1002,222 @@ mark{background:none;color:var(--red)}
   </div>
 </div>
 
+<!-- Spidey Streetwear Cookie Consent Banner -->
+<aside id="spideyCookieBanner" class="cookie-banner" role="region" aria-label="Cookie Consent" style="display:none;">
+  <div class="cookie-banner-content">
+    <div class="cookie-banner-header">
+      <span style="font-size:16px;color:var(--red);"><i class="fa-solid fa-cookie-bite"></i></span>
+      <span class="cookie-title">COOKIE PREFERENCES</span>
+    </div>
+    <p class="cookie-text">
+      We use cookies to keep you signed in, remember your shopping bag &amp; preferred sizes, and optimize your streetwear shopping experience.
+    </p>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-cookie-accept" onclick="SpideyCookies.acceptAll()">ACCEPT ALL</button>
+      <button type="button" class="btn btn-cookie-essential" onclick="SpideyCookies.acceptEssential()">ESSENTIAL ONLY</button>
+      <button type="button" class="btn-cookie-custom" onclick="openCookieSettingsModal()">Manage</button>
+    </div>
+  </div>
+</aside>
+
+<!-- Cookie Settings Modal -->
+<div class="modal" id="cookieSettingsModal" role="dialog" aria-modal="true" aria-label="Cookie Settings">
+  <div class="mbox" style="display:block;max-width:520px;padding:26px 24px;border-radius:6px;border:1px solid var(--border);">
+    <button class="x ib" onclick="closeCookieSettingsModal()" aria-label="Close" style="top:12px;right:12px;font-size:18px;">&times;</button>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+      <span style="background:var(--red);color:#fff;font-family:var(--disp);font-size:12px;padding:3px 8px;letter-spacing:1px;">PRIVACY &amp; DATA</span>
+      <h3 class="disp" style="margin:0;font-size:24px;">COOKIE SETTINGS</h3>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin:0 0 18px;">
+      Control how cookies and storage are used on SPIDEY COLLECTIONS. You can update these settings at any time.
+    </p>
+
+    <!-- Category 1: Essential -->
+    <div class="cookie-pref-row">
+      <div class="cookie-pref-info">
+        <div class="cookie-pref-name">Strictly Essential Cookies <span class="cookie-badge-req">ALWAYS ACTIVE</span></div>
+        <div class="cookie-pref-desc">Required for bag checkout, security, account authentication, and order status tracking.</div>
+      </div>
+      <input type="checkbox" checked disabled class="cookie-switch-input">
+    </div>
+
+    <!-- Category 2: Personalization & Sizing -->
+    <div class="cookie-pref-row">
+      <div class="cookie-pref-info">
+        <div class="cookie-pref-name">Personalization &amp; Preferences</div>
+        <div class="cookie-pref-desc">Remembers your preferred clothing size (S, M, L, XL), delivery address, and recently viewed styles.</div>
+      </div>
+      <label class="cookie-switch">
+        <input type="checkbox" id="cookiePrefPersonalization" checked>
+        <span class="cookie-slider"></span>
+      </label>
+    </div>
+
+    <!-- Category 3: Analytics -->
+    <div class="cookie-pref-row">
+      <div class="cookie-pref-info">
+        <div class="cookie-pref-name">Analytics &amp; Performance</div>
+        <div class="cookie-pref-desc">Anonymously measures page interactions to help us improve limited-drop releases and loading speed.</div>
+      </div>
+      <label class="cookie-switch">
+        <input type="checkbox" id="cookiePrefAnalytics" checked>
+        <span class="cookie-slider"></span>
+      </label>
+    </div>
+
+    <div style="display:flex;gap:10px;margin-top:22px;">
+      <button type="button" class="btn red" style="flex:1;height:44px;font-size:12px;" onclick="SpideyCookies.saveCustomPreferences()">SAVE PREFERENCES</button>
+      <button type="button" class="btn out" style="height:44px;font-size:12px;padding:0 18px;" onclick="closeCookieSettingsModal()">CANCEL</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="ts" role="status"></div>
 
 
 
 
 <script>
+// User & Auth State - hoisted to top to prevent TDZ ReferenceError on load
+var currentUser = null;
+var proceedToCheckoutAfterAuth = false;
+
+// ── Spidey Collections Cookie & Privacy Engine ──
+const SpideyCookies = {
+  set: function(name, value, days) {
+    try {
+      let expires = '';
+      if (typeof days === 'number') {
+        const d = new Date();
+        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = '; expires=' + d.toUTCString();
+      }
+      document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value == null ? '' : value) + expires + '; path=/; SameSite=Lax';
+    } catch(e) {}
+  },
+
+  get: function(name) {
+    try {
+      const nameEQ = encodeURIComponent(name) + '=';
+      const ca = document.cookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+      }
+    } catch(e) {}
+    return null;
+  },
+
+  remove: function(name) {
+    try {
+      document.cookie = encodeURIComponent(name) + '=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT; SameSite=Lax';
+    } catch(e) {}
+  },
+
+  getConsent: function() {
+    return this.get('spidey_cookie_consent') || null;
+  },
+
+  acceptAll: function() {
+    this.set('spidey_cookie_consent', 'all', 365);
+    this.set('spidey_cookie_analytics', 'true', 365);
+    this.set('spidey_cookie_personalization', 'true', 365);
+    this.hideBanner();
+    if (typeof toast === 'function') toast('✓ Cookie preferences saved. All features enabled!');
+  },
+
+  acceptEssential: function() {
+    this.set('spidey_cookie_consent', 'essential', 365);
+    this.set('spidey_cookie_analytics', 'false', 365);
+    this.set('spidey_cookie_personalization', 'false', 365);
+    this.hideBanner();
+    if (typeof toast === 'function') toast('✓ Essential cookies enabled (Bag & Login).');
+  },
+
+  saveCustomPreferences: function() {
+    const pers = document.getElementById('cookiePrefPersonalization')?.checked !== false;
+    const anal = document.getElementById('cookiePrefAnalytics')?.checked !== false;
+    this.set('spidey_cookie_consent', 'custom', 365);
+    this.set('spidey_cookie_personalization', pers ? 'true' : 'false', 365);
+    this.set('spidey_cookie_analytics', anal ? 'true' : 'false', 365);
+    this.hideBanner();
+    closeCookieSettingsModal();
+    if (typeof toast === 'function') toast('✓ Cookie preferences updated.');
+  },
+
+  hasCategoryConsent: function(category) {
+    const consent = this.getConsent();
+    if (!consent) return false;
+    if (consent === 'all') return true;
+    if (category === 'essential') return true;
+    return this.get('spidey_cookie_' + category) === 'true';
+  },
+
+  recordRecentlyViewed: function(productId) {
+    if (!productId || !this.hasCategoryConsent('personalization')) return;
+    try {
+      const raw = this.get('spidey_recent_views') || '';
+      let list = raw ? raw.split(',').filter(Boolean) : [];
+      list = list.filter(id => String(id) !== String(productId));
+      list.unshift(String(productId));
+      if (list.length > 8) list = list.slice(0, 8);
+      this.set('spidey_recent_views', list.join(','), 30);
+    } catch(e) {}
+  },
+
+  showBanner: function() {
+    const banner = document.getElementById('spideyCookieBanner');
+    if (banner) {
+      banner.style.display = 'block';
+      setTimeout(() => banner.classList.add('visible'), 50);
+    }
+  },
+
+  hideBanner: function() {
+    const banner = document.getElementById('spideyCookieBanner');
+    if (banner) {
+      banner.classList.remove('visible');
+      setTimeout(() => { banner.style.display = 'none'; }, 350);
+    }
+  },
+
+  init: function() {
+    if (!this.get('spidey_session_id')) {
+      const sessId = 'SPIDEY-SESS-' + Date.now().toString(36) + '-' + Math.random().toString(36).substring(2, 9);
+      this.set('spidey_session_id', sessId, 30);
+    }
+    const consent = this.getConsent();
+    if (!consent) {
+      setTimeout(() => {
+        this.showBanner();
+      }, 1800);
+    }
+  }
+};
+
+function openCookieSettingsModal() {
+  const pers = SpideyCookies.get('spidey_cookie_personalization');
+  const anal = SpideyCookies.get('spidey_cookie_analytics');
+  const persEl = document.getElementById('cookiePrefPersonalization');
+  const analEl = document.getElementById('cookiePrefAnalytics');
+  if (persEl) persEl.checked = (pers !== 'false');
+  if (analEl) analEl.checked = (anal !== 'false');
+  if (typeof show === 'function') show('cookieSettingsModal');
+}
+
+function closeCookieSettingsModal() {
+  const modal = document.getElementById('cookieSettingsModal');
+  if (modal) modal.classList.remove('on');
+  const sc = document.getElementById('sc');
+  if (sc) sc.classList.remove('on');
+  document.body.style.overflow = '';
+}
+
 // Firebase backend active
 // (Supabase keys removed)
-const db = fbDb;
-const auth = fbAuth;
+const db = typeof fbDb !== 'undefined' ? fbDb : null;
+const auth = typeof fbAuth !== 'undefined' ? fbAuth : null;
 
 const LOGO="data:image/webp;base64,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";document.addEventListener("DOMContentLoaded",()=>document.querySelectorAll("img.lg").forEach(i=>i.src=LOGO));
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
@@ -890,6 +1226,27 @@ const COLORS={Black:'#161616',White:'#f4f4f4',Red:'#E50914',Charcoal:'#3a3a3a'};
 // Sample catalogue — replace with real products, prices and inventory from the commerce backend.
 function getUniqueProducts(arr){if(!Array.isArray(arr))return[];const s=new Set();return arr.filter(p=>{if(!p||typeof p.id==='undefined')return false;const k=String(p.id);if(s.has(k))return false;s.add(k);return true;});}
 let P=(window.SpideyStore ? getUniqueProducts(window.SpideyStore.getData().products) : []);
+window.P = P;
+function getAllProducts() {
+  if (typeof P !== 'undefined' && Array.isArray(P) && P.length) {
+    window.P = P;
+    return P;
+  }
+  if (window.P && Array.isArray(window.P) && window.P.length) return window.P;
+  if (window._spideyCloudProducts && Array.isArray(window._spideyCloudProducts) && window._spideyCloudProducts.length) {
+    window.P = window._spideyCloudProducts;
+    return window._spideyCloudProducts;
+  }
+  if (window.SpideyStore && typeof window.SpideyStore.getData === 'function') {
+    const s = window.SpideyStore.getData();
+    if (s && Array.isArray(s.products) && s.products.length) {
+      window.P = s.products;
+      return s.products;
+    }
+  }
+  return [];
+}
+window.getAllProducts = getAllProducts;
 /* Dummy products removed */ if(false)[
 {id:1,n:'Spidey Core Oversized Tee',c:['Oversized T-Shirts','New Arrivals','Best Sellers'],p:1299,col:'Black',t:'tee',pr:'web',s:{S:1,M:1,L:1,XL:1,XXL:0}},
 {id:2,n:'Redline Graphic T-Shirt',c:['Graphic Tees','New Arrivals'],p:999,col:'White',t:'tee',pr:'line',s:{S:1,M:1,L:0,XL:1}},
@@ -1144,8 +1501,8 @@ document.addEventListener('click',e=>{
 });
 // overlays
 const sc=$('#sc');
-function closeAll(){['md','cd'].forEach(i=>$('#'+i).classList.remove('on'));['se','pm','trackModal','om','authModal','couponOfferModal'].forEach(id=>{const el=$('#'+id);if(el)el.classList.remove('on');});sc.classList.remove('on');document.body.style.overflow=''}
-function show(id){closeAll();$('#'+id).classList.add('on');if(id!=='se'&&id!=='pm')sc.classList.add('on');document.body.style.overflow='hidden'}
+function closeAll(){['md','cd','wd'].forEach(i=>{const el=$('#'+i);if(el)el.classList.remove('on');});['se','pm','trackModal','om','authModal','couponOfferModal','cookieSettingsModal'].forEach(id=>{const el=$('#'+id);if(el){el.classList.remove('on');if(id==='om')el.style.display='';}});if(sc)sc.classList.remove('on');document.body.style.overflow='';const wa=$('#floatingWhatsAppBtn')||document.querySelector('.whatsapp-float');if(wa)wa.style.display='';try{const curUrl=new URL(window.location.href);if(curUrl.searchParams.has('p')){curUrl.searchParams.delete('p');window.history.replaceState({},'',curUrl.pathname+(curUrl.search||''));}}catch(e){}}
+function show(id){closeAll();const el=$('#'+id);if(el){el.classList.add('on');if(id==='om')el.style.display='flex';}if(id!=='se'&&id!=='pm'&&sc)sc.classList.add('on');document.body.style.overflow='hidden';const wa=$('#floatingWhatsAppBtn')||document.querySelector('.whatsapp-float');if(wa)wa.style.display='none';}
 $('#bg').onclick=()=>show('md');$('#cb').onclick=()=>{drawCart();show('cd')};
 $('#sb').onclick=()=>{show('se');setTimeout(()=>$('#si').focus(),300)};
 $('#acc').onclick = () => {
@@ -1161,7 +1518,7 @@ $('#acc').onclick = () => {
     $('#userName').textContent = name;
     $('#userEmail').textContent = currentUser.email;
     $('#userAvatar').textContent = (name[0] || 'S').toUpperCase();
-    $('#authModal').classList.add('on');
+    show('authModal');
   } else {
     $('#authNotice').style.display = 'block'; const gw = $('#googleAuthWrap'); if(gw) gw.style.display = 'block';
     openAuthModal('Sign in or register to access exclusive streetwear drops.');
@@ -1180,14 +1537,25 @@ let sfLightboxImgs = [];
 let sfLightboxActiveIdx = 0;
 let _currentProductTitle = 'Product Photo';
 function openP(id){
- const p=P.find(x=>String(x.id)===String(id));if(!p)return;
+ const allP = getAllProducts(); const p = allP.find(x => x && String(x.id).trim() === String(id).trim()); if(!p) return;
  const imgs = getProductImages(p);
  const hasDisc = (p.origPrice && p.origPrice > p.p) || (p.discount && p.discount > 0);
  const origPr = p.origPrice || (p.discount ? Math.round(p.p / (1 - p.discount / 100)) : 0);
  const discPct = p.discount || (origPr > p.p ? Math.round((origPr - p.p) / origPr * 100) : 0);
  const availSizes = Object.entries(p.s || {}).filter(([, v]) => v).map(([k]) => k);
- const defaultSize = availSizes[0] || Object.keys(p.s || {})[0] || 'M';
+ let savedPrefSize = null;
+ try {
+   if (typeof SpideyCookies !== 'undefined') {
+     savedPrefSize = SpideyCookies.get('spidey_pref_size');
+   }
+ } catch(e){}
+ const defaultSize = (savedPrefSize && availSizes.includes(savedPrefSize)) ? savedPrefSize : (availSizes[0] || Object.keys(p.s || {})[0] || 'M');
  sel={p,size:defaultSize,q:1,imgs:imgs,imgIndex:0};
+ try {
+   if (typeof SpideyCookies !== 'undefined') {
+     SpideyCookies.recordRecentlyViewed(p.id);
+   }
+ } catch(e){}
  sfLightboxImgs = imgs;
  sfLightboxActiveIdx = 0;
  _currentProductTitle = p.n || 'Product Photo';
@@ -1195,6 +1563,19 @@ function openP(id){
   $('#pb').innerHTML=`<button class="ib x" data-close aria-label="Close">✕</button>
   <div class="store-gallery" id="storeGallery">
     <div class="store-gallery-main" id="storeGalleryMain" title="${imgs.length ? 'Click to inspect in crystal-clear full resolution' : ''}">
+      <div class="store-gallery-floating-actions">
+        <button type="button" class="store-gallery-action-btn wish-btn ${isWishlisted(p.id)?'wishlisted':''}" id="modalWishBtn" onclick="event.stopPropagation(); toggleWishlist('${p.id}', event);" title="${isWishlisted(p.id)?'Remove from Wishlist':'Add to Wishlist'}" aria-label="Wishlist">
+          <svg class="wish-icon" width="20" height="20" viewBox="0 0 24 24" fill="${isWishlisted(p.id)?'var(--red)':'none'}" stroke="${isWishlisted(p.id)?'var(--red)':'currentColor'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </button>
+        <button type="button" class="store-gallery-action-btn share-btn" id="modalShareBtn" onclick="event.stopPropagation(); shareProductNative('${p.id}', event);" title="Share this product" aria-label="Share this product">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
       <div id="storeGalleryViewport" style="width:100%;height:100%;display:grid;place-items:center;">
         ${garment(p, false, 0)}
       </div>
@@ -1219,8 +1600,33 @@ function openP(id){
  <div class="opt"><span>Size</span><button type="button" class="link" data-sf>Find my size</button></div><div class="sf2" id="sf2" hidden><input id="hh" type="number" inputmode="numeric" placeholder="Height cm" aria-label="Height in cm"><input id="ww" type="number" inputmode="numeric" placeholder="Weight kg" aria-label="Weight in kg"><button type="button" class="btn out" id="sgo" style="height:44px;padding:0 18px">Suggest</button><div id="sres2" role="status"></div></div><div class="sizes" id="szs" style="margin-top:12px">${Object.entries(p.s||{}).map(([k,v])=>`<button class="sz ${k===defaultSize?'on':''}" data-sz="${k}" ${v?'':'disabled'}>${k}</button>`).join('')}</div>
  <div class="opt"><span>Quantity</span></div><div class="qty"><button id="qm" aria-label="Decrease">−</button><span id="qn">1</span><button id="qp" aria-label="Increase">+</button></div>
  <div class="err" id="pe" role="alert"></div><button class="btn red" id="add" style="width:100%">Add to bag</button>
+ <div class="prod-share-box" style="display:none!important;" hidden>
+   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+     <span style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;">
+       <i class="fa-solid fa-share-nodes" style="color:var(--red);"></i> Share this product:
+     </span>
+     <span id="shareStatusPill" style="font-size:11px;color:#10B981;font-weight:700;display:none;">
+       <i class="fa-solid fa-circle-check"></i> Link Copied!
+     </span>
+   </div>
+   <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+     <button type="button" onclick="shareProductWhatsApp('${p.id}')" title="Share on WhatsApp" style="flex:1;min-width:100px;height:38px;background:#25D366;color:#fff;border:none;border-radius:2px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:transform .15s;">
+       <i class="fa-brands fa-whatsapp" style="font-size:15px;"></i> WhatsApp
+     </button>
+     <button type="button" onclick="shareProductInstagram('${p.id}')" title="Share on Instagram" style="flex:1;min-width:100px;height:38px;background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);color:#fff;border:none;border-radius:2px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:transform .15s;">
+       <i class="fa-brands fa-instagram" style="font-size:15px;"></i> Instagram
+     </button>
+     <button type="button" id="shareCopyBtn" onclick="copyProductLink('${p.id}')" title="Copy Product Link" style="flex:1;min-width:96px;height:38px;background:var(--black);color:#fff;border:none;border-radius:2px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:background .2s;">
+       <i class="fa-regular fa-copy" id="shareCopyIcon"></i> <span id="shareCopyText">Copy Link</span>
+     </button>
+     <button type="button" onclick="shareProductNative('${p.id}')" title="More Sharing Options" style="width:38px;height:38px;background:#fff;border:1px solid #cfcfcf;border-radius:2px;font-size:13px;color:var(--black);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;" aria-label="Share product options">
+       <i class="fa-solid fa-arrow-up-from-bracket"></i>
+     </button>
+   </div>
+ </div>
  <div class="acc"><details><summary>Product details</summary><p>Add your fabric, fit and care details here once confirmed for this product.</p></details><details><summary>Size guide</summary><p>Add your measurement chart here.</p></details><details><summary>Shipping & returns</summary><p>Add your delivery timelines and return policy here.</p></details></div></div>`;
  show('pm');
+ try{const curUrl=new URL(window.location.href);curUrl.searchParams.set('p',p.id);window.history.replaceState({productId:p.id},'',curUrl.toString());}catch(e){}
  function setModalPhotoIndex(newIdx) {
    if (!imgs.length) return;
    if (newIdx < 0) newIdx = imgs.length - 1;
@@ -1240,6 +1646,9 @@ function openP(id){
  }
 
  $('#pb').onclick=e=>{
+    if (e.target.closest('#modalWishBtn') || e.target.closest('#modalShareBtn')) {
+      return;
+    }
    if (e.target.id === 'galBtnPrev' || e.target.closest('#galBtnPrev')) {
      e.stopPropagation();
      setModalPhotoIndex(sel.imgIndex - 1);
@@ -1262,7 +1671,16 @@ function openP(id){
    }
   if(e.target.closest('[data-sf]')){$('#sf2').hidden=!$('#sf2').hidden;return}
   if(e.target.id==='sgo'){const h=+$('#hh').value,w=+$('#ww').value,r=$('#sres2');if(!(h>=120&&h<=220&&w>=30&&w<=200)){r.textContent='Enter height 120–220 cm and weight 30–200 kg.';return}const o=['S','M','L','XL','XXL'];let i=w<55?0:w<68?1:w<80?2:w<92?3:4;if(h>182)i++;if(p.c.includes('Oversized T-Shirts')&&i>0)i--;const z=o[Math.min(4,i)],b=document.querySelector('[data-sz="'+z+'"]');if(b&&!b.disabled){b.click();r.textContent='Suggested: '+z+'. A general guide — check the size chart.'}else r.textContent='Suggested '+z+' isn’t available in this style.';return}
-  const z=e.target.closest('[data-sz]');if(z&&!z.disabled){sel.size=z.dataset.sz;$$('.sz').forEach(b=>b.classList.toggle('on',b===z));$('#pe').textContent=''}
+  const z=e.target.closest('[data-sz]');if(z&&!z.disabled){
+    sel.size=z.dataset.sz;
+    $$('.sz').forEach(b=>b.classList.toggle('on',b===z));
+    $('#pe').textContent='';
+    try {
+      if (typeof SpideyCookies !== 'undefined' && SpideyCookies.hasCategoryConsent('personalization')) {
+        SpideyCookies.set('spidey_pref_size', z.dataset.sz, 90);
+      }
+    } catch(e){}
+  }
 
   if(e.target.id==='qm'&&sel.q>1)$('#qn').textContent=--sel.q;
   if(e.target.id==='qp'&&sel.q<10)$('#qn').textContent=++sel.q;
@@ -1320,8 +1738,335 @@ window.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight') navigateStorefrontLightbox(1);
   }
 });
-// cart
-let cart=[];try{cart=JSON.parse(localStorage.getItem('spidey_cart')||'[]')}catch(e){}
+// ── Social Product Sharing Engine ──
+function getProductShareUrl(productId) {
+  const base = (window.location.protocol.startsWith('http') ? window.location.origin : 'https://spideycollection.co.in');
+  return `${base}/?p=${encodeURIComponent(productId)}`;
+}
+
+function shareProductWhatsApp(productId) {
+  const p = getAllProducts().find(x => x && String(x.id).trim() === String(productId).trim());
+  const url = getProductShareUrl(productId);
+  const text = p 
+    ? `Check out the *${p.n}* on Spidey Collections (₹${p.p})!\n\n${url}`
+    : `Check out Spidey Collections streetwear:\n\n${url}`;
+  const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  window.open(waUrl, '_blank', 'noopener,noreferrer');
+}
+
+async function shareProductInstagram(productId) {
+  const p = getAllProducts().find(x => x && String(x.id).trim() === String(productId).trim());
+  const url = getProductShareUrl(productId);
+  let copied = false;
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(url);
+      copied = true;
+    }
+  } catch (e) {}
+  if (!copied) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = url;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      copied = true;
+    } catch(e) {}
+  }
+  const pill = document.getElementById('shareStatusPill');
+  if (pill) {
+    pill.innerHTML = '<i class="fa-solid fa-check"></i> Link Copied for Instagram!';
+    pill.style.display = 'inline';
+    setTimeout(() => { if (pill) pill.style.display = 'none'; }, 3000);
+  }
+  toast('📸 Link copied! Paste it in your Instagram Story sticker or DM.');
+  setTimeout(() => {
+    window.open('https://www.instagram.com/', '_blank', 'noopener,noreferrer');
+  }, 500);
+}
+
+async function copyProductLink(productId) {
+  const url = getProductShareUrl(productId);
+  let success = false;
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(url);
+      success = true;
+    }
+  } catch (e) {}
+  if (!success) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = url;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      success = true;
+    } catch(e) {}
+  }
+  const btnText = document.getElementById('shareCopyText');
+  const btnIcon = document.getElementById('shareCopyIcon');
+  const pill = document.getElementById('shareStatusPill');
+  if (btnText) btnText.textContent = 'Copied!';
+  if (btnIcon) {
+    btnIcon.className = 'fa-solid fa-check';
+    btnIcon.style.color = '#10B981';
+  }
+  if (pill) {
+    pill.innerHTML = '<i class="fa-solid fa-check"></i> Link Copied!';
+    pill.style.display = 'inline';
+  }
+  toast('🔗 Product link copied to clipboard!');
+  setTimeout(() => {
+    if (btnText) btnText.textContent = 'Copy Link';
+    if (btnIcon) {
+      btnIcon.className = 'fa-regular fa-copy';
+      btnIcon.style.color = '';
+    }
+    if (pill) pill.style.display = 'none';
+  }, 2200);
+}
+
+async function shareProductNative(productId, event) {
+  if (event) {
+    try { event.stopPropagation(); event.preventDefault(); } catch(e) {}
+  }
+  const p = getAllProducts().find(x => x && String(x.id).trim() === String(productId).trim());
+  const url = getProductShareUrl(productId);
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: (p ? p.n : 'Spidey Collections') + ' | Streetwear Redefined',
+        text: p ? `Check out the ${p.n} (₹${p.p}) on Spidey Collections!` : 'Check out Spidey Collections streetwear!',
+        url: url
+      });
+      return;
+    } catch (err) {
+      if (err && err.name === 'AbortError') return;
+    }
+  }
+  copyProductLink(productId);
+}
+
+
+// ── Spidey Wishlist Engine (Flipkart / Amazon Style) ──
+const WISHLIST_STORAGE_KEY = 'spidey_wishlist';
+
+function getWishlist() {
+  try {
+    const raw = localStorage.getItem(WISHLIST_STORAGE_KEY);
+    const parsed = JSON.parse(raw || '[]');
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveWishlist(list) {
+  try {
+    localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(list));
+  } catch (e) {}
+  updateWishlistBadge();
+}
+
+function isWishlisted(productId) {
+  const list = getWishlist();
+  return list.some(id => String(id) === String(productId));
+}
+
+function toggleWishlist(productId, event) {
+  if (event) {
+    try {
+      event.stopPropagation();
+      event.preventDefault();
+    } catch (e) {}
+  }
+  const list = getWishlist();
+  const idStr = String(productId).trim();
+  const idx = list.findIndex(id => String(id).trim() === idStr);
+  const p = getAllProducts().find(x => x && String(x.id).trim() === idStr);
+  const prodName = p ? p.n : 'Product';
+  let isNowSaved = false;
+
+  if (idx > -1) {
+    list.splice(idx, 1);
+    toast(`Removed "${prodName}" from Wishlist`);
+  } else {
+    list.unshift(idStr);
+    isNowSaved = true;
+    toast(`❤️ Saved "${prodName}" to Wishlist!`);
+  }
+  saveWishlist(list);
+
+  // Update modal floating button UI if open
+  const modalWishBtn = document.getElementById('modalWishBtn');
+  if (modalWishBtn) {
+    modalWishBtn.classList.toggle('wishlisted', isNowSaved);
+    modalWishBtn.title = isNowSaved ? 'Remove from Wishlist' : 'Add to Wishlist';
+    modalWishBtn.innerHTML = `
+      <svg class="wish-icon ${isNowSaved ? 'active' : ''}" width="20" height="20" viewBox="0 0 24 24" fill="${isNowSaved ? 'var(--red)' : 'none'}" stroke="${isNowSaved ? 'var(--red)' : 'currentColor'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+    `;
+  }
+
+  // Live update Wishlist drawer if open
+  const wd = document.getElementById('wd');
+  if (wd && wd.classList.contains('on')) {
+    renderWishlistDrawer();
+  }
+}
+
+function updateWishlistBadge() {
+  const count = getWishlist().length;
+  const pill = document.getElementById('wishCountPill');
+  if (pill) {
+    pill.textContent = count;
+    pill.style.display = count > 0 ? 'inline-flex' : 'none';
+  }
+  const headCount = document.getElementById('wishCountHead');
+  if (headCount) headCount.textContent = count;
+}
+
+function openWishlistDrawer() {
+  closeAll();
+  renderWishlistDrawer();
+  show('wd');
+}
+
+function renderWishlistDrawer() {
+  const container = document.getElementById('wishlistList');
+  if (!container) return;
+  const list = getWishlist();
+  const allProds = getAllProducts();
+  const prods = list.map(id => allProds.find(p => p && String(p.id).trim() === String(id).trim())).filter(Boolean);
+
+  const headCount = document.getElementById('wishCountHead');
+  if (headCount) headCount.textContent = prods.length;
+  updateWishlistBadge();
+
+  if (!prods.length) {
+    container.innerHTML = `
+      <div style="text-align:center;padding:54px 16px;">
+        <div style="width:68px;height:68px;border-radius:50%;background:#f5f5f5;display:grid;place-items:center;margin:0 auto 16px;color:#999;font-size:26px;">
+          <i class="fa-regular fa-heart"></i>
+        </div>
+        <h4 style="margin:0 0 6px;font-size:18px;font-weight:700;">YOUR WISHLIST IS EMPTY</h4>
+        <p style="font-size:13px;color:var(--muted);margin:0 0 22px;line-height:1.5;">Tap the heart icon on any product in our collection to save your favorite streetwear here.</p>
+        <button type="button" class="btn red" onclick="closeAll(); window.location.hash='shop';" style="height:44px;padding:0 24px;font-size:11px;">EXPLORE COLLECTION</button>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = prods.map(p => {
+    const hasDisc = (p.origPrice && p.origPrice > p.p) || (p.discount && p.discount > 0);
+    const origPr = p.origPrice || (p.discount ? Math.round(p.p / (1 - p.discount / 100)) : 0);
+    return `
+      <div class="wish-item-card" style="display:flex;gap:12px;background:#fff;border:1px solid #e8e8e8;border-radius:4px;padding:12px;position:relative;align-items:center;">
+        <div style="width:72px;height:88px;background:var(--light);border-radius:3px;overflow:hidden;flex-shrink:0;cursor:pointer;display:grid;place-items:center;" onclick="closeAll(); openP('${p.id}');">
+          ${garment(p, false, 0)}
+        </div>
+        <div style="flex:1;min-width:0;">
+          <h4 style="margin:0 0 4px;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;" onclick="closeAll(); openP('${p.id}');">${p.n}</h4>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:8px;">
+            <span style="font-weight:700;color:var(--red);font-size:15px;">${rs(p.p)}</span>
+            ${hasDisc ? `<span style="font-size:12px;color:var(--muted);text-decoration:line-through;">${rs(origPr)}</span>` : ''}
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button type="button" class="btn red" style="height:32px;padding:0 12px;font-size:10px;letter-spacing:.05em;" onclick="closeAll(); openP('${p.id}');">
+              VIEW / BUY
+            </button>
+            <button type="button" class="btn out" style="height:32px;padding:0 10px;font-size:10px;color:var(--muted);border-color:#ddd;" onclick="toggleWishlist('${p.id}');" title="Remove from wishlist">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateWishlistBadge();
+});
+setTimeout(updateWishlistBadge, 300);
+
+
+// Auto-open product modal on page load if ?p=ID is present in URL
+(function initProductDeepLink() {
+  const handleProductQueryParam = () => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const prodId = params.get('p') || params.get('product');
+      if (!prodId) return;
+
+      const tryOpen = (attempts = 0) => {
+        if (Array.isArray(P) && P.length) {
+          const found = P.find(x => String(x.id) === String(prodId));
+          if (found) {
+            const ld = document.getElementById('ld');
+            if (ld) {
+              ld.classList.add('fade-out');
+              ld.style.display = 'none';
+            }
+            openP(found.id);
+            return;
+          }
+        }
+        if (attempts < 25) {
+          setTimeout(() => tryOpen(attempts + 1), 120);
+        }
+      };
+      tryOpen();
+    } catch (e) {
+      console.warn('Product deep link notice:', e);
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', handleProductQueryParam);
+  } else {
+    handleProductQueryParam();
+  }
+})();
+
+// cart session engine (multi-tier persistence: localStorage, sessionStorage, and essential cookies)
+function loadCartSession() {
+  let loaded = [];
+  try {
+    const raw = localStorage.getItem('spidey_cart');
+    if (raw) {
+      const arr = JSON.parse(raw);
+      if (Array.isArray(arr) && arr.length) loaded = arr;
+    }
+  } catch(e) {}
+  if (!loaded.length) {
+    try {
+      const raw = sessionStorage.getItem('spidey_cart_session');
+      if (raw) {
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr) && arr.length) loaded = arr;
+      }
+    } catch(e) {}
+  }
+  if (!loaded.length) {
+    try {
+      if (typeof SpideyCookies !== 'undefined') {
+        const raw = SpideyCookies.get('spidey_cart_session');
+        if (raw) {
+          const arr = JSON.parse(raw);
+          if (Array.isArray(arr) && arr.length) loaded = arr;
+        }
+      }
+    } catch(e) {}
+  }
+  return (loaded || []).filter(x => x && typeof x.id !== 'undefined');
+}
+let cart = loadCartSession();
 // ── LOGIN OFFER & LIVE COUPON ENGINE ──
 const COUPON_STATE_KEY='spidey_coupon_state_v1';
 let _couponCheckoutDeferred=false;
@@ -1383,15 +2128,27 @@ function renderCouponBoxHtml(sub,context){
   return `<div class="coupon-input-row"><input id="${inputId}" value="${applied||''}" placeholder="ENTER COUPON CODE" onkeydown="if(event.key==='Enter'){event.preventDefault();applyCouponInput(this.value);}"><button type="button" id="${btnId}" class="btn red" style="height:36px;padding:0 14px;font-size:11px;" onclick="applyCouponInput(document.getElementById('${inputId}').value)">APPLY</button></div>${statusHtml}${chipHtml}`;
 }
 function renderCheckoutCouponSummary(){
-  const sub=cart.reduce((a,i)=>{const prod=P.find(p=>String(p.id)===String(i.id));return a+(prod?parseInt(prod.p)||0:0)*(i.q||1);},0);
+  const _allP=(typeof getAllProducts==='function'?getAllProducts():(window.P||[]));
+  const sub=cart.reduce((a,i)=>{
+    const prod=_allP.find(p=>p&&String(p.id).trim()===String(i.id).trim());
+    const pr=prod?(parseInt(prod.p)||0):(parseInt(i.price)||0);
+    return a+pr*(parseInt(i.q)||1);
+  },0);
   const ship=!cart.length||sub>=FREE?0:SHIP;
   const cpnRes=computeCouponDiscount(sub);
   const finalTot=Math.max(0,sub+ship-cpnRes.discount);
-  const totalSavings=cart.reduce((acc,i)=>{const prod=P.find(p=>String(p.id)===String(i.id));if(!prod)return acc;const orig=prod.origPrice||(prod.discount?Math.round(prod.p/(1-prod.discount/100)):0);return acc+(orig>prod.p?(orig-prod.p)*(i.q||1):0);},0);
+  const totalSavings=cart.reduce((acc,i)=>{
+    const prod=_allP.find(p=>p&&String(p.id).trim()===String(i.id).trim());
+    const pr=prod?(parseInt(prod.p)||0):(parseInt(i.price)||0);
+    const orig=prod?(prod.origPrice||(prod.discount?Math.round(prod.p/(1-prod.discount/100)):0)):(parseInt(i.origPrice)||pr);
+    return acc+(orig>pr?(orig-pr)*(parseInt(i.q)||1):0);
+  },0);
   const itemsEl=$('#oItemsCount'),cpnEl=$('#oCouponLine'),totEl=$('#oTotal'),boxEl=$('#checkoutCouponBox');
-  if(itemsEl)itemsEl.innerHTML=`${cart.reduce((a,i)=>a+(i.q||1),0)} Items in Bag ${totalSavings>0?`<span style="color:#10B981;font-size:11px;font-weight:700;margin-left:6px;">(Saved ${rs(totalSavings)})</span>`:''}`;
+  if(itemsEl)itemsEl.innerHTML=`${cart.reduce((a,i)=>a+(parseInt(i.q)||1),0)} Items in Bag ${totalSavings>0?`<span style="color:#10B981;font-size:11px;font-weight:700;margin-left:6px;">(Saved ${rs(totalSavings)})</span>`:''}`;
   if(cpnEl){if(cpnRes.valid){cpnEl.style.display='block';cpnEl.textContent=`Coupon ${cpnRes.applied}: -${rs(cpnRes.discount)}`;}else{cpnEl.style.display='none';}}
   if(totEl)totEl.textContent=rs(finalTot);
+  const btnTxt=$('#oSubmitBtnText');
+  if(btnTxt) btnTxt.textContent = `PAY ${rs(finalTot)} VIA RAZORPAY`;
   if(boxEl)boxEl.innerHTML=renderCouponBoxHtml(sub,'checkout');
 }
 function renderAccountCouponCard(){
@@ -1447,11 +2204,7 @@ function maybeShowLoginCouponOffer(shouldProceedCheckout=false){
   const st=getCouponUserState();
   const sig=`${c.code}:${c.updatedAt}`;
   const isAppliedCurrent=getAppliedCouponCode()===c.code&&Number(st.revealedUpdatedAt||0)===c.updatedAt;
-  if(shouldProceedCheckout&&isAppliedCurrent){
-    _couponCheckoutDeferred=false;
-    openCheckoutModal();
-    return;
-  }
+  if(shouldProceedCheckout&&isAppliedCurrent){ _couponCheckoutDeferred=false; openCheckoutModal(); return; }
   if(!shouldProceedCheckout&&st.lastPopupSig===sig&&isCouponRevealedForCurrent())return;
   st.lastPopupSig=sig;saveCouponUserState(st);
   setTimeout(()=>openLoginCouponModal(true),220);
@@ -1492,8 +2245,8 @@ function applyRevealedCoupon(){
   if($('#om')&&$('#om').classList.contains('on'))renderCheckoutCouponSummary();
   const goCo=_couponCheckoutDeferred;
   closeLoginCouponModal(false);
-  if(goCo&&cart.length){
-    openCheckoutModal();
+  if(goCo&&cart.length){ openCheckoutModal();
+
     toast(`Coupon ${c.code} applied at checkout!`);
   }else if(cart.length){
     drawCart();show('cd');
@@ -1513,7 +2266,8 @@ function applyCouponInput(rawCode){
   drawCart();
   if($('#om')&&$('#om').classList.contains('on'))renderCheckoutCouponSummary();
   renderAccountCouponCard();
-  const sub=cart.reduce((a,i)=>{const prod=P.find(p=>String(p.id)===String(i.id));return a+(prod?parseInt(prod.p)||0:0)*(i.q||1);},0);
+  const _allP=(typeof getAllProducts==='function'?getAllProducts():(window.P||[]));
+  const sub=cart.reduce((a,i)=>{const prod=_allP.find(p=>p&&String(p.id).trim()===String(i.id).trim());return a+(prod?parseInt(prod.p)||0:0)*(i.q||1);},0);
   const res=computeCouponDiscount(sub,c);
   if(res.valid)toast(`Coupon ${c.code} applied! You save ${rs(res.discount)}.`);
   else if(sub>0&&res.reason)toast(`Coupon ${c.code} saved! ${res.reason}.`);
@@ -1547,49 +2301,273 @@ function handleCouponLiveUpdate(){
   if(typeof drawCart==='function')drawCart();
   if($('#om')&&$('#om').classList.contains('on'))renderCheckoutCouponSummary();
 }
-function save(){try{localStorage.setItem('spidey_cart',JSON.stringify(cart))}catch(e){}const totalCount=cart.reduce((a,b)=>a+(parseInt(b.q)||1),0);const badge=$('#cc');if(badge){badge.textContent=totalCount;badge.style.display=totalCount>0?'grid':'none';}}
-function addCart(id,size,q){if(!id||!size)return;const numQ=parseInt(q)||1;const existing=cart.find(x=>String(x.id)===String(id)&&x.size===size);if(existing){existing.q=Math.min(10,(existing.q||1)+numQ);}else{cart.push({id:id,size:size,q:numQ});}save();const b=$('#cb');if(b){b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');const rc=b.getBoundingClientRect(),th=document.createElement('i');th.className='thr';th.style.cssText=`left:${rc.left+rc.width/2}px;top:${rc.bottom}px`;document.body.appendChild(th);setTimeout(()=>th.remove(),950);}const prod=P.find(x=>String(x.id)===String(id));if(prod){toast(`Added "${prod.n}" (${size}) to your bag!`);}}
-function drawCart(){
- cart=cart.filter(i=>i&&typeof i.id!=='undefined'&&P.some(p=>String(p.id)===String(i.id)));
- const sub=cart.reduce((a,i)=>{const p=P.find(x=>String(x.id)===String(i.id));return a+(p?(parseInt(p.p)||0)*(i.q||1):0);},0);
- const totalSavings=cart.reduce((acc,i)=>{const p=P.find(x=>String(x.id)===String(i.id));if(!p)return acc;const price=parseInt(p.p)||0;const orig=p.origPrice&&parseInt(p.origPrice)>price?parseInt(p.origPrice):(p.discount&&parseInt(p.discount)>0?Math.round(price/(1-p.discount/100)):0);return acc+(orig>price?(orig-price)*(i.q||1):0);},0);
- const listEl=$('#cl');const footerEl=$('#cf');
- if(!cart.length){
-  if(listEl){listEl.innerHTML='<div style="color:var(--muted);padding:50px 20px;text-align:center;"><svg style="width:64px;height:64px;margin:0 auto 16px;opacity:0.3;stroke:var(--red);stroke-width:1.5;fill:none;" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg><h3 class="disp" style="color:var(--black);font-size:22px;margin:0 0 6px;">Your bag is empty</h3><p style="font-size:13px;color:var(--muted);margin:0 0 18px;">Caught nothing yet. Discover the latest drops.</p><a href="#shop" class="btn red" data-close style="display:inline-flex;height:42px;padding:0 20px;font-size:12px;">Shop Collection</a></div>';}
-  if(footerEl){footerEl.innerHTML='<button type="button" class="btn out" data-close style="width:100%">Continue shopping</button>';}
-  save();return;
- }
- if(listEl){
-  listEl.innerHTML=cart.map((i,ix)=>{
-   const p=P.find(x=>String(x.id)===String(i.id));if(!p)return'';
-   const price=parseInt(p.p)||0;const orig=p.origPrice&&parseInt(p.origPrice)>price?parseInt(p.origPrice):(p.discount&&parseInt(p.discount)>0?Math.round(price/(1-p.discount/100)):0);
-   const hasDisc=orig>price;
-   return `<div class="ci" style="display:grid;grid-template-columns:84px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid #f0f0f0;"><div class="t" style="background:var(--light);aspect-ratio:3/4;display:grid;place-items:center;border-radius:3px;overflow:hidden;">${garment(p)}</div><div><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;"><h4 style="margin:0 0 4px;font-size:14px;font-weight:700;line-height:1.3;color:var(--black);">${p.n}</h4><button class="rm-btn" data-r="${ix}" style="font-size:18px;color:#999;background:none;border:none;cursor:pointer;padding:0 4px;line-height:1;" title="Remove item">&times;</button></div><div class="m" style="font-size:12px;color:var(--muted);margin-bottom:8px;">Size: <b style="color:var(--black);">${i.size}</b> &bull; ${p.col||'Black'}</div><div style="display:flex;justify-content:space-between;align-items:center;"><div class="qty" style="display:inline-flex;border:1px solid #d6d6d6;border-radius:2px;align-items:center;"><button type="button" data-q="${ix}" data-d="-1" aria-label="Decrease" style="width:30px;height:30px;font-size:15px;display:grid;place-items:center;">−</button><span style="min-width:28px;text-align:center;font-size:13px;font-weight:700;">${i.q}</span><button type="button" data-q="${ix}" data-d="1" aria-label="Increase" style="width:30px;height:30px;font-size:15px;display:grid;place-items:center;">+</button></div><div style="text-align:right;">${hasDisc?`<span style="font-size:11px;color:var(--muted);text-decoration:line-through;margin-right:6px;">${rs(orig*i.q)}</span>`:''}<b>${rs(price*i.q)}</b></div></div></div></div>`;
-  }).filter(Boolean).join('');
- }
-
-
- const ship=sub>=FREE?0:SHIP,left=Math.max(0,FREE-sub);
- const cpnRes=computeCouponDiscount(sub);
- const finalTotal=Math.max(0,sub+ship-cpnRes.discount);
- if(footerEl){
-  footerEl.innerHTML=`<div class="free" style="font-size:12px;background:var(--light);padding:10px 14px;margin-bottom:10px;border-radius:3px;"><div style="display:flex;justify-content:space-between;font-weight:600;margin-bottom:6px;"><span>${left?`Add <b style="color:var(--red);">${rs(left)}</b> more for free shipping`:'<span style="color:#10B981;">&#10003; Free Express Shipping unlocked!</span>'}</span><span>${Math.min(100,Math.round(sub/FREE*100))}%</span></div><div class="bar-p" style="height:4px;background:#e2e2e2;border-radius:2px;overflow:hidden;"><i style="display:block;height:100%;background:var(--red);width:${Math.min(100,Math.round(sub/FREE*100))}%;transition:width .3s;"></i></div></div><div class="coupon-box">${renderCouponBoxHtml(sub,'cart')}</div><div class="row" style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px;"><span style="color:var(--muted);">Subtotal</span><span style="font-weight:600;">${rs(sub)}</span></div>${totalSavings>0?`<div class="row" style="display:flex;justify-content:space-between;font-size:13px;color:#10B981;font-weight:700;margin-bottom:6px;"><span>Product Discount</span><span>-${rs(totalSavings)}</span></div>`:''}${cpnRes.valid?`<div class="row" style="display:flex;justify-content:space-between;font-size:13px;color:#10B981;font-weight:700;margin-bottom:6px;"><span>Coupon (${cpnRes.applied})</span><span>-${rs(cpnRes.discount)}</span></div>`:''}<div class="row" style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:10px;"><span style="color:var(--muted);">Shipping</span><span style="font-weight:600;">${ship?rs(ship):'<b style="color:#10B981;">FREE</b>'}</span></div><div class="row tot" style="display:flex;justify-content:space-between;font-size:18px;font-weight:700;padding-top:10px;border-top:1px solid #eee;margin-bottom:14px;"><span>Total</span><span style="color:var(--red);">${rs(finalTotal)}</span></div><button class="btn red" id="co" style="width:100%;height:50px;font-size:14px;font-weight:700;letter-spacing:1px;">PROCEED TO CHECKOUT</button><button class="link" data-close style="margin:12px auto 0;display:flex;font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;">Continue Shopping &rarr;</button>`;
- }
- save();
+function save(){
+  try{localStorage.setItem('spidey_cart',JSON.stringify(cart));}catch(e){}
+  try{sessionStorage.setItem('spidey_cart_session',JSON.stringify(cart));}catch(e){}
+  try{
+    if(typeof SpideyCookies!=='undefined'){
+      SpideyCookies.set('spidey_cart_session',JSON.stringify(cart),30);
+    }
+  }catch(e){}
+  const totalCount=cart.reduce((a,b)=>a+(parseInt(b.q)||1),0);
+  const badge=$('#cc');
+  if(badge){badge.textContent=totalCount;badge.style.display=totalCount>0?'grid':'none';}
 }
 
-$('#cd').addEventListener('click',e=>{
- const q=e.target.closest('[data-q]');if(q){const idx=parseInt(q.dataset.q);const i=cart[idx];if(i){i.q=(i.q||1)+parseInt(q.dataset.d);if(i.q<1)cart.splice(idx,1);else if(i.q>10)i.q=10;save();drawCart();}return;}
- const r=e.target.closest('[data-r]');if(r){const idx=parseInt(r.dataset.r);cart.splice(idx,1);save();drawCart();return;}
- if(e.target.id==='co'){
-    if(!cart.length){toast('Your bag is empty!');return;}
-    if(!currentUser){
-      proceedToCheckoutAfterAuth = true;
-      openAuthModal('Please create an account or sign in to complete your purchase.', true);
-      return;
+function addCart(id,size,q){
+  if(!id||!size)return;
+  const numQ=Math.max(1,parseInt(q)||1);
+  const _allP=(typeof getAllProducts==='function'?getAllProducts():(window.P||[]));
+  const prod=_allP.find(x=>String(x.id).trim()===String(id).trim());
+  const pImgs=prod?(typeof getProductImages==='function'?getProductImages(prod):[]):[];
+  const primaryImg=(pImgs&&pImgs[0])||(prod&&prod.img)||(prod&&prod.imgFront)||'';
+  const price=prod?(parseInt(prod.p)||0):0;
+  const origPrice=prod?(prod.origPrice&&parseInt(prod.origPrice)>price?parseInt(prod.origPrice):(prod.discount&&parseInt(prod.discount)>0?Math.round(price/(1-prod.discount/100)):price)):price;
+  const color=prod?(prod.col||'Black'):'Black';
+  const name=prod?prod.n:'Streetwear Apparel';
+  const category=(prod&&prod.c&&prod.c[0])?prod.c[0]:'Streetwear';
+
+  const existing=cart.find(x=>String(x.id).trim()===String(id).trim()&&String(x.size).toUpperCase()===String(size).toUpperCase());
+  if(existing){
+    existing.q=Math.min(10,(parseInt(existing.q)||1)+numQ);
+    if(prod){
+      existing.name=name;
+      existing.price=price;
+      existing.origPrice=origPrice;
+      if(primaryImg)existing.image=primaryImg;
+      existing.color=color;
+      existing.category=category;
     }
-    openCheckoutModal();
-  }});
+  }else{
+    cart.push({
+      id:String(id),
+      size:String(size),
+      q:numQ,
+      name:name,
+      price:price,
+      origPrice:origPrice,
+      color:color,
+      image:primaryImg,
+      category:category
+    });
+  }
+  save();
+  const b=$('#cb');
+  if(b){
+    b.classList.remove('pop');
+    void b.offsetWidth;
+    b.classList.add('pop');
+    const rc=b.getBoundingClientRect(),th=document.createElement('i');
+    th.className='thr';
+    th.style.cssText=`left:${rc.left+rc.width/2}px;top:${rc.bottom}px`;
+    document.body.appendChild(th);
+    setTimeout(()=>th.remove(),950);
+  }
+  if(prod){toast(`Added "${prod.n}" (${size}) to your bag!`);}
+  else{toast(`Added item (${size}) to your bag!`);}
+}
+
+function drawCart(){
+  // Non-destructive: retain user's cart even if product catalog is still syncing
+  cart=(cart||[]).filter(i=>i&&typeof i.id!=='undefined');
+
+  const _allP=(typeof getAllProducts==='function'?getAllProducts():(window.P||[]));
+
+  const sub=cart.reduce((a,i)=>{
+    const p=_allP.find(x=>String(x.id).trim()===String(i.id).trim());
+    const pr=p?(parseInt(p.p)||0):(parseInt(i.price)||0);
+    return a+pr*(parseInt(i.q)||1);
+  },0);
+
+  const totalSavings=cart.reduce((acc,i)=>{
+    const p=_allP.find(x=>String(x.id).trim()===String(i.id).trim());
+    const pr=p?(parseInt(p.p)||0):(parseInt(i.price)||0);
+    const orig=p?(p.origPrice&&parseInt(p.origPrice)>pr?parseInt(p.origPrice):(p.discount&&parseInt(p.discount)>0?Math.round(pr/(1-p.discount/100)):pr)):(parseInt(i.origPrice)||pr);
+    return acc+(orig>pr?(orig-pr)*(parseInt(i.q)||1):0);
+  },0);
+
+  const listEl=$('#cl');
+  const footerEl=$('#cf');
+
+  if(!cart.length){
+    if(listEl){
+      listEl.innerHTML='<div style="color:var(--muted);padding:50px 20px;text-align:center;"><svg style="width:64px;height:64px;margin:0 auto 16px;opacity:0.3;stroke:var(--red);stroke-width:1.5;fill:none;" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg><h3 class="disp" style="color:var(--black);font-size:22px;margin:0 0 6px;">Your bag is empty</h3><p style="font-size:13px;color:var(--muted);margin:0 0 18px;">Caught nothing yet. Discover the latest drops.</p><a href="#shop" class="btn red" data-close style="display:inline-flex;height:42px;padding:0 20px;font-size:12px;">Shop Collection</a></div>';
+    }
+    if(footerEl){
+      footerEl.innerHTML='<button type="button" class="btn out" data-close style="width:100%;height:44px;">Continue shopping</button>';
+    }
+    save();
+    return;
+  }
+
+  const ship=sub>=FREE?0:SHIP,left=Math.max(0,FREE-sub);
+  const cpnRes=typeof computeCouponDiscount==='function'?computeCouponDiscount(sub):{valid:false,applied:'',discount:0};
+  const finalTotal=Math.max(0,sub+ship-(cpnRes.discount||0));
+
+  if(listEl){
+    const itemsHtml=cart.map((i,ix)=>{
+      const p=_allP.find(x=>String(x.id).trim()===String(i.id).trim());
+      if(p){
+        i.name=p.n;
+        i.price=parseInt(p.p)||0;
+        i.color=p.col||'Black';
+        const pImgs=typeof getProductImages==='function'?getProductImages(p):[];
+        const thumb=pImgs[0]||p.img||'';
+        if(thumb)i.image=thumb;
+      }
+      const price=p?(parseInt(p.p)||0):(parseInt(i.price)||0);
+      const orig=p?(p.origPrice&&parseInt(p.origPrice)>price?parseInt(p.origPrice):(p.discount&&parseInt(p.discount)>0?Math.round(price/(1-p.discount/100)):price)):(parseInt(i.origPrice)||price);
+      const hasDisc=orig>price;
+      const itemName=p?p.n:(i.name||'Streetwear Apparel');
+      const itemColor=p?(p.col||'Black'):(i.color||'Black');
+      const itemSize=i.size||'M';
+      const itemQty=parseInt(i.q)||1;
+
+      let thumbHtml='';
+      if(p){
+        thumbHtml=garment(p);
+      }else if(i.image){
+        thumbHtml=`<div style="width:100%;height:100%;display:grid;place-items:center;overflow:hidden;"><img src="${i.image}" alt="${itemName}" style="width:100%;height:100%;object-fit:cover;"></div>`;
+      }else{
+        thumbHtml=`<div style="width:100%;height:100%;display:grid;place-items:center;background:#161616;color:#fff;font-family:Anton,Impact,sans-serif;font-size:14px;letter-spacing:1px;">SPIDEY</div>`;
+      }
+
+      return `
+        <div class="ci" style="display:grid;grid-template-columns:84px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid #f0f0f0;">
+          <div class="t" style="background:var(--light);aspect-ratio:3/4;display:grid;place-items:center;border-radius:3px;overflow:hidden;">
+            ${thumbHtml}
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+              <h4 style="margin:0 0 4px;font-size:14px;font-weight:700;line-height:1.3;color:var(--black);">${itemName}</h4>
+              <button type="button" class="rm-btn" data-r="${ix}" style="font-size:18px;color:#999;background:none;border:none;cursor:pointer;padding:0 4px;line-height:1;" title="Remove item">&times;</button>
+            </div>
+            <div class="m" style="font-size:12px;color:var(--muted);margin-bottom:8px;">
+              Size: <b style="color:var(--black);">${itemSize}</b> &bull; ${itemColor}
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="qty" style="display:inline-flex;border:1px solid #d6d6d6;border-radius:2px;align-items:center;">
+                <button type="button" data-q="${ix}" data-d="-1" aria-label="Decrease" style="width:30px;height:30px;font-size:15px;display:grid;place-items:center;background:none;border:none;cursor:pointer;">−</button>
+                <span style="min-width:28px;text-align:center;font-size:13px;font-weight:700;">${itemQty}</span>
+                <button type="button" data-q="${ix}" data-d="1" aria-label="Increase" style="width:30px;height:30px;font-size:15px;display:grid;place-items:center;background:none;border:none;cursor:pointer;">+</button>
+              </div>
+              <div style="text-align:right;">
+                ${hasDisc?`<span style="font-size:11px;color:var(--muted);text-decoration:line-through;margin-right:6px;">${rs(orig*itemQty)}</span>`:''}
+                <b style="font-size:14px;color:var(--black);">${rs(price*itemQty)}</b>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    const shippingAndCouponHtml=`
+      <div style="margin-top:16px;padding-top:14px;border-top:1px dashed #e2e2e2;">
+        <div class="free" style="font-size:12px;background:var(--light);padding:10px 14px;margin-bottom:12px;border-radius:4px;border:1px solid #e8e8e8;">
+          <div style="display:flex;justify-content:space-between;font-weight:600;margin-bottom:6px;">
+            <span>${left?`Add <b style="color:var(--red);">${rs(left)}</b> more for free shipping`:'<span style="color:#10B981;">&#10003; Free Express Shipping unlocked!</span>'}</span>
+            <span>${Math.min(100,Math.round(sub/FREE*100))}%</span>
+          </div>
+          <div class="bar-p" style="height:4px;background:#e2e2e2;border-radius:2px;overflow:hidden;">
+            <i style="display:block;height:100%;background:var(--red);width:${Math.min(100,Math.round(sub/FREE*100))}%;transition:width .3s;"></i>
+          </div>
+        </div>
+        <div class="coupon-box" style="margin-bottom:12px;">
+          ${renderCouponBoxHtml(sub,'cart')}
+        </div>
+      </div>
+    `;
+
+    listEl.innerHTML=itemsHtml+shippingAndCouponHtml;
+  }
+
+  if(footerEl){
+    footerEl.innerHTML=`
+      <div class="row" style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;">
+        <span style="color:var(--muted);">Subtotal</span>
+        <span style="font-weight:600;">${rs(sub)}</span>
+      </div>
+      ${totalSavings>0?`<div class="row" style="display:flex;justify-content:space-between;font-size:12px;color:#10B981;font-weight:700;margin-bottom:6px;"><span>Product Savings</span><span>-${rs(totalSavings)}</span></div>`:''}
+      ${cpnRes.valid?`<div class="row" style="display:flex;justify-content:space-between;font-size:12px;color:#10B981;font-weight:700;margin-bottom:6px;"><span>Coupon (${cpnRes.applied})</span><span>-${rs(cpnRes.discount)}</span></div>`:''}
+      <div class="row" style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;">
+        <span style="color:var(--muted);">Shipping</span>
+        <span style="font-weight:600;">${ship?rs(ship):'<b style="color:#10B981;">FREE</b>'}</span>
+      </div>
+      <div class="row tot" style="display:flex;justify-content:space-between;font-size:17px;font-weight:700;padding-top:8px;border-top:1px solid #eee;margin-bottom:12px;">
+        <span>Total</span>
+        <span style="color:var(--red);">${rs(finalTotal)}</span>
+      </div>
+      <button class="btn red" id="co" type="button" onclick="handleProceedToCheckout(event)" style="width:100%;height:48px;font-size:13px;font-weight:700;letter-spacing:1px;position:relative;z-index:20;cursor:pointer;border-radius:3px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(229,9,20,0.35);">
+        <span>PROCEED TO CHECKOUT</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+      <button type="button" class="link" data-close style="margin:8px auto 0;display:flex;font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;">
+        Continue Shopping &rarr;
+      </button>
+    `;
+  }
+  save();
+}
+
+function handleProceedToCheckout(e){
+  if(e){
+    try{e.preventDefault();e.stopPropagation();}catch(err){}
+  }
+  if(!cart||!cart.length){
+    toast('Your bag is empty! Add items to bag first.');
+    return;
+  }
+  openCheckoutModal();
+}
+window.handleProceedToCheckout=handleProceedToCheckout;
+
+$('#cd').addEventListener('click',e=>{
+  const q=e.target.closest('[data-q]');
+  if(q){
+    const idx=parseInt(q.dataset.q);
+    const i=cart[idx];
+    if(i){
+      i.q=(parseInt(i.q)||1)+parseInt(q.dataset.d);
+      if(i.q<1)cart.splice(idx,1);
+      else if(i.q>10)i.q=10;
+      save();
+      drawCart();
+    }
+    return;
+  }
+  const r=e.target.closest('[data-r]');
+  if(r){
+    const idx=parseInt(r.dataset.r);
+    cart.splice(idx,1);
+    save();
+    drawCart();
+    return;
+  }
+  const coBtn=e.target.closest('#co')||(e.target&&e.target.id==='co');
+  if(coBtn){
+    e.preventDefault();
+    e.stopPropagation();
+    handleProceedToCheckout(e);
+    return;
+  }
+});
+
+// Cross-tab real-time sync for shopping cart
+window.addEventListener('storage',e=>{
+  if(e.key==='spidey_cart'){
+    try{
+      const incoming=JSON.parse(e.newValue||'[]');
+      if(Array.isArray(incoming)){
+        cart=incoming;
+        const totalCount=cart.reduce((a,b)=>a+(parseInt(b.q)||1),0);
+        const badge=$('#cc');
+        if(badge){badge.textContent=totalCount;badge.style.display=totalCount>0?'grid':'none';}
+        const drawer=$('#cd');
+        if(drawer&&drawer.classList.contains('on')){drawCart();}
+      }
+    }catch(err){}
+  }
+});
 save();
 // easter egg
 $('#egg').onclick=()=>$('#fl').classList.add('on');$('#fl').onclick=()=>$('#fl').classList.remove('on');
@@ -2068,6 +3046,7 @@ function renderLookbook(){} /*
   const s = window.SpideyStore ? window.SpideyStore.getData() : null;
   if(!s) return;
   P = window._spideyCloudProducts ? window._spideyCloudProducts : getUniqueProducts(s.products);
+  window.P = P;
   CATS = s.categories;
 
   // 1. Announcements & Marquees
@@ -2199,159 +3178,290 @@ setInterval(() => {
 // cursor-reactive web (desktop, motion allowed)
 if(matchMedia('(hover:hover) and (prefers-reduced-motion:no-preference)').matches){const vis=$('.hero .vis'),w1=$('#w1'),g=$('#heroG');w1.style.transition='transform .25s ease-out';vis.addEventListener('mousemove',e=>{const r=vis.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;w1.style.transform=`translate(${x*-34}px,${y*-34}px) scale(1.14) rotate(${x*6}deg)`;g.style.transform=`translate(${x*14}px,${y*14}px)`});vis.addEventListener('mouseleave',()=>{w1.style.transform='';g.style.transform=''})}
 
-// Supabase Checkout & Order Placement
-const oxBtn = $("#ox"); if (oxBtn) oxBtn.onclick = () => $("#om").classList.remove("on");
+// Supabase Checkout & Order Placement (Razorpay Secure Live Integration)
+const oxBtn = $("#ox"); if (oxBtn) oxBtn.onclick = () => closeAll();
 const orderForm = $("#orderForm");
 if (orderForm) {
   orderForm.onsubmit = async (e) => {
     e.preventDefault();
     const btn = $("#oSubmitBtn");
+    const btnTxt = $("#oSubmitBtnText");
     const errEl = $("#oErr");
     errEl.textContent = "";
-    btn.disabled = true;
-    btn.textContent = "PLACING ORDER...";
 
+    const custName = ($("#oname")?.value || "").trim();
+    const custPhone = ($("#ophone")?.value || "").trim();
+    const custEmail = ($("#oemail")?.value || "").trim();
+    const custAddr = ($("#oaddr")?.value || "").trim();
+    const custCity = ($("#ocity")?.value || "").trim();
+    const custPin = ($("#opin")?.value || "").trim();
+
+    if (!custName || !custPhone || !custEmail || !custAddr || !custCity || !custPin) {
+      errEl.textContent = "Please fill in all delivery details before proceeding.";
+      return;
+    }
+    const cleanPhone = custPhone.replace(/\D/g, "");
+    if (cleanPhone.length < 10) {
+      errEl.textContent = "Please enter a valid 10-digit mobile number.";
+      return;
+    }
+    const cleanPin = custPin.replace(/\D/g, "");
+    if (cleanPin.length !== 6) {
+      errEl.textContent = "Please enter a valid 6-digit PIN code.";
+      return;
+    }
+    if (!cart || !cart.length) {
+      errEl.textContent = "Your shopping bag is empty!";
+      return;
+    }
+
+    const _allP = (typeof getAllProducts === 'function' ? getAllProducts() : (window.P || []));
     const sub = cart.reduce((a, i) => {
-      const prod = P.find(p => String(p.id) === String(i.id));
-      return a + (prod ? prod.p : 0) * i.q;
+      const prod = _allP.find(p => p && String(p.id).trim() === String(i.id).trim());
+      const pr = prod ? (parseInt(prod.p) || 0) : (parseInt(i.price) || 0);
+      return a + pr * (parseInt(i.q) || 1);
     }, 0);
     const ship = !cart.length || sub >= FREE ? 0 : SHIP;
     const cpnRes = typeof computeCouponDiscount === 'function' ? computeCouponDiscount(sub) : { valid: false, applied: '', discount: 0 };
     const tot = Math.max(0, sub + ship - (cpnRes.discount || 0));
 
+    btn.disabled = true;
+    if (btnTxt) btnTxt.textContent = "INITIALIZING RAZORPAY...";
+
     const orderPayload = {
-      customer_name: $("#oname").value.trim(),
-      customer_phone: $("#ophone").value.trim(),
-      customer_email: $("#oemail").value.trim(),
-      shipping_address: $("#oaddr").value.trim(),
-      city: $("#ocity").value.trim(),
-      pincode: $("#opin").value.trim(),
-      payment_method: $("#opay").value,
+      customer_name: custName,
+      customer_phone: custPhone,
+      customer_email: custEmail,
+      shipping_address: custAddr,
+      city: custCity,
+      pincode: custPin,
+      payment_method: "Razorpay",
+      payment_status: "paid",
       store_url: (window.location.protocol.startsWith('http') ? window.location.href.split(/[?#]/)[0] : (localStorage.getItem('spidey_live_store_url') || '')),
       items: cart.map(i => {
-        const prod = P.find(x => String(x.id) === String(i.id));
+        const prod = _allP.find(x => x && String(x.id).trim() === String(i.id).trim());
         const catLabel = (window.SpideyFirebase && SpideyFirebase.getProductCategoryLabel)
-          ? SpideyFirebase.getProductCategoryLabel({ name: prod ? prod.n : "Apparel" }, prod)
-          : (prod && prod.c ? prod.c : "Streetwear Apparel");
+          ? SpideyFirebase.getProductCategoryLabel({ name: prod ? prod.n : (i.name || "Apparel") }, prod)
+          : (prod && prod.c ? prod.c : (i.category || "Streetwear Apparel"));
         const emailImg = (window.SpideyFirebase && SpideyFirebase.resolveEmailProductImage && prod)
           ? SpideyFirebase.resolveEmailProductImage({ id: i.id }, [prod])
           : "";
+        const prodImgs = prod ? (typeof getProductImages === 'function' ? getProductImages(prod) : []) : [];
+        const primaryImg = (prodImgs && prodImgs[0]) || (prod && prod.img) || (prod && prod.imgFront) || emailImg || i.image || "";
         return {
           id: i.id,
-          name: prod ? prod.n : "Apparel",
-          type: prod ? (prod.t || "") : "",
+          name: prod ? prod.n : (i.name || "Streetwear Apparel"),
+          type: prod ? (prod.t || "") : (i.type || ""),
           category: catLabel,
-          image: emailImg,
+          image: primaryImg,
           size: i.size,
-          q: i.q,
-          price: prod ? prod.p : 0,
-          color: prod ? prod.col : ""
+          q: parseInt(i.q) || 1,
+          price: prod ? (parseInt(prod.p) || 0) : (parseInt(i.price) || 0),
+          color: prod ? (prod.col || "Black") : (i.color || "Black")
         };
       }),
       coupon_code: cpnRes.valid ? cpnRes.applied : "",
       coupon_discount: cpnRes.valid ? cpnRes.discount : 0,
       total_amount: tot,
-      status: "pending"
+      status: "confirmed"
+    };
+
+    if (typeof Razorpay === 'undefined') {
+      btn.disabled = false;
+      if (btnTxt) btnTxt.textContent = "PAY " + rs(tot) + " VIA RAZORPAY";
+      errEl.textContent = "Razorpay SDK is loading. Please verify your internet connection or refresh.";
+      return;
+    }
+
+    btn.disabled = true;
+    if (btnTxt) btnTxt.textContent = "INITIALIZING RAZORPAY...";
+
+    const apiBase = window.SPIDEY_API_URL || '';
+    let orderData = null;
+    try {
+      // STEP 1: Call Backend to Create Razorpay Order
+      const createOrderRes = await fetch(apiBase + '/api/create-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: Math.round(tot * 100), // amount in paise
+          currency: 'INR',
+          receipt: 'spidey_' + Date.now()
+        })
+      });
+
+      orderData = await createOrderRes.json();
+      if (!createOrderRes.ok || !orderData.order_id) {
+        throw new Error(orderData.error || 'Server could not create Razorpay order');
+      }
+    } catch (orderInitErr) {
+      console.error('Order creation error:', orderInitErr);
+      btn.disabled = false;
+      if (btnTxt) btnTxt.textContent = "PAY " + rs(tot) + " VIA RAZORPAY";
+      errEl.textContent = "Could not initialize payment: " + (orderInitErr.message || "Please check backend server.");
+      return;
+    }
+
+    // STEP 2: Configure Razorpay Checkout Modal with server order_id
+    const razorpayOptions = {
+      key: window.RAZORPAY_KEY_ID || "rzp_live_TzhGyybsQcq9GO",
+      amount: orderData.amount,
+      currency: orderData.currency || "INR",
+      name: "SPIDEY COLLECTIONS",
+      description: "Streetwear Order Checkout",
+      image: "https://spideycollection.co.in/og-image.png",
+      order_id: orderData.order_id,
+      prefill: {
+        name: custName,
+        email: custEmail,
+        contact: custPhone
+      },
+      notes: {
+        shipping_address: `${custAddr}, ${custCity} - ${custPin}`
+      },
+      theme: {
+        color: "#E50914"
+      },
+      modal: {
+        ondismiss: function() {
+          btn.disabled = false;
+          if (btnTxt) btnTxt.textContent = "PAY " + rs(tot) + " VIA RAZORPAY";
+          errEl.textContent = "Payment cancelled. You can try again whenever ready.";
+        }
+      },
+      handler: async function(razorpayResp) {
+        btn.disabled = true;
+        if (btnTxt) btnTxt.textContent = "VERIFYING PAYMENT...";
+        try {
+          // STEP 3: Verify Payment Signature on Backend
+          const verifyRes = await fetch(apiBase + '/api/verify-payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              razorpay_order_id: razorpayResp.razorpay_order_id,
+              razorpay_payment_id: razorpayResp.razorpay_payment_id,
+              razorpay_signature: razorpayResp.razorpay_signature
+            })
+          });
+
+          const verifyData = await verifyRes.json();
+          if (!verifyRes.ok || !verifyData.success) {
+            throw new Error(verifyData.error || 'Payment signature verification failed.');
+          }
+
+          if (btnTxt) btnTxt.textContent = "CONFIRMING ORDER...";
+          const razorpayPaymentId = razorpayResp.razorpay_payment_id;
+          orderPayload.razorpay_order_id = razorpayResp.razorpay_order_id;
+          orderPayload.razorpay_payment_id = razorpayPaymentId;
+          orderPayload.razorpay_signature = razorpayResp.razorpay_signature;
+          orderPayload.payment_id = razorpayPaymentId;
+          orderPayload.payment_method = "Razorpay";
+          orderPayload.payment_status = "paid";
+          orderPayload.status = "confirmed";
+
+          const orderId = "SPIDEY-" + Math.floor(100000 + Math.random() * 900000);
+          if (window.SpideyStore) {
+            SpideyStore.addOrder({
+              id: orderId,
+              created_at: new Date().toISOString(),
+              ...orderPayload
+            });
+          }
+
+          // Background sync to Firebase Firestore
+          if (db) {
+            try {
+              SpideyFirebase.saveOrder(orderId, orderPayload).catch(e => console.warn("Firebase save warning:", e));
+            } catch(e) {}
+          }
+
+          // Dispatch confirmation email
+          const adminStoreEmail = "Shaikimran3912@gmail.com";
+          const targetCustomerEmail = (orderPayload.customer_email || "").trim() || adminStoreEmail;
+          const savedOrderObj = { id: orderId, created_at: new Date().toISOString(), ...orderPayload };
+
+          (async function runEmailDispatch() {
+            try {
+              const custRes = await SpideyFirebase.dispatchOrderEmail({
+                order: savedOrderObj,
+                status: 'confirmed',
+                isInitialOrder: true,
+                productsList: P,
+                recipientEmail: targetCustomerEmail,
+                extraNote: `Payment Verified via Razorpay (Payment ID: ${razorpayPaymentId})`
+              });
+
+              if (targetCustomerEmail.toLowerCase() !== adminStoreEmail.toLowerCase()) {
+                SpideyFirebase.dispatchOrderEmail({
+                  order: savedOrderObj,
+                  status: 'confirmed',
+                  isInitialOrder: true,
+                  productsList: P,
+                  recipientEmail: adminStoreEmail,
+                  extraNote: `Admin Copy - Razorpay Payment ID: ${razorpayPaymentId}`
+                }).catch(() => {});
+              }
+
+              const badgeEl = document.getElementById('orderEmailStatusBadge');
+              if (custRes && custRes.ok && badgeEl) {
+                badgeEl.innerHTML = `<span style="color:#10B981;font-weight:700;"><i class="fa-solid fa-circle-check"></i> Confirmation &amp; tracking link emailed to <b>${targetCustomerEmail}</b></span>`;
+              }
+            } catch(e) {}
+          })();
+
+          $("#om").classList.remove("on");
+          cart = [];
+          save();
+          drawCart();
+          toast(`🕷️ PAYMENT SUCCESSFUL! ORDER #${orderId} CONFIRMED.`);
+
+          try {
+            const guestIds = JSON.parse(localStorage.getItem('spidey_guest_order_ids') || '[]');
+            if (!guestIds.includes(orderId)) {
+              guestIds.unshift(orderId);
+              localStorage.setItem('spidey_guest_order_ids', JSON.stringify(guestIds));
+            }
+          } catch(e) {}
+
+          const saveChk = $("#saveAddrChk");
+          if (!saveChk || saveChk.checked) {
+            saveCheckoutAddress({
+              name: orderPayload.customer_name,
+              phone: orderPayload.customer_phone,
+              email: orderPayload.customer_email,
+              address: orderPayload.shipping_address,
+              city: orderPayload.city,
+              pincode: orderPayload.pincode,
+              payment_method: "Razorpay"
+            }, true);
+          }
+
+          orderForm.reset();
+          openOrderTrackerModal(orderId, true);
+        } catch (err) {
+          console.error("Order submit / verification error:", err);
+          errEl.textContent = "Payment verification error: " + (err.message || "Please check connection.");
+        } finally {
+          btn.disabled = false;
+          if (btnTxt) btnTxt.textContent = "PAY " + rs(tot) + " VIA RAZORPAY";
+        }
+      }
     };
 
     try {
-
-
-
-      const orderId = "SPIDEY-" + Math.floor(100000 + Math.random() * 900000);
-      if (window.SpideyStore) {
-        SpideyStore.addOrder({
-          id: orderId,
-          created_at: new Date().toISOString(),
-          ...orderPayload
-        });
-      }
-      // Non-blocking background sync to Firebase Firestore
-      if (db) {
-        try {
-          SpideyFirebase.saveOrder(orderId, orderPayload).then(() => {
-            console.log("Order synced to Firebase Firestore.");
-          }).catch(dbErr => {
-            console.warn("Firebase sync warning:", dbErr);
-          });
-        } catch(e){
-          console.warn("Firebase trigger warning:", e);
-        }
-      }
-
-      // Dispatch Order Confirmation Receipt via shared SpideyFirebase.dispatchOrderEmail
-      const adminStoreEmail = "Shaikimran3912@gmail.com";
-      const targetCustomerEmail = (orderPayload.customer_email || "").trim() || adminStoreEmail;
-      const savedOrderObj = { id: orderId, created_at: new Date().toISOString(), ...orderPayload };
-
-      (async function runEmailDispatch() {
-        try {
-          console.log(`[SPIDEY] Dispatching order receipt to customer: ${targetCustomerEmail}`);
-          const custRes = await SpideyFirebase.dispatchOrderEmail({
-            order: savedOrderObj,
-            status: 'pending',
-            isInitialOrder: true,
-            productsList: P,
-            recipientEmail: targetCustomerEmail
-          });
-
-          // If customer is not the admin, also dispatch notification copy to the store owner
-          if (targetCustomerEmail.toLowerCase() !== adminStoreEmail.toLowerCase()) {
-            SpideyFirebase.dispatchOrderEmail({
-              order: savedOrderObj,
-              status: 'pending',
-              isInitialOrder: true,
-              productsList: P,
-              recipientEmail: adminStoreEmail,
-              extraNote: 'Admin Order Notification Copy'
-            }).catch(() => {});
-          }
-
-          const badgeEl = document.getElementById('orderEmailStatusBadge');
-          if (custRes.ok) {
-            console.log("[SPIDEY] Email sent successfully");
-            toast(`📧 Order receipt sent to ${targetCustomerEmail}!`);
-            if (badgeEl) {
-              badgeEl.innerHTML = `<span style="color:#10B981;font-weight:700;"><i class="fa-solid fa-circle-check"></i> Confirmation &amp; tracking link emailed to <b>${targetCustomerEmail}</b></span>`;
-            }
-          } else {
-            console.warn("[SPIDEY] Email send unsuccessful:", custRes.error);
-            toast(`⚠️ Email service notice: ${custRes.error}`);
-            if (badgeEl) {
-              badgeEl.innerHTML = `<span style="color:#b45309;font-size:12px;"><i class="fa-solid fa-triangle-exclamation"></i> Notice: Confirmation email could not be delivered (${custRes.error}). Please verify EmailJS template settings.</span>`;
-            }
-          }
-        } catch(e) {
-          console.warn("[SPIDEY] Email dispatch error:", e);
-        }
-      })();
-
-
-      $("#om").classList.remove("on");
-      cart = [];
-      save();
-      drawCart();
-      toast(`🕷️ ORDER #${orderId} PLACED! Recorded live in Admin console.`);
-      const saveChk = $("#saveAddrChk");
-      if (!saveChk || saveChk.checked) {
-        saveCheckoutAddress({
-          name: orderPayload.customer_name,
-          phone: orderPayload.customer_phone,
-          email: orderPayload.customer_email,
-          address: orderPayload.shipping_address,
-          city: orderPayload.city,
-          pincode: orderPayload.pincode,
-          payment_method: orderPayload.payment_method
-        }, true);
-      }
-      orderForm.reset();
-      openOrderTrackerModal(orderId, true);
-    } catch (err) {
-      console.error("Order submit error:", err);
-      errEl.textContent = "Could not place order: " + (err.message || "Please check connection.");
-    } finally {
+      const rzpInstance = new Razorpay(razorpayOptions);
+      rzpInstance.on('payment.failed', function(resp) {
+        btn.disabled = false;
+        if (btnTxt) btnTxt.textContent = "PAY " + rs(tot) + " VIA RAZORPAY";
+        const reason = (resp && resp.error && (resp.error.description || resp.error.reason)) || "Transaction declined by bank or user.";
+        errEl.textContent = `Payment Failed: ${reason}. Please try again.`;
+      });
+      rzpInstance.open();
+    } catch(err) {
+      console.error("Razorpay open error:", err);
       btn.disabled = false;
-      btn.textContent = "CONFIRM & PLACE ORDER";
+      if (btnTxt) btnTxt.textContent = "PAY " + rs(tot) + " VIA RAZORPAY";
+      errEl.textContent = "Could not open Razorpay checkout: " + (err.message || "Please check connection.");
     }
   };
 }
@@ -2359,6 +3469,35 @@ if (orderForm) {
 // ──────────────────────────────────────────
 // FLIPKART / AMAZON / MYNTRA STYLE ORDER TRACKER ENGINE
 // ──────────────────────────────────────────
+(function cleanLegacyDemoOrders() {
+  try {
+    const raw = localStorage.getItem('spidey_orders_data_v2');
+    if (raw) {
+      let arr = JSON.parse(raw);
+      if (Array.isArray(arr)) {
+        arr = arr.filter(o => o && o.id !== 'SPIDEY-849201' && o.id !== 'SPIDEY-592810');
+        localStorage.setItem('spidey_orders_data_v2', JSON.stringify(arr));
+      }
+    }
+  } catch(e) {}
+})();
+
+function getUserRelevantOrders() {
+  const allOrders = (window.SpideyStore ? SpideyStore.getOrders() : []) || [];
+  const clean = allOrders.filter(o => o && o.id !== 'SPIDEY-849201' && o.id !== 'SPIDEY-592810');
+  const _u = (typeof currentUser !== 'undefined' ? currentUser : null);
+  if (_u && _u.email) {
+    const uEmail = (_u.email || '').toLowerCase().trim();
+    return clean.filter(o => (o.customer_email || '').toLowerCase().trim() === uEmail);
+  }
+  let guestIds = [];
+  try {
+    guestIds = JSON.parse(localStorage.getItem('spidey_guest_order_ids') || '[]');
+  } catch(e) {}
+  if (!Array.isArray(guestIds) || !guestIds.length) return [];
+  return clean.filter(o => guestIds.includes(o.id));
+}
+
 let activeTrackingOrderId = null;
 let activeOrderUnsubscribe = null;
 let activeTrackedOrderData = null;
@@ -2378,7 +3517,7 @@ function renderOrderNotFoundView(queryVal) {
     <div style="text-align:center;padding:36px 16px;background:var(--light);border-radius:4px;border:1px dashed #d6d6d6;">
       <div style="font-size:32px;color:var(--muted);margin-bottom:10px;"><i class="fa-solid fa-magnifying-glass"></i></div>
       <h4 style="margin:0 0 6px;font-size:16px;">No Order Found Matching "${safeVal}"</h4>
-      <p style="margin:0 0 16px;font-size:13px;color:var(--muted);">Please verify your Order ID (e.g. SPIDEY-849201) or check the orders list below.</p>
+      <p style="margin:0 0 16px;font-size:13px;color:var(--muted);">Please verify your Order ID (e.g. SPIDEY-XXXXXX) or check the orders list below.</p>
       <button type="button" class="btn red" style="height:40px;font-size:11px;" onclick="renderUserOrdersList()">View All Orders</button>
     </div>
   `;
@@ -2390,7 +3529,7 @@ async function resolveOrderFromCloudAndBind(orderId, isJustPlaced = false) {
   const input = document.getElementById('trackSearchInput');
   if (input && orderId) input.value = orderId;
 
-  const orders = (window.SpideyStore ? SpideyStore.getOrders() : []) || [];
+  const orders = getUserRelevantOrders();
   const localOrder = orders.find(o => String(o.id).toUpperCase() === String(orderId).toUpperCase());
 
   if (localOrder) {
@@ -2439,7 +3578,7 @@ function openOrderTrackerModal(orderId = null, isJustPlaced = false) {
   if (sc) sc.classList.add('on');
   document.body.style.overflow = 'hidden';
 
-  const orders = (window.SpideyStore ? SpideyStore.getOrders() : []) || [];
+  const orders = getUserRelevantOrders();
   const countEl = document.getElementById('userOrdersCount');
   if (countEl) countEl.textContent = orders.length;
 
@@ -2471,7 +3610,7 @@ async function searchOrderToTrack() {
     toast('Please enter an Order ID or phone number to track.');
     return;
   }
-  const orders = (window.SpideyStore ? SpideyStore.getOrders() : []) || [];
+  const orders = getUserRelevantOrders();
   const found = orders.find(o => 
     String(o.id).toUpperCase() === val || 
     String(o.id).toUpperCase().includes(val) ||
@@ -2496,6 +3635,93 @@ async function searchOrderToTrack() {
   activeTrackingOrderId = null;
   activeTrackedOrderData = null;
   renderOrderNotFoundView(val);
+}
+
+function getOrderItemThumb(item) {
+  if (!item) {
+    return '<div style="width:100%;height:100%;display:grid;place-items:center;background:#1b1b1f;color:#E50914;font-size:16px;"><i class="fa-solid fa-shirt"></i></div>';
+  }
+
+  // 1. Direct image property on item
+  const directImg = (item.image && typeof item.image === 'string' && item.image.trim())
+    ? item.image.trim()
+    : ((item.img && typeof item.img === 'string' && item.img.trim()) ? item.img.trim() : '');
+  if (directImg && !directImg.includes('<svg') && (directImg.startsWith('http') || directImg.startsWith('data:') || directImg.startsWith('/') || directImg.startsWith('.'))) {
+    return `<img src="${directImg}" alt="${item.name || 'Product'}" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\\\'width:100%;height:100%;display:grid;place-items:center;background:#1b1b1f;color:#E50914;font-size:16px;\\\'><i class=\\\'fa-solid fa-shirt\\\'></i></div>';">`;
+  }
+
+  // 2. Resolve matching product from storefront catalog
+  const prods = (typeof getAllProducts === 'function' ? getAllProducts() : (window.P || []));
+  let prod = null;
+  if (item.id !== undefined && item.id !== null && item.id !== '') {
+    prod = prods.find(p => p && String(p.id).trim() === String(item.id).trim());
+  }
+  if (!prod && item.name) {
+    const itemNameNorm = String(item.name).toLowerCase().trim();
+    prod = prods.find(p => p && p.n && p.n.toLowerCase().trim() === itemNameNorm);
+    if (!prod) {
+      prod = prods.find(p => p && p.n && (p.n.toLowerCase().includes(itemNameNorm) || itemNameNorm.includes(p.n.toLowerCase())));
+    }
+  }
+
+  if (prod) {
+    const imgs = (typeof getProductImages === 'function') ? getProductImages(prod) : [];
+    if (imgs && imgs.length && imgs[0]) {
+      return `<img src="${imgs[0]}" alt="${prod.n || item.name}" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\\\'width:100%;height:100%;display:grid;place-items:center;background:#1b1b1f;color:#E50914;font-size:16px;\\\'><i class=\\\'fa-solid fa-shirt\\\'></i></div>';">`;
+    }
+    if (prod.img && prod.img.trim()) {
+      return `<img src="${prod.img.trim()}" alt="${prod.n || item.name}" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\\\'width:100%;height:100%;display:grid;place-items:center;background:#1b1b1f;color:#E50914;font-size:16px;\\\'><i class=\\\'fa-solid fa-shirt\\\'></i></div>';">`;
+    }
+    if (typeof garment === 'function') {
+      return garment(prod);
+    }
+  }
+
+  // 3. Fallback to style/category representation
+  if (typeof getEraGarment === 'function') {
+    const fallbackCategory = item.category || item.name || 'Streetwear';
+    return getEraGarment({ title: fallbackCategory });
+  }
+
+  return '<div style="width:100%;height:100%;display:grid;place-items:center;background:#1b1b1f;color:#E50914;font-size:16px;"><i class="fa-solid fa-shirt"></i></div>';
+}
+
+function navigateToOrderedProduct(itemId, itemName) {
+  const prods = (typeof getAllProducts === 'function' ? getAllProducts() : (window.P || []));
+  let prod = null;
+  if (itemId !== undefined && itemId !== null && String(itemId).trim()) {
+    prod = prods.find(p => p && String(p.id).trim() === String(itemId).trim());
+  }
+  if (!prod && itemName) {
+    const nameNorm = String(itemName).toLowerCase().trim();
+    prod = prods.find(p => p && p.n && p.n.toLowerCase().trim() === nameNorm);
+    if (!prod) {
+      prod = prods.find(p => p && p.n && (p.n.toLowerCase().includes(nameNorm) || nameNorm.includes(p.n.toLowerCase())));
+    }
+    if (!prod) {
+      prod = prods.find(p => p && p.c && p.c.some(c => c && (c.toLowerCase().includes(nameNorm) || nameNorm.includes(c.toLowerCase()))));
+    }
+    if (!prod) {
+      if (nameNorm.includes('oversized')) {
+        prod = prods.find(p => p && (p.n.toLowerCase().includes('oversized') || (p.c && p.c.some(c => c.toLowerCase().includes('oversized')))));
+      } else if (nameNorm.includes('sleeve') || nameNorm.includes('full')) {
+        prod = prods.find(p => p && (p.n.toLowerCase().includes('sleeve') || p.t === 'tee' || (p.c && p.c.some(c => c.toLowerCase().includes('shirt') || c.toLowerCase().includes('tees')))));
+      } else if (nameNorm.includes('hoodie')) {
+        prod = prods.find(p => p && (p.t === 'hoodie' || (p.c && p.c.some(c => c.toLowerCase().includes('hoodie')))));
+      } else if (nameNorm.includes('sweat')) {
+        prod = prods.find(p => p && (p.t === 'sweat' || (p.c && p.c.some(c => c.toLowerCase().includes('sweat')))));
+      }
+    }
+  }
+
+  closeOrderTrackerModal();
+  if (prod) {
+    openP(prod.id);
+  } else {
+    const shopEl = document.getElementById('shop');
+    if (shopEl) shopEl.scrollIntoView({ behavior: 'smooth' });
+    toast(`Viewing collection for ${itemName || 'this style'}`);
+  }
 }
 
 function renderOrderTrackingView(order, isJustPlaced = false) {
@@ -2623,26 +3849,27 @@ function renderOrderTrackingView(order, isJustPlaced = false) {
       </div>
       <div style="display:flex;flex-direction:column;gap:12px;">
         ${(order.items || []).map(item => {
-          const prod = P.find(x => String(x.id) === String(item.id));
+          const prods = (typeof getAllProducts === 'function' ? getAllProducts() : (window.P || []));
+          const prod = prods.find(x => x && (String(x.id).trim() === String(item.id || '').trim() || (x.n && item.name && x.n.toLowerCase().trim() === item.name.toLowerCase().trim())));
+          const resolvedId = prod ? prod.id : (item.id || '');
+          const safeName = String(item.name || (prod ? prod.n : 'Product')).replace(/'/g, "\\'");
           const catLabel = (window.SpideyFirebase && SpideyFirebase.getProductCategoryLabel)
             ? SpideyFirebase.getProductCategoryLabel(item, prod)
             : (item.category || (prod && prod.c) || 'Streetwear Apparel');
-          const thumbHtml = prod
-            ? garment(prod)
-            : (item.image
-                ? `<img src="${item.image}" alt="${item.name || catLabel}" style="width:100%;height:100%;object-fit:cover;display:block;">`
-                : '<i class="fa-solid fa-shirt" style="color:#aaa;"></i>');
+          const thumbHtml = getOrderItemThumb(item);
           return `
             <div style="display:flex;gap:12px;align-items:center;padding-bottom:10px;border-bottom:1px solid #f2f2f2;">
-              <div style="width:54px;height:68px;background:var(--light);border-radius:3px;overflow:hidden;flex-shrink:0;display:grid;place-items:center;">
+              <div onclick="navigateToOrderedProduct('${resolvedId}', '${safeName}')" title="Click to view ${safeName}" style="width:58px;height:72px;background:#f8f8f8;border-radius:4px;overflow:hidden;flex-shrink:0;display:grid;place-items:center;border:1px solid #e2e2e2;cursor:pointer;transition:transform .18s,box-shadow .18s;" onmouseover="this.style.transform='scale(1.06)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.18)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
                 ${thumbHtml}
               </div>
-              <div style="flex:1;">
+              <div style="flex:1;min-width:0;">
                 <div style="display:inline-block;background:var(--red);color:#fff;font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-bottom:3px;">${catLabel}</div>
-                <div style="font-size:13px;font-weight:700;color:var(--black);">${item.name || 'Streetwear Apparel'}</div>
+                <div onclick="navigateToOrderedProduct('${resolvedId}', '${safeName}')" title="Click to view ${safeName}" style="font-size:13px;font-weight:700;color:var(--black);line-height:1.3;cursor:pointer;display:inline-block;" onmouseover="this.style.color='var(--red)';" onmouseout="this.style.color='var(--black)';">
+                  ${item.name || 'Streetwear Apparel'} <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:10px;margin-left:4px;opacity:0.65;"></i>
+                </div>
                 <div style="font-size:12px;color:var(--muted);margin-top:2px;">Size: <b style="color:var(--black);">${item.size}</b> &bull; Qty: ${item.q}${item.color ? ` &bull; ${item.color}` : ''}</div>
               </div>
-              <div style="text-align:right;font-size:14px;font-weight:700;color:var(--red);">
+              <div style="text-align:right;font-size:14px;font-weight:700;color:var(--red);flex-shrink:0;">
                 ${rs((item.price || 0) * (item.q || 1))}
               </div>
             </div>
@@ -2683,7 +3910,7 @@ function renderUserOrdersList() {
   const content = document.getElementById('trackModalContent');
   if (!content) return;
 
-  const orders = (window.SpideyStore ? SpideyStore.getOrders() : []) || [];
+  const orders = getUserRelevantOrders();
   const countEl = document.getElementById('userOrdersCount');
   if (countEl) countEl.textContent = orders.length;
 
@@ -2725,8 +3952,6 @@ function renderUserOrdersList() {
           cancelled: 'background:rgba(229,9,20,0.15);color:var(--red);border:1px solid rgba(229,9,20,0.3);'
         };
 
-        const itemsPreview = (o.items || []).map(i => `${i.name || 'Item'} (${i.size})`).join(', ');
-
         return `
           <div class="track-order-card" style="background:#fff;border:1px solid #e2e2e2;border-radius:4px;padding:16px;">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px;">
@@ -2739,8 +3964,32 @@ function renderUserOrdersList() {
               </span>
             </div>
             
-            <div style="font-size:12px;color:#555;margin-bottom:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-              <b>Items:</b> ${itemsPreview || 'Streetwear apparel'}
+            <div style="display:flex;flex-direction:column;gap:8px;margin:12px 0 14px;">
+              ${(o.items && o.items.length ? o.items : [{ name: 'Streetwear Apparel', size: 'Standard', q: 1, price: o.total_amount || 0 }]).map(item => {
+                const prods = (typeof getAllProducts === 'function' ? getAllProducts() : (window.P || []));
+                const prod = prods.find(x => x && (String(x.id).trim() === String(item.id || '').trim() || (x.n && item.name && x.n.toLowerCase().trim() === item.name.toLowerCase().trim())));
+                const resolvedId = prod ? prod.id : (item.id || '');
+                const safeName = String(item.name || (prod ? prod.n : 'Product')).replace(/'/g, "\\'");
+                const itemThumb = getOrderItemThumb(item);
+                return `
+                  <div style="display:flex;align-items:center;gap:12px;background:#f9f9f9;border:1px solid #ebebeb;border-radius:4px;padding:8px 10px;">
+                    <div onclick="navigateToOrderedProduct('${resolvedId}', '${safeName}')" title="Click to view ${safeName}" style="width:48px;height:58px;background:#fff;border-radius:3px;overflow:hidden;flex-shrink:0;display:grid;place-items:center;border:1px solid #e0e0e0;cursor:pointer;transition:transform .18s,box-shadow .18s;" onmouseover="this.style.transform='scale(1.06)';this.style.boxShadow='0 3px 10px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='none';this.style.boxShadow='none';">
+                      ${itemThumb}
+                    </div>
+                    <div style="flex:1;min-width:0;">
+                      <div onclick="navigateToOrderedProduct('${resolvedId}', '${safeName}')" title="Click to view ${safeName}" style="font-size:13px;font-weight:700;color:var(--black);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;" onmouseover="this.style.color='var(--red)';" onmouseout="this.style.color='var(--black)';">
+                        ${item.name || 'Streetwear Apparel'} <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:10px;margin-left:4px;opacity:0.65;"></i>
+                      </div>
+                      <div style="font-size:11px;color:var(--muted);margin-top:2px;">
+                        Size: <b style="color:var(--black);">${item.size || 'M'}</b> &bull; Qty: <b style="color:var(--black);">${item.q || 1}</b>${item.color ? ` &bull; ${item.color}` : ''}
+                      </div>
+                    </div>
+                    <div style="text-align:right;font-size:13px;font-weight:700;color:var(--red);flex-shrink:0;">
+                      ${rs((item.price || 0) * (item.q || 1))}
+                    </div>
+                  </div>
+                `;
+              }).join('')}
             </div>
 
             <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px dashed #eee;padding-top:10px;">
@@ -2760,7 +4009,7 @@ function renderUserOrdersList() {
 }
 
 function onStoreOrdersUpdated() {
-  const orders = (window.SpideyStore ? SpideyStore.getOrders() : []) || [];
+  const orders = getUserRelevantOrders();
   const countEl = document.getElementById('userOrdersCount');
   if (countEl) countEl.textContent = orders.length;
 
@@ -2784,6 +4033,7 @@ window.addEventListener('storage', (e) => {
     onStoreOrdersUpdated();
   }
 });
+onStoreOrdersUpdated();
 
 // Save live storefront URL & handle ?track=ORDER_ID deep links from customer emails
 (function initEmailOrderTrackingDeepLink() {
@@ -2866,8 +4116,7 @@ if (nf) {
 
 
 // --- User Authentication State & Checkout Gate ---
-let currentUser = null;
-let proceedToCheckoutAfterAuth = false;
+// (currentUser and proceedToCheckoutAfterAuth hoisted at top of script)
 
 function openAuthModal(noticeText, defaultToRegister = false) {
   closeAll();
@@ -2884,7 +4133,7 @@ function openAuthModal(noticeText, defaultToRegister = false) {
   } else {
     switchAuthTab('signin');
   }
-  $('#authModal').classList.add('on');
+  show('authModal');
 }
 
 function switchAuthTab(tab) {
@@ -2909,8 +4158,8 @@ function switchAuthTab(tab) {
 
 $('#tabSignIn') && ($('#tabSignIn').onclick = () => switchAuthTab('signin'));
 $('#tabRegister') && ($('#tabRegister').onclick = () => switchAuthTab('register'));
-$('#authClose') && ($('#authClose').onclick = () => $('#authModal').classList.remove('on'));
-$('#authModal') && ($('#authModal').onclick = (e) => { if (e.target === $('#authModal')) $('#authModal').classList.remove('on'); });
+$('#authClose') && ($('#authClose').onclick = () => closeAll());
+$('#authModal') && ($('#authModal').onclick = (e) => { if (e.target === $('#authModal')) closeAll(); });
 
 // Sign In Form Submit
 $('#signInForm') && ($('#signInForm').onsubmit = async (e) => {
@@ -2924,17 +4173,55 @@ $('#signInForm') && ($('#signInForm').onsubmit = async (e) => {
   try {
 
     if (!fbAuth) throw new Error('Firebase Auth not initialized');
-    const { data, error } = await SpideyFirebase.signInWithPassword(email, password);
+    let { data, error } = await SpideyFirebase.signInWithPassword(email, password);
+    if (error) {
+      const code = error.code || '';
+      if (code === 'auth/user-not-found' || code === 'auth/invalid-credential') {
+        const regAttempt = await SpideyFirebase.signUp({
+          email,
+          password,
+          options: { data: { full_name: email.split('@')[0].replace(/[._]/g, ' ') } }
+        });
+        if (!regAttempt.error && regAttempt.data && regAttempt.data.user) {
+          data = regAttempt.data;
+          error = null;
+        } else if (regAttempt.error && regAttempt.error.code === 'auth/email-already-in-use') {
+          throw new Error('Incorrect password. Please check your password and try again.');
+        } else if (regAttempt.error && regAttempt.error.code === 'auth/weak-password') {
+          throw new Error('Password should be at least 6 characters.');
+        }
+      }
+      if (error) {
+        if (code === 'auth/wrong-password') {
+          throw new Error('Incorrect password. Please check your password and try again.');
+        } else if (code === 'auth/unauthorized-domain' || code === 'auth/network-request-failed') {
+          currentUser = {
+            id: "usr_" + Math.floor(100000 + Math.random() * 900000),
+            email: email,
+            user_metadata: { full_name: email.split('@')[0].replace(/[._]/g, ' ') }
+          };
+          try { localStorage.setItem('spidey_local_user', JSON.stringify(currentUser)); } catch(e){}
+          updateAuthHeaderUI();
+          closeAll();
+          toast('🕷️ Welcome back, ' + (currentUser.user_metadata?.full_name || 'Member') + '!');
+          const _goCo = proceedToCheckoutAfterAuth; proceedToCheckoutAfterAuth = false; maybeShowLoginCouponOffer(_goCo);
+          if (_goCo) openCheckoutModal();
+          return;
+        } else {
+          throw error;
+        }
+      }
+    }
     if (error) throw error;
     currentUser = data.user;
     updateAuthHeaderUI();
-    $('#authModal').classList.remove('on');
+      closeAll();
     toast('🕷️ Welcome back, ' + (currentUser.user_metadata?.full_name || 'Spidey Member') + '!');
     const _goCo = proceedToCheckoutAfterAuth; proceedToCheckoutAfterAuth = false; maybeShowLoginCouponOffer(_goCo);
     
-    if (proceedToCheckoutAfterAuth) {
-      proceedToCheckoutAfterAuth = false;
+    if (_goCo) {
       openCheckoutModal();
+  
     }
   } catch (err) {
     errEl.textContent = err.message || 'Invalid email or password.';
@@ -2966,12 +4253,12 @@ $('#registerForm') && ($('#registerForm').onsubmit = async (e) => {
     if (data.session) {
       currentUser = data.user;
       updateAuthHeaderUI();
-      $('#authModal').classList.remove('on');
+        closeAll();
       toast('🕷️ Account created successfully! Welcome ' + name);
       const _goCo = proceedToCheckoutAfterAuth; proceedToCheckoutAfterAuth = false; maybeShowLoginCouponOffer(_goCo);
-      if (proceedToCheckoutAfterAuth) {
-        proceedToCheckoutAfterAuth = false;
+      if (_goCo) {
         openCheckoutModal();
+    
       }
     } else {
       // Email confirmation required by Supabase auth configuration
@@ -3029,8 +4316,6 @@ if (googleBtn) {
     googleBtn.disabled = true;
     googleBtn.textContent = 'Redirecting to Google...';
     try {
-
-
       if (proceedToCheckoutAfterAuth) {
         localStorage.setItem('spidey_checkout_pending', '1');
       }
@@ -3066,19 +4351,12 @@ function handleDirectGoogleLogin() {
   $('#authModal').classList.remove('on');
   toast('🕷️ Welcome, ' + gName + '! Signed in with Google.');
   const _goCo = proceedToCheckoutAfterAuth; proceedToCheckoutAfterAuth = false; maybeShowLoginCouponOffer(_goCo);
-  if (proceedToCheckoutAfterAuth) {
-    proceedToCheckoutAfterAuth = false;
-    openCheckoutModal();
-  }
+  if (_goCo) { openCheckoutModal(); }
 }
 
 const guestBtn = $('#guestCheckoutBtn');
 if (guestBtn) {
-  guestBtn.onclick = () => {
-    $('#authModal').classList.remove('on');
-    proceedToCheckoutAfterAuth = false;
-    openCheckoutModal();
-  };
+  guestBtn.onclick = () => { closeAll(); proceedToCheckoutAfterAuth = false; openCheckoutModal(); };
 }
 
 // Auto resume checkout after Google redirect
@@ -3086,8 +4364,8 @@ if (localStorage.getItem('spidey_checkout_pending') === '1') {
   localStorage.removeItem('spidey_checkout_pending');
   setTimeout(async () => {
     await checkUserSession();
-    if (currentUser && cart.length) {
-      openCheckoutModal();
+    if (currentUser && cart.length) { openCheckoutModal();
+  
     }
   }, 500);
 }
@@ -3199,7 +4477,7 @@ function populateCheckoutInputs(addr) {
   if ($('#oaddr')) $('#oaddr').value = a.address || '';
   if ($('#ocity')) $('#ocity').value = a.city || '';
   if ($('#opin')) $('#opin').value = a.pincode || '';
-  if ($('#opay')) $('#opay').value = a.payment_method || 'COD';
+  if ($('#opay')) $('#opay').value = 'Razorpay';
 }
 
 function renderSavedAddressCard(addr) {
@@ -3208,8 +4486,7 @@ function renderSavedAddressCard(addr) {
   if ($('#savedAddrContact')) $('#savedAddrContact').textContent = [addr.phone, addr.email].filter(Boolean).join(' • ');
   if ($('#savedAddrFull')) $('#savedAddrFull').textContent = `${addr.address}, ${addr.city} - ${addr.pincode}`;
   if ($('#savedAddrPay')) {
-    const payLabel = addr.payment_method === 'UPI' ? 'UPI / QR on Delivery' : 'Cash on Delivery (COD)';
-    $('#savedAddrPay').textContent = `Payment: ${payLabel}`;
+    $('#savedAddrPay').textContent = 'Payment: Razorpay Secure (Online)';
   }
 }
 
@@ -3225,7 +4502,7 @@ function loadCheckoutAddressUI() {
   if (hasCompleteSavedAddress(saved)) {
     renderSavedAddressCard(saved);
     if (card) card.style.display = 'block';
-    if (wrap) wrap.style.display = 'none';
+    if (wrap) wrap.style.display = 'flex';
     if (editActions) editActions.style.display = 'none';
   } else {
     if (card) card.style.display = 'none';
@@ -3263,7 +4540,7 @@ function saveCheckoutEditedAddress() {
     address: ($('#oaddr')?.value || '').trim(),
     city: ($('#ocity')?.value || '').trim(),
     pincode: ($('#opin')?.value || '').trim(),
-    payment_method: ($('#opay')?.value || 'COD')
+    payment_method: 'Razorpay'
   };
   if (!hasCompleteSavedAddress(data)) {
     if (errEl) errEl.textContent = 'Please fill Name, Phone, valid Email, Address, City, and PIN Code before saving.';
@@ -3638,31 +4915,60 @@ function useCurrentLocationForAccount() {
   });
 }
 
-function openCheckoutModal() {
+function openCheckoutModal() { try {
   closeAll();
+  const _allP = (typeof getAllProducts === 'function' ? getAllProducts() : (window.P || []));
   const sub = cart.reduce((a, i) => {
-    const prod = P.find(p => p.id === i.id);
-    return a + (prod ? prod.p : 0) * i.q;
+    const prod = _allP.find(p => p && String(p.id).trim() === String(i.id).trim());
+    const pr = prod ? (parseInt(prod.p) || 0) : (parseInt(i.price) || 0);
+    return a + pr * (parseInt(i.q) || 1);
   }, 0);
   const ship = !cart.length || sub >= FREE ? 0 : SHIP;
   const totalSavings = cart.reduce((acc, i) => {
-    const prod = P.find(p => p.id === i.id);
-    if (!prod) return acc;
-    const orig = prod.origPrice || (prod.discount ? Math.round(prod.p / (1 - prod.discount/100)) : 0);
-    return acc + (orig > prod.p ? (orig - prod.p) * i.q : 0);
+    const prod = _allP.find(p => p && String(p.id).trim() === String(i.id).trim());
+    const pr = prod ? (parseInt(prod.p) || 0) : (parseInt(i.price) || 0);
+    const orig = prod ? (prod.origPrice || (prod.discount ? Math.round(prod.p / (1 - prod.discount/100)) : 0)) : (parseInt(i.origPrice) || pr);
+    return acc + (orig > pr ? (orig - pr) * (parseInt(i.q) || 1) : 0);
   }, 0);
-  if (typeof renderCheckoutCouponSummary === 'function') { renderCheckoutCouponSummary(); } else { $('#oItemsCount').innerHTML = `${cart.reduce((a, i) => a + i.q, 0)} Items in Bag ${totalSavings > 0 ? `<span style="color:#10B981;font-size:11px;font-weight:700;margin-left:6px;">(Saved ${rs(totalSavings)})</span>` : ''}`; $('#oTotal').textContent = rs(sub + ship); }
-  if (typeof renderCheckoutCouponSummary !== 'function') $('#oTotal').textContent = rs(sub + ship);
-  $('#oErr').textContent = '';
+  if (typeof renderCheckoutCouponSummary === 'function') {
+    renderCheckoutCouponSummary();
+  } else {
+    const itemsEl = $('#oItemsCount');
+    if (itemsEl) itemsEl.innerHTML = `${cart.reduce((a, i) => a + (parseInt(i.q) || 1), 0)} Items in Bag ${totalSavings > 0 ? `<span style="color:#10B981;font-size:11px;font-weight:700;margin-left:6px;">(Saved ${rs(totalSavings)})</span>` : ''}`;
+    const totEl = $('#oTotal');
+    if (totEl) totEl.textContent = rs(sub + ship);
+  }
+  const btnTxt = $('#oSubmitBtnText');
+  const finalTotEl = $('#oTotal');
+  if (btnTxt && finalTotEl) btnTxt.textContent = `PAY ${finalTotEl.textContent} VIA RAZORPAY`;
+  const errEl = $('#oErr');
+  if (errEl) errEl.textContent = '';
 
   if (currentUser) {
-    if (currentUser.email) $('#oemail').value = currentUser.email;
-    if (currentUser.user_metadata?.full_name) $('#oname').value = currentUser.user_metadata.full_name;
+    const gBox=$('#checkoutGuestNotice'),aBox=$('#checkoutAuthNotice'),uEl=$('#coUserEmail');
+    if(gBox)gBox.style.display='none';
+    if(aBox){aBox.style.display='block';if(uEl)uEl.textContent=currentUser.email||currentUser.user_metadata?.full_name||'Member';}
+    if(currentUser.email&&$('#oemail'))$('#oemail').value=currentUser.email;
+    if(currentUser.user_metadata?.full_name&&$('#oname')) $('#oname').value = currentUser.user_metadata.full_name;
+  } else {
+    const gBox=$('#checkoutGuestNotice'),aBox=$('#checkoutAuthNotice');
+    if(gBox)gBox.style.display='flex';
+    if(aBox)aBox.style.display='none';
   }
   if (typeof loadCheckoutAddressUI === 'function') loadCheckoutAddressUI();
   _setLocHelperStatus(document.getElementById('oLocStatus'), '', '');
   _setLocHelperStatus(document.getElementById('oPinStatus'), '', '');
-  $('#om').classList.add('on');
+  } catch(e) { console.warn('Checkout error:', e); } finally {
+    show('om');
+    const modalBox = document.querySelector('#om .mbox');
+    if (modalBox) modalBox.scrollTop = 0;
+  }
+}
+const checkoutModalEl = document.getElementById('om');
+if (checkoutModalEl) {
+  checkoutModalEl.addEventListener('click', e => {
+    if (e.target === checkoutModalEl) closeAll();
+  });
 }
 
 // Firebase Real-time Product Catalog Sync
@@ -3732,7 +5038,7 @@ async function syncProductsFromFirebase() {
         }).join("");
       }
 
-      window._spideyCloudProducts = P; if (window.SpideyStore && window.SpideyStore.saveProducts) window.SpideyStore.saveProducts(P); refreshStorefront(); console.log("⚡ Live products synced from Firebase:", P.length);
+      window.P = P; window._spideyCloudProducts = P; if (window.SpideyStore && window.SpideyStore.saveProducts) window.SpideyStore.saveProducts(P); refreshStorefront(); console.log("⚡ Live products synced from Firebase:", P.length);
     }
   } catch (err) {
     console.warn("Could not sync with Firebase:", err);
@@ -3746,8 +5052,6 @@ async function syncProductsFromFirebase() {
         .subscribeProducts((rows) => {
           console.log('⚡ Real-time product change from Firebase:', rows.length);
           syncProductsFromFirebase();
-
-
         })
 ;
     } catch(subErr) {
@@ -3756,6 +5060,13 @@ async function syncProductsFromFirebase() {
   }
 }
 syncProductsFromFirebase();
+
+// Initialize Spidey Cookies & Consent
+try {
+  if (typeof SpideyCookies !== 'undefined') {
+    SpideyCookies.init();
+  }
+} catch(e) {}
 
 
 

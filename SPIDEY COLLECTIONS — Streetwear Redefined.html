@@ -727,7 +727,7 @@ $('#cd').addEventListener('click',e=>{
  const r=e.target.closest('[data-r]');if(r){cart.splice(+r.dataset.r,1);save();drawCart()}
  if(e.target.id==='co'){
     if(!cart.length){toast('Your bag is empty!');return;}
-    if(!currentUser){
+    if(false && !currentUser){
       proceedToCheckoutAfterAuth = true;
       openAuthModal('Please create an account or sign in to complete your purchase.', true);
       return;
@@ -1488,7 +1488,7 @@ function openCheckoutModal() {
     if (currentUser.email) $('#oemail').value = currentUser.email;
     if (currentUser.user_metadata?.full_name) $('#oname').value = currentUser.user_metadata.full_name;
   }
-  $('#om').classList.add('on');
+  $('#sc').classList.add('on'); $('#om').classList.add('on');
 }
 
 // Supabase Real-time Product Catalog Sync

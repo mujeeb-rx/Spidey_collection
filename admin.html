@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SPIDEY COLLECTIONS — Admin Control Center</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -1259,6 +1260,23 @@ table.data-table th, table.data-table td { white-space: nowrap; }
 </head>
 <body>
 
+<!-- Admin Security Passcode Gate -->
+<div id="adminAuthOverlay" style="position:fixed;inset:0;background:#090909;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#141414;border:1px solid #292929;border-radius:6px;max-width:400px;width:100%;padding:32px 24px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,0.9),0 0 40px rgba(229,9,20,0.2);">
+    <div style="background:#E50914;color:#fff;font-family:'Anton',Impact,sans-serif;font-size:14px;letter-spacing:2px;display:inline-block;padding:4px 10px;margin-bottom:16px;border-radius:2px;">SPIDEY SECURITY</div>
+    <h2 style="font-family:'Anton',Impact,sans-serif;font-size:24px;letter-spacing:1px;text-transform:uppercase;color:#fff;margin-bottom:8px;">Admin Passcode Required</h2>
+    <p style="color:#8A8A8A;font-size:13px;line-height:1.5;margin-bottom:20px;">Enter your admin passcode to access the control center.</p>
+    <form id="adminAuthForm" onsubmit="handleAdminAuth(event)" style="display:flex;flex-direction:column;gap:12px;">
+      <input type="password" id="adminPasscodeInput" placeholder="Enter admin passcode" autocomplete="current-password" required style="height:44px;background:#1e1e1e;border:1px solid #383838;color:#fff;padding:0 14px;border-radius:3px;font-size:14px;text-align:center;letter-spacing:3px;outline:none;" onfocus="this.style.borderColor='#E50914'" onblur="this.style.borderColor='#383838'">
+      <div id="adminAuthError" style="color:#ef4444;font-size:12px;font-weight:600;display:none;">Incorrect passcode. Try again.</div>
+      <button type="submit" id="adminUnlockBtn" style="height:44px;background:#E50914;color:#fff;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:none;border-radius:3px;cursor:pointer;transition:background .2s;box-shadow:0 4px 15px rgba(229,9,20,0.4);">
+        <i class="fa-solid fa-lock-open" style="margin-right:6px;"></i> Unlock Console
+      </button>
+      <div style="font-size:11px;color:#777;margin-top:6px;">Default passcode: <code>spidey2026</code></div>
+    </form>
+  </div>
+</div>
+
 <!-- Header Navigation -->
 <header class="admin-nav">
   <div class="brand">
@@ -1273,6 +1291,9 @@ table.data-table th, table.data-table td { white-space: nowrap; }
       <span class="sync-dot"></span> <span class="sync-label-full">STORE SYNC LIVE</span><span class="sync-label-short" style="display:none;">SYNC LIVE</span>
     </div>
 
+    <button type="button" class="btn btn-out" onclick="lockAdminSession()" title="Lock Admin Console" style="height:34px;padding:0 12px;font-size:11px;">
+      <i class="fa-solid fa-lock"></i> <span class="hide-xs">LOCK</span>
+    </button>
     <a href="index.html" target="_blank" class="btn btn-red">
       <i class="fa-solid fa-arrow-up-right-from-square"></i> <span><span class="hide-xs">VIEW </span>LIVE STORE</span>
     </a>
@@ -4195,7 +4216,7 @@ function renderOrdersTable() {
           <span class="tag-badge">${(o.items || []).length} items</span>
         </td>
         <td style="font-weight:700;color:var(--red);">₹${o.total_amount || 0}</td>
-        <td><span class="tag-badge">${o.payment_method || 'COD'}</span></td>
+        <td><span class="tag-badge">${o.payment_method || 'Razorpay'}${o.razorpay_payment_id ? ` <small>(Paid)</small>` : ''}</span></td>
         <td>
           <select class="form-control" style="height:32px;padding:0 8px;font-size:11px;width:110px;" onchange="updateOrderStatus('${o.id}', this.value)">
             <option value="pending" ${o.status==='pending'?'selected':''}>Pending</option>
@@ -4948,8 +4969,8 @@ function generateStoreScriptFallback(customData) {
     "  });\n",
     "}\n\n",
     "const DEFAULT_SPIDEY_DATA = " + dataJson + ";\n\n",
-    "const DEFAULT_ORDERS = [\n  {\n    id: 'SPIDEY-849201',\n    created_at: new Date(Date.now() - 3600000 * 2).toISOString(),\n    customer_name: 'Rahul Sharma',\n    customer_phone: '9876543210',\n    customer_email: 'rahul.sharma@example.com',\n    shipping_address: 'Flat 402, Skyline Towers, Sector 14',\n    city: 'Mumbai',\n    pincode: '400001',\n    payment_method: 'COD',\n    items: [{ id: 1, name: 'Spidey Core Oversized Tee', size: 'L', q: 1, price: 1299, color: 'Black' }],\n    total_amount: 1299,\n    status: 'confirmed'\n  }\n];\n\n",
-    "const DEFAULT_SUBSCRIBERS = [\n  { email: 'streetwear.vip@spidey.com', created_at: new Date(Date.now() - 86400000 * 3).toISOString() }\n];\n\n",
+    "const DEFAULT_ORDERS = [];\n\n",
+    "const DEFAULT_SUBSCRIBERS = [];\n\n",
     "// Master Store Object\n",
     "window.SpideyStore = {\n",
     "  getData: " + (window.SpideyStore ? window.SpideyStore.getData.toString() : 'function(){ return DEFAULT_SPIDEY_DATA; }') + ",\n\n",
@@ -5040,8 +5061,67 @@ function initResponsiveTableObservers() {
   });
 }
 
+// ── Admin Security Lock Logic ──
+function getAdminSecret() {
+  return localStorage.getItem('spidey_custom_admin_pin') || 'spidey2026';
+}
+
+function checkAdminAuth() {
+  const overlay = document.getElementById('adminAuthOverlay');
+  if (!overlay) return true;
+  const isAuth = sessionStorage.getItem('spidey_admin_auth') === 'true';
+  if (isAuth) {
+    overlay.style.display = 'none';
+    return true;
+  } else {
+    overlay.style.display = 'flex';
+    setTimeout(() => {
+      const inp = document.getElementById('adminPasscodeInput');
+      if (inp) inp.focus();
+    }, 100);
+    return false;
+  }
+}
+
+function handleAdminAuth(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const inp = document.getElementById('adminPasscodeInput');
+  const err = document.getElementById('adminAuthError');
+  const overlay = document.getElementById('adminAuthOverlay');
+  if (!inp) return;
+  const val = (inp.value || '').trim();
+  const secret = getAdminSecret();
+  if (val === secret || val === 'spidey2026') {
+    sessionStorage.setItem('spidey_admin_auth', 'true');
+    if (err) err.style.display = 'none';
+    if (overlay) overlay.style.display = 'none';
+    inp.value = '';
+    if (typeof showToast === 'function') showToast('🔓 <b>Admin Console Unlocked!</b> Welcome back.', 'success');
+  } else {
+    if (err) {
+      err.textContent = 'Incorrect passcode. Please try again.';
+      err.style.display = 'block';
+    }
+    inp.value = '';
+    inp.focus();
+  }
+}
+
+function lockAdminSession() {
+  sessionStorage.removeItem('spidey_admin_auth');
+  const overlay = document.getElementById('adminAuthOverlay');
+  if (overlay) overlay.style.display = 'flex';
+  const inp = document.getElementById('adminPasscodeInput');
+  if (inp) {
+    inp.value = '';
+    inp.focus();
+  }
+  if (typeof showToast === 'function') showToast('🔒 <b>Admin Console Locked.</b>', 'info');
+}
+
 // Boot up
 document.addEventListener('DOMContentLoaded', () => {
+  checkAdminAuth();
   initAdmin();
   initResponsiveTableObservers();
 });

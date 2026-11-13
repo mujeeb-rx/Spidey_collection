@@ -1,0 +1,8 @@
+# robots.txt for https://spideycollection.co.in/
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /firebase-config.js
+Disallow: /skills-lock.json
+
+Sitemap: https://spideycollection.co.in/sitemap.xml
